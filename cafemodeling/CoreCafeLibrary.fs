@@ -114,6 +114,7 @@ module Utils =
         | AddTable of Table 
         | AddFood of Food
 
+    let makeCommand commandMaker: Command =
         match commandMaker with
             | AddTable t ->
                 let addTable: Event=
