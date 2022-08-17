@@ -2,6 +2,8 @@
 namespace cafemodeling
 
 open FSharp.Core
+open FSharpPlus
+open FSharpPlus.Data
 
 module rec modeling =
     type Food = 
@@ -31,7 +33,7 @@ module rec modeling =
                 }
 
     type Event = World -> Result<World, string>
-    type Command = World -> Result<Event, string>
+    type Command = World -> Result<NonEmptyList<Event>, string>
     type World =
         {
             tables: List<Table>
@@ -43,7 +45,7 @@ module rec modeling =
                     tables = []
                     availableFoods = []
                 }
-            member this.AddTable table: Result<World,string> =
+            member this.AddTable table: Result<World, string> =
                 if ((this.tables) |> List.contains table) then
                     sprintf "table %d already exists" table.id |> Error
                 else
@@ -87,8 +89,8 @@ module rec modeling =
                                             )
                         } |> Ok
 
-            member this.ProcessEvents events =
-                events 
+            member this.ProcessEvents (events: NonEmptyList<Event>) =
+                events |> NonEmptyList.toList
                 |> List.fold 
                     (fun x f -> 
                         match x with
@@ -100,7 +102,7 @@ module rec modeling =
                 let res = 
                     match command this with
                     | Ok x -> 
-                        match this.ProcessEvents [x] with
+                        match this.ProcessEvents x with
                         | Ok _ -> Ok x
                         | Error e -> Error (sprintf "command error: %s" e)
                     | Error x ->  Error (sprintf "command error: %s" x)
@@ -119,14 +121,14 @@ module Utils =
                     let tableAdded t =
                         fun (x: World) -> x.AddTable t
                     tableAdded t
-                fun _ -> addTable |> Ok
+                fun _ -> [addTable] |> NonEmptyList.ofList |> Ok
 
             | AddFood f ->
                 let addFood: Event=
                     let foodAdded f =
                         fun (x: World) -> x.AddFood f
                     foodAdded f
-                fun _ -> addFood |> Ok
+                fun _ -> [addFood] |> NonEmptyList.ofList |> Ok
 
 
 

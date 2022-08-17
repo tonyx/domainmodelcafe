@@ -7,6 +7,10 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "cafemodeling", "cafemodelin
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "cafemodelingtest", "cafemodelingtest\cafemodelingtest.fsproj", "{CE2635AE-A062-4257-8E24-A113F0172125}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "hotelmodeling", "hotelmodeling\hotelmodeling.fsproj", "{B3110551-B4F4-4F32-9E51-DF59DCAFD443}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "hotelmodelingtest", "hotelmodelingtest\hotelmodelingtest.fsproj", "{4D9000F4-F49F-4100-B652-AE447AAC127B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{CE2635AE-A062-4257-8E24-A113F0172125}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE2635AE-A062-4257-8E24-A113F0172125}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE2635AE-A062-4257-8E24-A113F0172125}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3110551-B4F4-4F32-9E51-DF59DCAFD443}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3110551-B4F4-4F32-9E51-DF59DCAFD443}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3110551-B4F4-4F32-9E51-DF59DCAFD443}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3110551-B4F4-4F32-9E51-DF59DCAFD443}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D9000F4-F49F-4100-B652-AE447AAC127B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D9000F4-F49F-4100-B652-AE447AAC127B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D9000F4-F49F-4100-B652-AE447AAC127B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D9000F4-F49F-4100-B652-AE447AAC127B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
