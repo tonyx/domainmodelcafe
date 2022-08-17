@@ -5,16 +5,16 @@ open FSharpPlus
 open FSharpPlus.Data
 
 module MiscUtils =
-    let daysToString(conflictingDays: Set<DateTime>) = 
+    let daysToString(days: Set<DateTime>) = 
         let printconflictsdays = 
-            conflictingDays 
+            days 
                 |> Set.fold (fun x y -> (sprintf "%A" (y.ToString("yyy/MM/dd")))+"," + x) ""
         if (printconflictsdays = String.Empty) then
             String.Empty
         else
             printconflictsdays.Substring(0, printconflictsdays.Length-1)
 
-module Domain =
+module rec Domain =
     open MiscUtils
     [<CustomEquality; NoComparison>]
     type Room =
@@ -47,6 +47,8 @@ module Domain =
                         yield (this.expectedCheckin.Date + TimeSpan(i - 1, 0, 0, 0))
                 ]
 
+    type Event = Hotel -> Result<Hotel, string>
+    type Command = Hotel -> Result<NonEmptyList<Event>, string>
     type Hotel =
         {
             rooms: List<Room>
@@ -94,3 +96,41 @@ module Domain =
                     |> Set.ofList 
 
                 daysOfBookings
+
+            member this.ProcessEvents (events: NonEmptyList<Event>) =
+                events |> NonEmptyList.toList
+                |> List.fold 
+                    (fun x f -> 
+                        match x with
+                        | Ok x1 -> f x1
+                        | Error x -> Error x
+                    ) (this |> Ok)
+
+            member this.ProcessCommand (command: Command) =
+                let res = 
+                    match command this with
+                    | Ok x -> 
+                        match this.ProcessEvents x with
+                        | Ok _ -> Ok x
+                        | Error e -> Error (sprintf "command error: %s" e)
+                    | Error x ->  Error (sprintf "command error: %s" x)
+                res
+    type CommandMaker =
+        | AddRoom of Room
+        | AddBooking of Booking
+
+    let makeCommand commandMaker: Command =
+        match commandMaker with
+            | AddRoom t ->
+                let addRoom: Event=
+                    let roomAdded t =
+                        fun (x: Hotel) -> x.AddRoom t
+                    roomAdded t
+                fun _ -> [addRoom] |> NonEmptyList.ofList |> Ok
+
+            | AddBooking f ->
+                let addBooking: Event=
+                    let bookingAdded f =
+                        fun (x: Hotel) -> x.AddBooking f
+                    bookingAdded f
+                fun _ -> [addBooking] |> NonEmptyList.ofList |> Ok

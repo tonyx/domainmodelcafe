@@ -21,5 +21,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\cafemodeling\cafemodeling.fsproj" />
+    <ProjectReference Include="..\generalDomainModeling\generalDomainModeling.fsproj" />
   </ItemGroup>
 </Project>

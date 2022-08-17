@@ -114,7 +114,6 @@ module Utils =
         | AddTable of Table 
         | AddFood of Food
 
-    let makeCommand commandMaker: Command =
         match commandMaker with
             | AddTable t ->
                 let addTable: Event=
@@ -129,6 +128,3 @@ module Utils =
                         fun (x: World) -> x.AddFood f
                     foodAdded f
                 fun _ -> [addFood] |> NonEmptyList.ofList |> Ok
-
-
-

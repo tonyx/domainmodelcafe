@@ -5,6 +5,8 @@ open hotelmodeling.Domain
 open System
 open FSharp.Core
 open FSharp.Core.Result
+open FSharpPlus
+open FSharpPlus.Data
 
 module Tests =
 
@@ -399,7 +401,7 @@ module Tests =
 
                 let (Ok newHotel) = hotel.AddBooking booking1 
                 let (Error error) = newHotel.AddBooking booking2
-                Expect.equal error "period overlaps with existing booking" "should be equal"
+                Expect.equal error "overlap: \"2022/11/11\"" "should be equal"
 
             testCase "add more bookings that have no overlaps - Ok" <| fun _ ->
                 let hotel = 
@@ -457,7 +459,7 @@ module Tests =
                 let (Ok hotel'') = hotel'.AddBooking booking2 
                 Expect.equal (hotel''.bookings.Length) 2 "should be equal"
 
-            ftestCase "add bookings that overlaps - Error" <| fun _ ->
+            testCase "add bookings that overlaps - Error" <| fun _ ->
                 let hotel = 
                     {
                         Hotel.GetEmpty()
@@ -484,4 +486,296 @@ module Tests =
                 let (Error error) = hotel'.AddBooking booking2 
                 Expect.equal error "overlap: \"2022/11/14\"" "should be equal"
         ] 
+
+
+    [<Tests>]
+    let eventsTests =
+        testList "Domain events" [
+            testCase "add room event - Ok" <| fun _ ->
+                let hotel = Hotel.GetEmpty()
+                let roomAdded r =
+                    let res = fun (x: Hotel) -> x.AddRoom r
+                    res
+                let event = roomAdded room1
+                let (Ok hotel') = event hotel
+
+                let expected = 
+                    {
+                        rooms = [room1]
+                        bookings = []
+                    }
+                Expect.equal hotel' expected "should be equal"
+
+            testCase "add booking event - Ok" <| fun _ ->
+                let booking: Booking =
+                    {
+                        id = None
+                        roomId = 1
+                        customerEmail = "email@me.com"
+                        expectedCheckin = DateTime.Parse("2022-11-11 01:01:01")
+                        expectedCheckout = DateTime.Parse("2022-11-12 01:01:01")
+                    }
+                let hotel = 
+                    {
+                        Hotel.GetEmpty() with
+                            rooms = [room1]
+                    }
+                let bookingAdded b =
+                    let res = fun (x: Hotel) -> x.AddBooking b
+                    res
+
+                let event = bookingAdded booking
+                let (Ok hotel') = event hotel
+                Expect.isSome hotel'.bookings.Head.id "should be some"
+
+                let actualBookingNoId = 
+                    {
+                        hotel'.bookings.Head with
+                        id = None
+                    }
+                Expect.equal actualBookingNoId booking "should be true"
+
+            testCase "add two room event - Ok" <| fun _ ->
+                let room2 =
+                    {
+                        id = 2
+                        description = None
+                    }
+                let hotel = Hotel.GetEmpty()
+                let roomAdded r =
+                    let res = fun (x: Hotel) -> x.AddRoom r
+                    res
+                let room1Added = room1 |> roomAdded
+                let room2Added = room2 |> roomAdded
+                let events = [room1Added; room2Added] |> NonEmptyList.ofList
+                let (Ok hotel') = events |> hotel.ProcessEvents
+                Expect.equal hotel' {hotel with rooms = [room2; room1]} "should be equal"
+
+            testCase "add room and booking - Ok" <| fun _ ->
+                let booking: Booking =
+                    {
+                        id = None
+                        roomId = 1
+                        customerEmail = "email@me.com"
+                        expectedCheckin = DateTime.Parse("2022-11-11 01:01:01")
+                        expectedCheckout = DateTime.Parse("2022-11-12 01:01:01")
+                    }
+                let hotel = Hotel.GetEmpty()
+                let roomAdded r =
+                    let res = fun (x: Hotel) -> x.AddRoom r
+                    res
+
+                let bookingAdded b =
+                    let res = fun (x: Hotel) -> x.AddBooking b
+                    res
+                let room1Added = roomAdded room1
+                let booking1Added = bookingAdded booking
+
+                let events = [room1Added; booking1Added] |> NonEmptyList.ofList
+                let (Ok hotel') = events |> hotel.ProcessEvents
+                let actualBookingNoId =
+                    {
+                        hotel'.bookings.Head 
+                            with 
+                                id = None
+                    }
+                Expect.equal (hotel'.rooms.Head) room1 "should be equal"
+                Expect.equal actualBookingNoId booking "should be equal"
+
+            testCase "add already existing room - Error" <| fun _ ->
+                let existingBooking: Booking =
+                    {
+                        id = None
+                        roomId = 1
+                        customerEmail = "email@me.com"
+                        expectedCheckin = DateTime.Parse("2022-11-11 01:01:01")
+                        expectedCheckout = DateTime.Parse("2022-11-12 01:01:01")
+                    }
+                let hotel = 
+                    {
+                        Hotel.GetEmpty()
+                            with rooms = [room1]
+                    }
+                let roomAdded r =
+                    let res = fun (x: Hotel) -> x.AddRoom r
+                    res
+                let room1Added = room1 |> roomAdded
+                let events = [room1Added] |> NonEmptyList.ofList
+                let (Error error) = events |> hotel.ProcessEvents
+                Expect.equal error "a room with number 1 already exists" "should be equal"
+
+            testCase "add overlapping booking - Error" <| fun _ -> 
+                let booking = 
+                    {
+                        id = Guid.Parse("d45c0760-dbf7-4453-a15f-b4cb1b78c730") |> Some
+                        roomId = 1
+                        customerEmail = "me@you.us"
+                        expectedCheckin = DateTime.Parse("2022-11-11 00:00:00")
+                        expectedCheckout = DateTime.Parse("2022-11-12 00:00:00")
+                    }
+                let hotel = 
+                    {
+                        Hotel.GetEmpty()
+                        with
+                            rooms = [room1]
+                            bookings = [booking]
+                    }
+
+                let booking1 = 
+                    {
+                        booking with
+                            id = None
+                    }
+
+                let bookingAdded b =
+                    let res = fun (x: Hotel) -> x.AddBooking b
+                    res
+
+                let booking1Added: Event = bookingAdded booking1
+
+                let events = [booking1Added] |> NonEmptyList.ofList
+                let (Error error) = events |> hotel.ProcessEvents
+                Expect.equal error "overlap: \"2022/11/11\"" "should be equal"
+
+            testCase "add booking on free period - Ok" <| fun _ -> 
+                let booking = 
+                    {
+                        id = Guid.Parse("d45c0760-dbf7-4453-a15f-b4cb1b78c730") |> Some
+                        roomId = 1
+                        customerEmail = "me@you.us"
+                        expectedCheckin = DateTime.Parse("2022-11-11 00:00:00")
+                        expectedCheckout = DateTime.Parse("2022-11-12 00:00:00")
+                    }
+                let hotel = 
+                    {
+                        Hotel.GetEmpty()
+                        with
+                            rooms = [room1]
+                            bookings = [booking]
+                    }
+
+                let booking1 = 
+                    {
+                        booking with
+                            id = None
+                            expectedCheckin = DateTime.Parse("2022-11-12 00:00:00")
+                            expectedCheckout = DateTime.Parse("2022-11-20 00:00:00")
+                    }
+
+                let bookingAdded b =
+                    let res = fun (x: Hotel) -> x.AddBooking b
+                    res
+
+                let booking1Added: Event = bookingAdded booking1
+
+                let events = [booking1Added] |> NonEmptyList.ofList
+                let (Ok hotel') = events |> hotel.ProcessEvents
+                Expect.equal (hotel'.bookings.Length) 2 "should be equal"
+        ]
+    [<Tests>]
+    let commandTests =
+        testList "Commands on domain" [
+            testCase "add room command returns roomadded event - Ok" <| fun _ ->
+                let hotel = Hotel.GetEmpty()
+                let addRoom1Command: Command =
+                    let roomAdded r =
+                        let res = fun (x: Hotel) -> x.AddRoom r
+                        res
+                    let room1Added: Event = roomAdded room1
+                    fun x -> ([room1Added] |> NonEmptyList.ofList) |> Ok
+                let (Ok events) = addRoom1Command |> hotel.ProcessCommand
+                let (Ok hotel') = hotel.ProcessEvents events
+                let expected: Hotel = {hotel with rooms = [room1]}
+                Expect.equal hotel' expected "should be equal"
+
+            testCase "add room command return roomAdded event 2 - Ok" <| fun _ ->
+                let hotel = Hotel.GetEmpty()
+                let (Ok events) = makeCommand (AddRoom room1) |> hotel.ProcessCommand
+                let (Ok hotel') = hotel.ProcessEvents events
+                let expected: Hotel = 
+                    {
+                        hotel with 
+                            rooms = [room1]
+                    }
+                Expect.equal hotel' expected "should be equal"
+
+            testCase "addbooking command returns bookingAdded event 2 - Ok"
+            <| fun _ ->
+                let booking = 
+                    {
+                        id = None
+                        roomId = 1
+                        customerEmail = "me@you.us"
+                        expectedCheckin = DateTime.Parse("2022-11-11 00:00:00")
+                        expectedCheckout = DateTime.Parse("2022-11-12 00:00:00")
+                    }
+                let hotel = 
+                    {
+                        Hotel.GetEmpty()
+                        with rooms = [room1]
+                    }
+                let (Ok events) = makeCommand (AddBooking booking) |> hotel.ProcessCommand
+                let (Ok hotel') = hotel.ProcessEvents events
+                let actualNoId = {hotel'.bookings.Head with id = None}
+                Expect.isTrue true "true"
+
+            testCase "two non overlapping bookings  - Ok"
+            <| fun _ ->
+                let booking1 = 
+                    {
+                        id = None
+                        roomId = 1
+                        customerEmail = "me@you.us"
+                        expectedCheckin = DateTime.Parse("2022-11-11 00:00:00")
+                        expectedCheckout = DateTime.Parse("2022-11-12 00:00:00")
+                    }
+
+                let booking2 = 
+                    {
+                        id = None
+                        roomId = 1
+                        customerEmail = "me@you.us"
+                        expectedCheckin = DateTime.Parse("2022-11-12 00:00:00")
+                        expectedCheckout = DateTime.Parse("2022-11-14 00:00:00")
+                    }
+                let hotel = 
+                    {
+                        Hotel.GetEmpty()
+                        with rooms = [room1]
+                    }
+                let (Ok events) = makeCommand (AddBooking booking1) |> hotel.ProcessCommand
+                let (Ok hotel') = hotel.ProcessEvents events
+                let (Ok events') = makeCommand (AddBooking booking2) |> hotel'.ProcessCommand
+                let (Ok hotel'') = hotel'.ProcessEvents events'
+                Expect.equal (hotel''.bookings.Length) 2 "should be equal"
+
+            testCase "two overlapping bookings - Error"
+            <| fun _ ->
+                let booking1 = 
+                    {
+                        id = None
+                        roomId = 1
+                        customerEmail = "me@you.us"
+                        expectedCheckin = DateTime.Parse("2022-11-11 00:00:00")
+                        expectedCheckout = DateTime.Parse("2022-11-13 00:00:00")
+                    }
+
+                let booking2 = 
+                    {
+                        id = None
+                        roomId = 1
+                        customerEmail = "me@you.us"
+                        expectedCheckin = DateTime.Parse("2022-11-12 00:00:00")
+                        expectedCheckout = DateTime.Parse("2022-11-14 00:00:00")
+                    }
+                let hotel = 
+                    {
+                        Hotel.GetEmpty()
+                        with rooms = [room1]
+                    }
+                let (Ok events) = makeCommand (AddBooking booking1) |> hotel.ProcessCommand
+                let (Ok hotel') = hotel.ProcessEvents events
+                let (Error error) = makeCommand (AddBooking booking2) |> hotel'.ProcessCommand
+                Expect.equal error "command error: overlap: \"2022/11/12\"" "should be equal"
+        ]
 

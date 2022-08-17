@@ -262,7 +262,7 @@ let EventsTests =
                     }
                 Expect.equal newWorldVal expected "should be equal"
 
-            testCase "add already existing table   - Error"
+            testCase "add already existing table - Error"
             <| fun _ ->
                 let world = { World.GetEmpty() with tables = [ table1 ] }
 
@@ -276,7 +276,7 @@ let EventsTests =
                 let (Error error) = newWorld
                 Expect.equal error "table 1 already exists" "should be equal"
 
-            testCase "add already existing table - Error"
+            testCase "add already existing table 2 - Error"
             <| fun _ ->
                 let world =
                     { 
