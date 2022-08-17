@@ -27,8 +27,8 @@ let domainObjectsTests =
         [ 
             testCase "add a table to empty world - OK"
                 <| fun _ ->
-                    let initWorld = World.GetEmpty()
-                    let nextWorld = initWorld.AddTable table1
+                    let initCafe = Cafe.GetEmpty()
+                    let nextCafe = initCafe.AddTable table1
 
                     let expected =
                         { 
@@ -37,20 +37,20 @@ let domainObjectsTests =
                         } 
                         |> Ok
 
-                    Expect.equal nextWorld expected "should be equal"
+                    Expect.equal nextCafe expected "should be equal"
 
             testCase "add already existing table - Error "
                 <| fun _ ->
-                    let initWorld = { World.GetEmpty() with tables = [ table1 ] }
-                    let result = initWorld.AddTable table1
-                    let (Error result) = initWorld.AddTable table1
+                    let initCafe = { Cafe.GetEmpty() with tables = [ table1 ] }
+                    let result = initCafe.AddTable table1
+                    let (Error result) = initCafe.AddTable table1
                     Expect.equal result "table 1 already exists" "should be equal"
 
             testCase "add food to empty world - OK"
                 <| fun _ ->
-                    let initWorld = World.GetEmpty()
+                    let initCafe = Cafe.GetEmpty()
 
-                    let (Ok actual) = initWorld.AddFood spaghetti
+                    let (Ok actual) = initCafe.AddFood spaghetti
                     let expected =
                         { 
                             tables = []
@@ -61,9 +61,9 @@ let domainObjectsTests =
 
             testCase "can't add food that already exists - OK"
                 <| fun _ ->
-                    let initWorld = { World.GetEmpty() with availableFoods = [ spaghetti ] }
+                    let initCafe = { Cafe.GetEmpty() with availableFoods = [ spaghetti ] }
 
-                    let (Error result) = initWorld.AddFood spaghetti
+                    let (Error result) = initCafe.AddFood spaghetti
 
                     Expect.equal result "there is already food named spaghetti" "should be equal" 
         ]
@@ -136,14 +136,14 @@ let domainEntitiesTests =
 
                 let expectedTable1 = { id = 1; orderItems = [ spaghetti ] }
 
-                let expectedWorld =
+                let expectedCafe =
                     { 
                         tables = [ expectedTable1 ]
                         availableFoods = [ spaghetti ] 
                     }
 
                 let (Ok result) = world.AddOrderItem 1 spaghetti
-                Expect.equal result expectedWorld "should be equal"
+                Expect.equal result expectedCafe "should be equal"
 
             testCase "add unexisting dish to orderitem - Error"
             <| fun _ ->
@@ -179,7 +179,7 @@ let domainEntitiesTests =
 
             testCase "add table - Ok"
             <| fun _ ->
-                let world = World.GetEmpty()
+                let world = Cafe.GetEmpty()
                 let table = { id = 1; orderItems = [] }
                 let (Ok result) = world.AddTable table
                 Expect.isTrue true "true" ]
@@ -191,89 +191,89 @@ let EventsTests =
         [ 
             testCase "add table event - Ok"
             <| fun _ ->
-                let world = World.GetEmpty()
+                let world = Cafe.GetEmpty()
 
                 let tableAdded t =
-                    let res = fun (x: World) -> x.AddTable t
+                    let res = fun (x: Cafe) -> x.AddTable t
                     res
 
                 let event = tableAdded table1
-                let (Ok newWorld) = event world
+                let (Ok newCafe) = event world
 
                 let expected =
                     { 
                         tables = [ table1 ]
                         availableFoods = [] 
                     }
-                Expect.equal newWorld expected "should be equal"
+                Expect.equal newCafe expected "should be equal"
 
             testCase "add food event - Ok"
             <| fun _ ->
-                let world = World.GetEmpty()
+                let world = Cafe.GetEmpty()
 
                 let foodAdded f =
-                    let res = fun (x: World) -> x.AddFood f
+                    let res = fun (x: Cafe) -> x.AddFood f
                     res
 
                 let event = foodAdded spaghetti
-                let (Ok newWorld) = event world
-                let expected: World = { world with availableFoods = [ spaghetti ] }
-                Expect.equal newWorld expected "should be equal"
+                let (Ok newCafe) = event world
+                let expected: Cafe = { world with availableFoods = [ spaghetti ] }
+                Expect.equal newCafe expected "should be equal"
 
             testCase "add different tables, process event list - OK"
             <| fun _ ->
-                let world = World.GetEmpty()
+                let world = Cafe.GetEmpty()
                 let table2 = { id = 2; orderItems = [] }
 
                 let tableAdded t =
-                    let res = fun (x: World) -> x.AddTable t
+                    let res = fun (x: Cafe) -> x.AddTable t
                     res
 
                 let table2Added = table2 |> tableAdded
                 let table1Added = table1 |> tableAdded
                 let events = [ table2Added; table1Added ] |> NonEmptyList.ofList
-                let newWorld = events |> world.ProcessEvents
-                let (Ok newWorldVal) = newWorld
+                let newCafe = events |> world.ProcessEvents
+                let (Ok newCafeVal) = newCafe
                 let expected = { world with tables = [ table1; table2 ] }
-                Expect.equal newWorldVal expected "should be equal"
+                Expect.equal newCafeVal expected "should be equal"
 
             testCase "add table and food - Ok"
             <| fun _ ->
-                let world = World.GetEmpty()
+                let world = Cafe.GetEmpty()
 
                 let tableAdded t =
-                    let res = fun (x: World) -> x.AddTable t
+                    let res = fun (x: Cafe) -> x.AddTable t
                     res
 
                 let foodAdded (f: Food) =
-                    let res = fun (x: World) -> x.AddFood f
+                    let res = fun (x: Cafe) -> x.AddFood f
                     res
 
                 let table1Added = table1 |> tableAdded
                 let spaghettiAdded = spaghetti |> foodAdded
                 let events = [ table1Added; spaghettiAdded ] |> NonEmptyList.ofList
-                let newWorld = events |> world.ProcessEvents
-                let (Ok newWorldVal) = newWorld
+                let newCafe = events |> world.ProcessEvents
+                let (Ok newCafeVal) = newCafe
 
                 let expected =
                     { 
                         tables = [ table1 ]
                         availableFoods = [ spaghetti ] 
                     }
-                Expect.equal newWorldVal expected "should be equal"
+                Expect.equal newCafeVal expected "should be equal"
 
             testCase "add already existing table - Error"
             <| fun _ ->
-                let world = { World.GetEmpty() with tables = [ table1 ] }
+                let world = { Cafe.GetEmpty() with tables = [ table1 ] }
 
                 let tableAdded t =
-                    let res = fun (x: World) -> x.AddTable t
+                    let res = fun (x: Cafe) -> x.AddTable t
                     res
 
                 let table1Added = table1 |> tableAdded
                 let events = [ table1Added ] |> NonEmptyList.ofList
-                let newWorld = events |> world.ProcessEvents
-                let (Error error) = newWorld
+                let newCafe = events |> world.ProcessEvents
+                let (Error error) = newCafe
                 Expect.equal error "table 1 already exists" "should be equal"
 
             testCase "add already existing table 2 - Error"
@@ -285,37 +285,37 @@ let EventsTests =
                     }
 
                 let tableAdded t =
-                    let res = fun (x: World) -> x.AddTable t
+                    let res = fun (x: Cafe) -> x.AddTable t
                     res
 
                 let foodAdded f =
-                    let res = fun (x: World) -> x.AddFood f
+                    let res = fun (x: Cafe) -> x.AddFood f
                     res
 
                 let table1Added: Event = tableAdded table1
                 let food1Added: Event = foodAdded spaghetti
                 let events = [ table1Added; food1Added ] |> NonEmptyList.ofList
-                let newWorld = events |> world.ProcessEvents
-                let (Error res) = newWorld
+                let newCafe = events |> world.ProcessEvents
+                let (Error res) = newCafe
                 Expect.equal res "table 1 already exists" "should be equal"
 
             testCase "add already existing food - Error"
             <| fun _ ->
-                let world = { World.GetEmpty() with availableFoods = [ spaghetti ] }
+                let world = { Cafe.GetEmpty() with availableFoods = [ spaghetti ] }
 
                 let tableAdded t =
-                    let res = fun (x: World) -> x.AddTable t
+                    let res = fun (x: Cafe) -> x.AddTable t
                     res
 
                 let foodAdded f =
-                    let res = fun (x: World) -> x.AddFood f
+                    let res = fun (x: Cafe) -> x.AddFood f
                     res
 
                 let table1Added: Event = tableAdded table1
                 let spaghettiAdded: Event = foodAdded spaghetti
                 let events = [ table1Added; spaghettiAdded ] |> NonEmptyList.ofList
-                let newWorld = events |> world.ProcessEvents
-                let (Error res) = newWorld
+                let newCafe = events |> world.ProcessEvents
+                let (Error res) = newCafe
                 Expect.equal res "there is already food named spaghetti" "should be equal"
 
             testCase "add orderitem  - Ok"
@@ -327,24 +327,24 @@ let EventsTests =
                     }
 
                 let orderItemAdded tableId food =
-                    let res = fun (w: World) -> w.AddOrderItem tableId food
+                    let res = fun (w: Cafe) -> w.AddOrderItem tableId food
                     res
 
                 let orderItemAddedSpaghettiTable1: Event = orderItemAdded 1 spaghetti
 
                 let events = [ orderItemAddedSpaghettiTable1 ] |> NonEmptyList.ofList
-                let newWorld = events |> world.ProcessEvents
+                let newCafe = events |> world.ProcessEvents
 
                 let expectedTable = { table1 with orderItems = [ spaghetti ] }
 
-                let expectedWorld =
+                let expectedCafe =
                     { 
                         tables = [ expectedTable ]
                         availableFoods = [ spaghetti ] 
                     }
 
-                let (Ok res) = newWorld
-                Expect.equal expectedWorld res "should be equal" ]
+                let (Ok res) = newCafe
+                Expect.equal expectedCafe res "should be equal" ]
 
 [<Tests>]
 let CommandsTests =
@@ -353,52 +353,52 @@ let CommandsTests =
         [ 
             testCase "add table command returns tableAdded event - Ok"
             <| fun _ ->
-                let world = World.GetEmpty()
+                let world = Cafe.GetEmpty()
                 let addTable1Command: Command =
                     let tableAdded t =
-                        let res = fun (x: World) -> x.AddTable t
+                        let res = fun (x: Cafe) -> x.AddTable t
                         res
 
                     let table1Added: Event = tableAdded table1
                     fun x -> ([table1Added] |> NonEmptyList.ofList) |> Ok
 
                 let (Ok events) = addTable1Command |> world.ProcessCommand
-                let (Ok newWorld) = world.ProcessEvents events
-                let expected: World = { world with tables = [ table1 ] }
-                Expect.equal newWorld expected "should be equal"
+                let (Ok newCafe) = world.ProcessEvents events
+                let expected: Cafe = { world with tables = [ table1 ] }
+                Expect.equal newCafe expected "should be equal"
 
             testCase "add table command returns tableAdded event 2 - Ok"
             <| fun _ ->
-                let world = World.GetEmpty()
+                let world = Cafe.GetEmpty()
                 let (Ok events) = Utils.makeCommand (AddTable table1) |> world.ProcessCommand
-                let (Ok newWorld) = world.ProcessEvents events
-                let expected: World = { world with tables = [ table1 ] }
-                Expect.equal newWorld expected "should be equal"
+                let (Ok newCafe) = world.ProcessEvents events
+                let expected: Cafe = { world with tables = [ table1 ] }
+                Expect.equal newCafe expected "should be equal"
 
             testCase "add food command returns foodAdded event 2 - Ok"
             <| fun _ ->
-                let world = World.GetEmpty()
+                let world = Cafe.GetEmpty()
                 let (Ok events) = Utils.makeCommand (AddFood spaghetti) |> world.ProcessCommand
-                let (Ok newWorld) = world.ProcessEvents events
-                let expected: World = { world with availableFoods = [ spaghetti ] }
-                Expect.equal newWorld expected "should be equal"
+                let (Ok newCafe) = world.ProcessEvents events
+                let expected: Cafe = { world with availableFoods = [ spaghetti ] }
+                Expect.equal newCafe expected "should be equal"
 
             testCase "add table command returns tableAdded event 3 - Ok"
             <| fun _ ->
-                let world = World.GetEmpty()
+                let world = Cafe.GetEmpty()
 
                 let command: Command = Utils.makeCommand (AddTable table1)
                 let (Ok events) = command |> world.ProcessCommand
 
-                let (Ok newWorld) = world.ProcessEvents events
-                let expected: World = { world with tables = [ table1 ] }
-                Expect.equal newWorld expected "should be equal"
+                let (Ok newCafe) = world.ProcessEvents events
+                let expected: Cafe = { world with tables = [ table1 ] }
+                Expect.equal newCafe expected "should be equal"
 
             testCase "add table command returns Error if event can't add table - Error"
             <| fun _ ->
                 let world = 
                     {
-                        World.GetEmpty()
+                        Cafe.GetEmpty()
                             with tables = [table1]
                     }
 
@@ -410,7 +410,7 @@ let CommandsTests =
             <| fun _ ->
                 let world = 
                     {
-                        World.GetEmpty()
+                        Cafe.GetEmpty()
                             with availableFoods = [spaghetti]
                     }
 

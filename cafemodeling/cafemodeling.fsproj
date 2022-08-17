@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- <Compile Include="CafeLibrary.fs" /> -->
     <Compile Include="CoreCafeLibrary.fs" />
   </ItemGroup>
 

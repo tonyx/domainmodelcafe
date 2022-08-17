@@ -210,8 +210,8 @@ module Tests =
                         expectedCheckout = DateTime.Parse("2022-11-12 01:01:01")
                     }
 
-                let (Ok newWorld) = hotel.AddBooking booking
-                Expect.isSome newWorld.bookings.Head.id  "should be some"
+                let (Ok hotel') = hotel.AddBooking booking
+                Expect.isSome hotel'.bookings.Head.id  "should be some"
 
             testCase "after creating a booking, then the busy days of the booking are the days in the checkin checkout interval - Ok" <| fun _ ->
                 let hotel = 
@@ -229,9 +229,9 @@ module Tests =
                         expectedCheckout = DateTime.Parse("2022-11-12 01:01:01")
                     }
 
-                let (Ok newWorld) = hotel.AddBooking booking
-                Expect.isSome newWorld.bookings.Head.id  "should be some"
-                let bookedDays = newWorld.GetBookedDaysOfRoom 1
+                let (Ok hotel') = hotel.AddBooking booking
+                Expect.isSome hotel'.bookings.Head.id  "should be some"
+                let bookedDays = hotel'.GetBookedDaysOfRoom 1
                 Expect.equal bookedDays ([DateTime.Parse("2022-11-11 00:00:00")] |> Set.ofList) "should be true"
 
             testCase "larger booking interval. Get the booked days - Ok" <| fun _ ->
@@ -250,9 +250,9 @@ module Tests =
                         expectedCheckout = DateTime.Parse("2022-11-20 01:01:01")
                     }
 
-                let (Ok newWorld) = hotel.AddBooking booking
-                Expect.isSome newWorld.bookings.Head.id  "should be some"
-                let bookedDays = newWorld.GetBookedDaysOfRoom 1
+                let (Ok hotel') = hotel.AddBooking booking
+                Expect.isSome hotel'.bookings.Head.id  "should be some"
+                let bookedDays = hotel'.GetBookedDaysOfRoom 1
                 Expect.equal 
                     bookedDays 
                         (
@@ -297,13 +297,12 @@ module Tests =
                         expectedCheckout = DateTime.Parse("2022-12-04 01:01:01")
                     }
 
-                let (Ok newWorld) = hotel.AddBooking booking
-                let (Ok newNewWorld) = newWorld.AddBooking booking2
-                let bookedDays = newNewWorld.GetBookedDaysOfRoom 1
+                let (Ok hotel') = hotel.AddBooking booking
+                let (Ok hotel'') = hotel'.AddBooking booking2
+                let bookedDays = hotel''.GetBookedDaysOfRoom 1
 
                 Expect.equal 
                     bookedDays 
-
                     ([
                         DateTime.Parse("2022-11-11 00:00:00")
                         DateTime.Parse("2022-11-12 00:00:00")

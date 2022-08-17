@@ -32,9 +32,9 @@ module rec modeling =
                             orderItems = dish::this.orderItems
                 }
 
-    type Event = World -> Result<World, string>
-    type Command = World -> Result<NonEmptyList<Event>, string>
-    type World =
+    type Event = Cafe -> Result<Cafe, string>
+    type Command = Cafe -> Result<NonEmptyList<Event>, string>
+    type Cafe =
         {
             tables: List<Table>
             availableFoods: List<Food>
@@ -45,7 +45,7 @@ module rec modeling =
                     tables = []
                     availableFoods = []
                 }
-            member this.AddTable table: Result<World, string> =
+            member this.AddTable table: Result<Cafe, string> =
                 if ((this.tables) |> List.contains table) then
                     sprintf "table %d already exists" table.id |> Error
                 else
@@ -114,18 +114,16 @@ module Utils =
         | AddTable of Table 
         | AddFood of Food
 
+    let getEvent x  (f: 'a -> Result<'a, string>) =
+        let event x =
+            f x
+        event 
+
     let makeCommand commandMaker: Command =
         match commandMaker with
             | AddTable t ->
-                let addTable: Event=
-                    let tableAdded t =
-                        fun (x: World) -> x.AddTable t
-                    tableAdded t
+                let addTable: Event =  getEvent t (fun x -> x.AddTable t )
                 fun _ -> [addTable] |> NonEmptyList.ofList |> Ok
-
             | AddFood f ->
-                let addFood: Event=
-                    let foodAdded f =
-                        fun (x: World) -> x.AddFood f
-                    foodAdded f
+                let addFood: Event = getEvent f (fun x -> x.AddFood f)
                 fun _ -> [addFood] |> NonEmptyList.ofList |> Ok

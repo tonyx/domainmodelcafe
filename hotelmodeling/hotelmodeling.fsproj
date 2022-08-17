@@ -14,8 +14,4 @@
     <PackageReference Update="FSharp.Core" Version="4.*" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\generalDomainModeling\generalDomainModeling.fsproj" />
-  </ItemGroup>
-
 </Project>

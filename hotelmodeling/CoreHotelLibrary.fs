@@ -119,18 +119,16 @@ module rec Domain =
         | AddRoom of Room
         | AddBooking of Booking
 
+    let getEvent x  (f: 'a -> Result<'a, string>) =
+        let event x =
+            f x
+        event 
+
     let makeCommand commandMaker: Command =
         match commandMaker with
             | AddRoom t ->
-                let addRoom: Event=
-                    let roomAdded t =
-                        fun (x: Hotel) -> x.AddRoom t
-                    roomAdded t
+                let addRoom: Event = getEvent t (fun x -> x.AddRoom t)
                 fun _ -> [addRoom] |> NonEmptyList.ofList |> Ok
-
             | AddBooking f ->
-                let addBooking: Event=
-                    let bookingAdded f =
-                        fun (x: Hotel) -> x.AddBooking f
-                    bookingAdded f
+                let addBooking: Event = getEvent f (fun x -> x.AddBooking f)
                 fun _ -> [addBooking] |> NonEmptyList.ofList |> Ok

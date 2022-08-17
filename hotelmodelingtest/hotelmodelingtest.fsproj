@@ -20,6 +20,5 @@
 
   <ItemGroup>
     <ProjectReference Include="..\hotelmodeling\hotelmodeling.fsproj" />
-    <ProjectReference Include="..\generalDomainModeling\generalDomainModeling.fsproj" />
   </ItemGroup>
 </Project>
