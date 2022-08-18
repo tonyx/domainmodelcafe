@@ -35,16 +35,16 @@ module rec Domain =
             id: Option<Guid>
             roomId: int
             customerEmail: string
-            expectedCheckin: DateTime
-            expectedCheckout: DateTime
+            plannedCheckin: DateTime
+            plannedCheckout: DateTime
         }
         with 
             member this.getDaysInterval() =
-                let spanInterval = this.expectedCheckout - this.expectedCheckin
+                let spanInterval = this.plannedCheckout - this.plannedCheckin
                 let days = spanInterval.Days
                 [
                     for i = 1 to days do 
-                        yield (this.expectedCheckin.Date + TimeSpan(i - 1, 0, 0, 0))
+                        yield (this.plannedCheckin.Date + TimeSpan(i - 1, 0, 0, 0))
                 ]
 
     type Event = Hotel -> Result<Hotel, string>
@@ -94,10 +94,9 @@ module rec Domain =
                     |> List.map (fun x -> x.getDaysInterval())
                     |> List.fold (@) []
                     |> Set.ofList 
-
                 daysOfBookings
 
-            member this.ProcessEvents (events: NonEmptyList<Event>) =
+            member this.ProcessEvents events =
                 events |> NonEmptyList.toList
                 |> List.fold 
                     (fun x f -> 
@@ -106,15 +105,13 @@ module rec Domain =
                         | Error x -> Error x
                     ) (this |> Ok)
 
-            member this.ProcessCommand (command: Command) =
-                let res = 
-                    match command this with
-                    | Ok x -> 
-                        match this.ProcessEvents x with
-                        | Ok _ -> Ok x
-                        | Error e -> Error (sprintf "command error: %s" e)
-                    | Error x ->  Error (sprintf "command error: %s" x)
-                res
+            member this.ProcessCommand command =
+                match command this with
+                | Ok x -> 
+                    match this.ProcessEvents x with
+                    | Ok _ -> Ok x
+                    | Error e -> Error (sprintf "command error: %s" e)
+                | Error x ->  Error (sprintf "command error: %s" x)
     type CommandMaker =
         | AddRoom of Room
         | AddBooking of Booking

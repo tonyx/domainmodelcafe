@@ -25,11 +25,11 @@ module rec modeling =
             override this.GetHashCode() =
                 this.id
 
-            member this.AddOrderItem (dish: Food) =
+            member this.AddOrderItem (food: Food) =
                 {
                     this
                         with 
-                            orderItems = dish::this.orderItems
+                            orderItems = food::this.orderItems
                 }
 
     type Event = Cafe -> Result<Cafe, string>
@@ -89,7 +89,7 @@ module rec modeling =
                                             )
                         } |> Ok
 
-            member this.ProcessEvents (events: NonEmptyList<Event>) =
+            member this.ProcessEvents events =
                 events |> NonEmptyList.toList
                 |> List.fold 
                     (fun x f -> 
@@ -98,7 +98,7 @@ module rec modeling =
                         | Error x -> Error x
                     ) (this |> Ok)
 
-            member this.ProcessCommand (command: Command) =
+            member this.ProcessCommand command =
                 let res = 
                     match command this with
                     | Ok x -> 
