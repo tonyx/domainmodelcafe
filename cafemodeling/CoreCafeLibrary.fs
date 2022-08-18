@@ -114,7 +114,7 @@ module Utils =
         | AddTable of Table 
         | AddFood of Food
 
-    let getEvent x  (f: 'a -> Result<'a, string>) =
+    let getEvent  (f: 'a -> Result<'a, string>) =
         let event x =
             f x
         event 
@@ -122,8 +122,8 @@ module Utils =
     let makeCommand commandMaker: Command =
         match commandMaker with
             | AddTable t ->
-                let addTable: Event =  getEvent t (fun x -> x.AddTable t )
+                let addTable: Event = getEvent (fun x -> x.AddTable t )
                 fun _ -> [addTable] |> NonEmptyList.ofList |> Ok
             | AddFood f ->
-                let addFood: Event = getEvent f (fun x -> x.AddFood f)
+                let addFood: Event = getEvent (fun x -> x.AddFood f)
                 fun _ -> [addFood] |> NonEmptyList.ofList |> Ok

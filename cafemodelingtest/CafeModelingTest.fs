@@ -149,7 +149,7 @@ let domainEntitiesTests =
                 let (Error result) = cafe.AddOrderItem 2 spaghetti
                 Expect.equal result "unexisting table 2" "should be equal"
 
-            testCase "add alredy existing food - Error"
+            testCase "add already existing food - Error"
             <| fun _ ->
                 let cafe =
                     { 
