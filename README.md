@@ -32,6 +32,9 @@ in hotelmodelingtest directory using terminal/command line console:
     dotnet run
 ```
 
+## Not done yet:
+move some events and command related methods that are similar, in a common library/project
+
 
 
 
