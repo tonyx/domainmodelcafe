@@ -30,7 +30,7 @@ module Tests =
                 }
                 Expect.notEqual room1 room2 "should be equal"
 
-            testCase "two bookings are equals - Ok" <| fun _ ->
+            testCase "bookings with all fields equals are equals - Ok" <| fun _ ->
                 let booking1 = 
                     {
                         id = Guid.Parse("d45c0760-dbf7-4453-a15f-b4cb1b78c730") |> Some
@@ -68,7 +68,7 @@ module Tests =
                     }
                 Expect.notEqual booking1 booking2 "should be equal"
 
-            testCase "two bookings have different day of checkin/out, are not equal" <| fun _ ->
+            testCase "two bookings with different day of checkin/out, are not equal" <| fun _ ->
                 let booking1 = 
                     {
                         id = Guid.Parse("d45c0760-dbf7-4453-a15f-b4cb1b78c730") |> Some
@@ -87,7 +87,7 @@ module Tests =
                     }
                 Expect.notEqual booking1 booking2 "should be not equal"
 
-            testCase "the busy day of a one day night is the checkin day" <| fun _ ->
+            testCase "the busy day of a one day night is only the checkin day" <| fun _ ->
                 let booking = 
                     {
                         id = Guid.Parse("d45c0760-dbf7-4453-a15f-b4cb1b78c730") |> Some
@@ -513,7 +513,7 @@ module Tests =
                     }
                 Expect.equal actualBookingNoId booking "should be true"
 
-            testCase "add two room event - Ok" <| fun _ ->
+            testCase "add two rooms event - Ok" <| fun _ ->
                 let room2 =
                     {
                         id = 2
@@ -528,7 +528,7 @@ module Tests =
                 let (Ok hotel') = events |> hotel.ProcessEvents
                 Expect.equal hotel' {hotel with rooms = [room2; room1]} "should be equal"
 
-            testCase "add room and booking - Ok" <| fun _ ->
+            testCase "add a room and a booking - Ok" <| fun _ ->
                 let booking: Booking =
                     {
                         id = None
@@ -556,14 +556,6 @@ module Tests =
                 Expect.equal actualBookingNoId booking "should be equal"
 
             testCase "add already existing room - Error" <| fun _ ->
-                let existingBooking: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin = DateTime.Parse("2022-11-11 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
-                    }
                 let hotel = 
                     {
                         Hotel.GetEmpty()
@@ -683,7 +675,7 @@ module Tests =
                 let actualNoId = {hotel'.bookings.Head with id = None}
                 Expect.equal booking actualNoId "should be equal"
 
-            testCase "two non overlapping bookings  - Ok"
+            testCase "two non overlapping bookings - Ok"
             <| fun _ ->
                 let booking1 = 
                     {

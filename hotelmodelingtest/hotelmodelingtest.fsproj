@@ -12,7 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Equinox" Version="3.0.7" />
     <PackageReference Include="Expecto" Version="9.*" />
+    <PackageReference Include="FsCodec.NewtonsoftJson" Version="2.3.2" />
     <PackageReference Include="YoloDev.Expecto.TestSdk" Version="0.*" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.*" />
     <PackageReference Update="FSharp.Core" Version="4.*" />

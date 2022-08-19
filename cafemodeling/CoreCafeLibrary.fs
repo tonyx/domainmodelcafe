@@ -99,14 +99,12 @@ module rec modeling =
                     ) (this |> Ok)
 
             member this.ProcessCommand command =
-                let res = 
-                    match command this with
-                    | Ok x -> 
-                        match this.ProcessEvents x with
-                        | Ok _ -> Ok x
-                        | Error e -> Error (sprintf "command error: %s" e)
-                    | Error x ->  Error (sprintf "command error: %s" x)
-                res
+                match command this with
+                | Ok x -> 
+                    match this.ProcessEvents x with
+                    | Ok _ -> Ok x
+                    | Error e -> Error (sprintf "command error: %s" e)
+                | Error x ->  Error (sprintf "command error: %s" x)
 
 module Utils =
     open modeling
@@ -114,16 +112,15 @@ module Utils =
         | AddTable of Table 
         | AddFood of Food
 
-    let getEvent x  (f: 'a -> Result<'a, string>) =
-        let event x =
-            f x
-        event 
-
     let makeCommand commandMaker: Command =
         match commandMaker with
             | AddTable t ->
-                let addTable: Event =  getEvent t (fun x -> x.AddTable t )
-                fun _ -> [addTable] |> NonEmptyList.ofList |> Ok
+                fun _ -> 
+                    [fun (x: Cafe) -> x.AddTable t] 
+                    |> NonEmptyList.ofList 
+                    |> Ok
             | AddFood f ->
-                let addFood: Event = getEvent f (fun x -> x.AddFood f)
-                fun _ -> [addFood] |> NonEmptyList.ofList |> Ok
+                fun _ -> 
+                    [fun (x: Cafe) -> x.AddFood f] 
+                    |> NonEmptyList.ofList 
+                    |> Ok

@@ -86,15 +86,11 @@ module rec Domain =
                         } 
                         |> Ok
             member this.GetBookedDaysOfRoom roomId =
-                let roomBookings = 
                     this.bookings 
                     |> List.filter (fun x -> x.roomId = roomId)                    
-                let daysOfBookings = 
-                    roomBookings 
                     |> List.map (fun x -> x.getDaysInterval())
                     |> List.fold (@) []
                     |> Set.ofList 
-                daysOfBookings
 
             member this.ProcessEvents events =
                 events |> NonEmptyList.toList
@@ -112,20 +108,20 @@ module rec Domain =
                     | Ok _ -> Ok x
                     | Error e -> Error (sprintf "command error: %s" e)
                 | Error x ->  Error (sprintf "command error: %s" x)
+
     type CommandMaker =
         | AddRoom of Room
         | AddBooking of Booking
 
-    let getEvent x  (f: 'a -> Result<'a, string>) =
-        let event x =
-            f x
-        event 
-
     let makeCommand commandMaker: Command =
         match commandMaker with
             | AddRoom t ->
-                let addRoom: Event = getEvent t (fun x -> x.AddRoom t)
-                fun _ -> [addRoom] |> NonEmptyList.ofList |> Ok
+                fun _ -> 
+                    [fun (x: Hotel) -> x.AddRoom t] 
+                    |> NonEmptyList.ofList 
+                    |> Ok
             | AddBooking f ->
-                let addBooking: Event = getEvent f (fun x -> x.AddBooking f)
-                fun _ -> [addBooking] |> NonEmptyList.ofList |> Ok
+                fun _ -> 
+                    [fun (x: Hotel) -> x.AddBooking f] 
+                    |> NonEmptyList.ofList 
+                    |> Ok
