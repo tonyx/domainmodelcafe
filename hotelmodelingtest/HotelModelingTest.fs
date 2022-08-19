@@ -12,6 +12,10 @@ module Tests =
         id = 1
         description = None
     }
+    let roomAdded r =
+        fun (x: Hotel) -> x.AddRoom r
+    let bookingAdded b =
+        fun (x: Hotel) -> x.AddBooking b
 
     [<Tests>]
     let domainObjectTests =
@@ -475,8 +479,6 @@ module Tests =
         testList "Domain events" [
             testCase "add room event - Ok" <| fun _ ->
                 let hotel = Hotel.GetEmpty()
-                let roomAdded r =
-                    fun (x: Hotel) -> x.AddRoom r
                 let event = roomAdded room1
                 let (Ok hotel') = event hotel
                 let expected = 
@@ -500,8 +502,6 @@ module Tests =
                         Hotel.GetEmpty() with
                             rooms = [room1]
                     }
-                let bookingAdded b =
-                    fun (x: Hotel) -> x.AddBooking b
                 let event = bookingAdded booking
                 let (Ok hotel') = event hotel
                 Expect.isSome hotel'.bookings.Head.id "should be some"
@@ -520,8 +520,6 @@ module Tests =
                         description = None
                     }
                 let hotel = Hotel.GetEmpty()
-                let roomAdded r =
-                    fun (x: Hotel) -> x.AddRoom r
                 let room1Added = room1 |> roomAdded
                 let room2Added = room2 |> roomAdded
                 let events = [room1Added; room2Added] |> NonEmptyList.ofList
@@ -538,10 +536,6 @@ module Tests =
                         plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
                     }
                 let hotel = Hotel.GetEmpty()
-                let roomAdded r =
-                    fun (x: Hotel) -> x.AddRoom r
-                let bookingAdded b =
-                    fun (x: Hotel) -> x.AddBooking b
                 let room1Added = roomAdded room1
                 let booking1Added = bookingAdded booking
                 let events = [room1Added; booking1Added] |> NonEmptyList.ofList
@@ -561,8 +555,6 @@ module Tests =
                         Hotel.GetEmpty()
                             with rooms = [room1]
                     }
-                let roomAdded r =
-                    fun (x: Hotel) -> x.AddRoom r
                 let room1Added = room1 |> roomAdded
                 let events = [room1Added] |> NonEmptyList.ofList
                 let (Error error) = events |> hotel.ProcessEvents
@@ -634,8 +626,6 @@ module Tests =
             testCase "addRoom command returns roomAdded event - Ok" <| fun _ ->
                 let hotel = Hotel.GetEmpty()
                 let addRoom1Command: Command =
-                    let roomAdded r =
-                        fun (x: Hotel) -> x.AddRoom r
                     let room1Added: Event = roomAdded room1
                     fun _ -> ([room1Added] |> NonEmptyList.ofList) |> Ok
                 let (Ok events) = addRoom1Command |> hotel.ProcessCommand
