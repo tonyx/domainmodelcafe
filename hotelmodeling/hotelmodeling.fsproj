@@ -11,7 +11,12 @@
 
   <ItemGroup>
     <PackageReference Include="Equinox" Version="3.0.7" />
+    <PackageReference Include="Equinox.Core" Version="3.0.7" />
+    <PackageReference Include="Equinox.EventStore" Version="3.0.7" />
+    <PackageReference Include="Equinox.MemoryStore" Version="3.0.7" />
+    <PackageReference Include="EventStore.Client" Version="21.2.2" />
     <PackageReference Include="FsCodec.NewtonsoftJson" Version="2.3.2" />
+    <PackageReference Include="FSharp.Control.AsyncSeq" Version="3.2.1" />
     <PackageReference Include="FSharpPlus" Version="1.2.4" />
     <PackageReference Update="FSharp.Core" Version="4.*" />
   </ItemGroup>
