@@ -15,6 +15,10 @@ open FSharpPlus.Data
 module Shared =
     let spaghetti = { name = "spaghetti" }
     let table1 = { id = 1; orderItems = [] }
+    let tableAdded t: Event =
+        fun (x: Cafe) -> x.AddTable t
+    let foodAdded f: Event =
+        fun (x: Cafe) -> x.AddFood f
 
 open Shared
 open Utils
@@ -175,8 +179,6 @@ let EventsTests =
             testCase "add table event - Ok"
             <| fun _ ->
                 let cafe = Cafe.GetEmpty()
-                let tableAdded t =
-                    fun (x: Cafe) -> x.AddTable t
                 let event = tableAdded table1
                 let (Ok newCafe) = cafe |> event
                 let expected =
@@ -189,8 +191,6 @@ let EventsTests =
             testCase "add food event - Ok"
             <| fun _ ->
                 let cafe = Cafe.GetEmpty()
-                let foodAdded f =
-                    fun (x: Cafe) -> x.AddFood f
                 let event = foodAdded spaghetti
                 let (Ok cafe') = cafe |> event
                 let expected: Cafe = { cafe with availableFoods = [ spaghetti ] }
@@ -200,10 +200,6 @@ let EventsTests =
             <| fun _ ->
                 let cafe = Cafe.GetEmpty()
                 let table2 = { id = 2; orderItems = [] }
-
-                let tableAdded t =
-                    fun (x: Cafe) -> x.AddTable t
-
                 let table2Added = table2 |> tableAdded
                 let table1Added = table1 |> tableAdded
                 let events = [ table2Added; table1Added ] |> NonEmptyList.ofList
@@ -214,10 +210,6 @@ let EventsTests =
             testCase "add table and food - Ok"
             <| fun _ ->
                 let cafe = Cafe.GetEmpty()
-                let tableAdded t =
-                    fun (x: Cafe) -> x.AddTable t
-                let foodAdded (f: Food) =
-                    fun (x: Cafe) -> x.AddFood f
                 let table1Added = table1 |> tableAdded
                 let spaghettiAdded = spaghetti |> foodAdded
                 let events = [ table1Added; spaghettiAdded ] |> NonEmptyList.ofList
@@ -233,8 +225,6 @@ let EventsTests =
             testCase "add already existing table - Error"
             <| fun _ ->
                 let cafe = { Cafe.GetEmpty() with tables = [ table1 ] }
-                let tableAdded t =
-                    fun (x: Cafe) -> x.AddTable t
                 let table1Added = table1 |> tableAdded
                 let events = [ table1Added ] |> NonEmptyList.ofList
                 let (Error error) = events |> cafe.ProcessEvents
@@ -247,10 +237,6 @@ let EventsTests =
                         tables = [ table1 ]
                         availableFoods = [] 
                     }
-                let tableAdded t =
-                    fun (x: Cafe) -> x.AddTable t
-                let foodAdded f =
-                    fun (x: Cafe) -> x.AddFood f
                 let table1Added: Event = tableAdded table1
                 let food1Added: Event = foodAdded spaghetti
                 let events = [ table1Added; food1Added ] |> NonEmptyList.ofList
@@ -260,10 +246,6 @@ let EventsTests =
             testCase "add already existing food - Error"
             <| fun _ ->
                 let cafe = { Cafe.GetEmpty() with availableFoods = [ spaghetti ] }
-                let tableAdded t =
-                    fun (x: Cafe) -> x.AddTable t
-                let foodAdded f =
-                    fun (x: Cafe) -> x.AddFood f
                 let table1Added: Event = tableAdded table1
                 let spaghettiAdded: Event = foodAdded spaghetti
                 let events = [ table1Added; spaghettiAdded ] |> NonEmptyList.ofList
@@ -299,8 +281,6 @@ let CommandsTests =
             <| fun _ ->
                 let cafe = Cafe.GetEmpty()
                 let addTable1Command: Command =
-                    let tableAdded t =
-                        fun (x: Cafe) -> x.AddTable t
                     let table1Added: Event = tableAdded table1
                     fun _ -> ([table1Added] |> NonEmptyList.ofList) |> Ok
 
