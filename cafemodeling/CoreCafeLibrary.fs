@@ -99,14 +99,12 @@ module rec modeling =
                     ) (this |> Ok)
 
             member this.ProcessCommand command =
-                let res = 
-                    match command this with
-                    | Ok x -> 
-                        match this.ProcessEvents x with
-                        | Ok _ -> Ok x
-                        | Error e -> Error (sprintf "command error: %s" e)
-                    | Error x ->  Error (sprintf "command error: %s" x)
-                res
+                match command this with
+                | Ok x -> 
+                    match this.ProcessEvents x with
+                    | Ok _ -> Ok x
+                    | Error e -> Error (sprintf "command error: %s" e)
+                | Error x ->  Error (sprintf "command error: %s" x)
 
 module Utils =
     open modeling
