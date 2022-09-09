@@ -5,7 +5,7 @@ open FSharp.Core
 open FSharpPlus
 open FSharpPlus.Data
 
-module rec modeling =
+module modeling =
     type Food = 
         {
             name: string
@@ -32,8 +32,6 @@ module rec modeling =
                             orderItems = food::this.orderItems
                 }
 
-    type Event = Cafe -> Result<Cafe, string>
-    type Command = Cafe -> Result<NonEmptyList<Event>, string>
     type Cafe =
         {
             tables: List<Table>
@@ -105,6 +103,9 @@ module rec modeling =
                     | Ok _ -> Ok x
                     | Error e -> Error (sprintf "command error: %s" e)
                 | Error x ->  Error (sprintf "command error: %s" x)
+
+    type Event = Cafe -> Result<Cafe, string>
+    type Command = Cafe -> Result<NonEmptyList<Event>, string>
 
 module Utils =
     open modeling
