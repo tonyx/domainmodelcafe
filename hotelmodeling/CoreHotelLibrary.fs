@@ -3,6 +3,7 @@ open System
 open FSharp.Core
 open FSharpPlus
 open FSharpPlus.Data
+open Equinox.EventStore
 
 module MiscUtils =
     let daysToString(days: Set<DateTime>) = 
@@ -47,29 +48,51 @@ module rec Domain =
                         yield (this.plannedCheckin.Date + TimeSpan(i - 1, 0, 0, 0))
                 ]
 
-    type Event = Hotel -> Result<Hotel, string>
-    type Command = Hotel -> Result<NonEmptyList<Event>, string>
-    type Hotel =
+    type UnionEvent =
+        | UAddRoom of Room
+        | UAddBooking of Booking
+        member this.Process (x: State) =
+            match this with
+            | UAddRoom r -> x.AddRoom r
+            | UAddBooking b -> x.AddBooking b
+
+    type Event = State -> Result<State, string>
+    type Command = State -> Result<NonEmptyList<Event>, string>
+
+    type SEvent = 
+        {
+            id : Guid
+            event: Event
+        }
+        // interface TypeShape.UnionContract.IUnionContract
+
+    type SCommand = State -> Result<NonEmptyList<SEvent>, string>
+
+    // let codec = FsCodec.NewtonsoftJson.Codec.Create<SEvent>()
+    type State =
         {
             rooms: List<Room>
             bookings: List<Booking>
+            id: int
         }
         with 
             static member GetEmpty() =
                 {
                     rooms = []
                     bookings = []
+                    id = 0
                 }
-            member this.AddRoom (room: Room): Result<Hotel, string> =
+            member this.AddRoom (room: Room): Result<State, string> =
                 if ((this.rooms) |> List.contains room) then   
                     sprintf "a room with number %d already exists" room.id |> Error
                 else 
                     {
                         this with   
                             rooms = room::this.rooms
+                            id = this.id + 1
                     } 
                     |> Ok
-            member this.AddBooking (booking: Booking): Result<Hotel, string> =
+            member this.AddBooking (booking: Booking): Result<State, string> =
                 let roomExists = this.rooms |> List.exists (fun x -> x.id = booking.roomId) 
                 let claimedDays = booking.getDaysInterval() |> Set.ofList
                 let alreadyBookedDays = this.GetBookedDaysOfRoom (booking.roomId)
@@ -83,6 +106,7 @@ module rec Domain =
                         {
                             this with
                                 bookings = ({booking with id = Guid.NewGuid()|> Some})::this.bookings
+                                id = this.id + 1
                         } 
                         |> Ok
             member this.GetBookedDaysOfRoom roomId =
@@ -92,7 +116,7 @@ module rec Domain =
                     |> List.fold (@) []
                     |> Set.ofList 
 
-            member this.ProcessEvents events =
+            member this.Evolve events =
                 events |> NonEmptyList.toList
                 |> List.fold 
                     (fun x f -> 
@@ -101,14 +125,28 @@ module rec Domain =
                         | Error x -> Error x
                     ) (this |> Ok)
 
-            member this.ProcessCommand command =
+            member this.ProcessSEvents sEvents =
+                sEvents 
+                |> NonEmptyList.map (fun x -> x.event) 
+                |> this.Evolve
+
+            member this.Interpret command =
                 match command this with
                 | Ok x -> 
-                    match this.ProcessEvents x with
+                    match this.Evolve x with
                     | Ok _ -> Ok x
                     | Error e -> Error (sprintf "command error: %s" e)
                 | Error x ->  Error (sprintf "command error: %s" x)
 
+            member this.ProcessSCommand command =
+                match command this with
+                | Ok x -> 
+                    match this.ProcessSEvents x with
+                    | Ok _ -> Ok x
+                    | Error e -> Error (sprintf "command error: %s" e)
+                | Error x ->  Error (sprintf "command error: %s" x)
+
+    let initState: State = State.GetEmpty()
     type CommandMaker =
         | AddRoom of Room
         | AddBooking of Booking
@@ -117,11 +155,66 @@ module rec Domain =
         match commandMaker with
             | AddRoom t ->
                 fun _ -> 
-                    [fun (x: Hotel) -> x.AddRoom t] 
+                    [fun (x: State) -> x.AddRoom t] 
                     |> NonEmptyList.ofList 
                     |> Ok
             | AddBooking f ->
                 fun _ -> 
-                    [fun (x: Hotel) -> x.AddBooking f] 
+                    [fun (x: State) -> x.AddBooking f] 
                     |> NonEmptyList.ofList 
                     |> Ok
+
+    let makeSCommand commandMaker: SCommand =
+        match commandMaker with
+            | AddRoom t ->
+                fun _ -> 
+                    [
+                        {
+                            id = Guid.NewGuid()
+                            event = fun (x: State) -> x.AddRoom t
+                        }
+                            
+                    ] 
+                    |> NonEmptyList.ofList 
+                    |> Ok
+            | AddBooking f ->
+                fun _ -> 
+                    [
+                        {
+                            id = Guid.NewGuid()
+                            event = fun (x: State) -> x.AddBooking f
+                        }
+                    ] 
+                    |> NonEmptyList.ofList 
+                    |> Ok
+
+// open Domain
+// module Fold =   
+//     let initial = State.GetEmpty()
+//     let evolve (s: State) e = 
+//         let (Result.Ok res) = s.ProcessSEvents ([e] |> NonEmptyList.ofList)
+//         res
+
+//     let fold: State -> List<SEvent> -> State =
+//         Seq.fold evolve
+
+//     let interpret c (s: State) =
+//         let (Ok res) = s.ProcessSCommand c
+//         res
+
+
+// open Domain
+// open Fold
+// type Service internal (resolve : string -> Equinox.Decider<Domain.SEvent, State>) =
+//     let handle clientId sCommand =
+//         let stream = resolve clientId
+
+//         stream.Transact
+//             (
+//                 fun state ->
+//                     let events = interpret sCommand state 
+//                     let newState = Fold.fold state (events |> NonEmptyList.toList)
+//                     newState, (events |> NonEmptyList.toList)
+//             )
+
+    

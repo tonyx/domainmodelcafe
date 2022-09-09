@@ -89,7 +89,7 @@ module rec modeling =
                                             )
                         } |> Ok
 
-            member this.ProcessEvents events =
+            member this.Evolve events =
                 events |> NonEmptyList.toList
                 |> List.fold 
                     (fun x f -> 
@@ -98,10 +98,10 @@ module rec modeling =
                         | Error x -> Error x
                     ) (this |> Ok)
 
-            member this.ProcessCommand command =
+            member this.Interpret command =
                 match command this with
                 | Ok x -> 
-                    match this.ProcessEvents x with
+                    match this.Evolve x with
                     | Ok _ -> Ok x
                     | Error e -> Error (sprintf "command error: %s" e)
                 | Error x ->  Error (sprintf "command error: %s" x)

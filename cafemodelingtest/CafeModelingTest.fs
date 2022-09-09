@@ -203,9 +203,27 @@ let EventsTests =
                 let table2Added = table2 |> tableAdded
                 let table1Added = table1 |> tableAdded
                 let events = [ table2Added; table1Added ] |> NonEmptyList.ofList
-                let (Ok cafe') = events |> cafe.ProcessEvents
+                let (Ok cafe') = events |> cafe.Evolve
                 let expected = { cafe with tables = [ table1; table2 ] }
                 Expect.equal cafe' expected "should be equal"
+
+            // testCase "add different tables, process event list Refactor (serializable) - OK"
+            // <| fun _ ->
+            //     let cafe = Cafe.GetEmpty()
+            //     let table2 = { id = 2; orderItems = [] }
+            //     let table2Added = 
+            //         {
+            //             event = table2 |> tableAdded
+            //         }
+            //     let table1Added = 
+            //         {
+            //             event = table1 |> tableAdded
+            //         }
+            //         table1 |> tableAdded
+            //     let events = [ table2Added; table1Added ] |> NonEmptyList.ofList
+            //     let (Ok cafe') = events |> cafe.ProcessSEvents
+            //     let expected = { cafe with tables = [ table1; table2 ] }
+            //     Expect.equal cafe' expected "should be equal"
 
             testCase "add table and food - Ok"
             <| fun _ ->
@@ -213,7 +231,7 @@ let EventsTests =
                 let table1Added = table1 |> tableAdded
                 let spaghettiAdded = spaghetti |> foodAdded
                 let events = [ table1Added; spaghettiAdded ] |> NonEmptyList.ofList
-                let (Ok cafe') = events |> cafe.ProcessEvents
+                let (Ok cafe') = events |> cafe.Evolve
 
                 let expected =
                     { 
@@ -227,7 +245,7 @@ let EventsTests =
                 let cafe = { Cafe.GetEmpty() with tables = [ table1 ] }
                 let table1Added = table1 |> tableAdded
                 let events = [ table1Added ] |> NonEmptyList.ofList
-                let (Error error) = events |> cafe.ProcessEvents
+                let (Error error) = events |> cafe.Evolve
                 Expect.equal error "table 1 already exists" "should be equal"
 
             testCase "add already existing table 2 - Error"
@@ -240,7 +258,7 @@ let EventsTests =
                 let table1Added: Event = tableAdded table1
                 let food1Added: Event = foodAdded spaghetti
                 let events = [ table1Added; food1Added ] |> NonEmptyList.ofList
-                let (Error error) = events |> cafe.ProcessEvents
+                let (Error error) = events |> cafe.Evolve
                 Expect.equal error "table 1 already exists" "should be equal"
 
             testCase "add already existing food - Error"
@@ -249,7 +267,7 @@ let EventsTests =
                 let table1Added: Event = tableAdded table1
                 let spaghettiAdded: Event = foodAdded spaghetti
                 let events = [ table1Added; spaghettiAdded ] |> NonEmptyList.ofList
-                let (Error error) = events |> cafe.ProcessEvents
+                let (Error error) = events |> cafe.Evolve
                 Expect.equal error "there is already food named spaghetti" "should be equal"
 
             testCase "add orderitem  - Ok"
@@ -263,7 +281,7 @@ let EventsTests =
                     fun (w: Cafe) -> w.AddOrderItem tableId food
                 let orderItemAddedTable1: Event = orderItemAdded 1 spaghetti
                 let events = [ orderItemAddedTable1 ] |> NonEmptyList.ofList
-                let (Ok cafe') = events |> cafe.ProcessEvents
+                let (Ok cafe') = events |> cafe.Evolve
                 let expectedTable = { table1 with orderItems = [ spaghetti ] }
                 let expectedCafe =
                     { 
@@ -284,24 +302,24 @@ let CommandsTests =
                     let table1Added: Event = tableAdded table1
                     fun _ -> ([table1Added] |> NonEmptyList.ofList) |> Ok
 
-                let (Ok events) = addTable1Command |> cafe.ProcessCommand
-                let (Ok cafe') = cafe.ProcessEvents events
+                let (Ok events) = addTable1Command |> cafe.Interpret
+                let (Ok cafe') = cafe.Evolve events
                 let expected: Cafe = { cafe with tables = [ table1 ] }
                 Expect.equal cafe' expected "should be equal"
 
             testCase "add table command returns tableAdded event 2 - Ok"
             <| fun _ ->
                 let cafe = Cafe.GetEmpty()
-                let (Ok events) = Utils.makeCommand (AddTable table1) |> cafe.ProcessCommand
-                let (Ok newCafe) = cafe.ProcessEvents events
+                let (Ok events) = Utils.makeCommand (AddTable table1) |> cafe.Interpret
+                let (Ok newCafe) = cafe.Evolve events
                 let expected: Cafe = { cafe with tables = [ table1 ] }
                 Expect.equal newCafe expected "should be equal"
 
             testCase "add food command returns foodAdded event 2 - Ok"
             <| fun _ ->
                 let cafe = Cafe.GetEmpty()
-                let (Ok events) = Utils.makeCommand (AddFood spaghetti) |> cafe.ProcessCommand
-                let (Ok cafe') = cafe.ProcessEvents events
+                let (Ok events) = Utils.makeCommand (AddFood spaghetti) |> cafe.Interpret
+                let (Ok cafe') = cafe.Evolve events
                 let expected: Cafe = { cafe with availableFoods = [ spaghetti ] }
                 Expect.equal cafe' expected "should be equal"
 
@@ -309,8 +327,8 @@ let CommandsTests =
             <| fun _ ->
                 let cafe = Cafe.GetEmpty()
                 let command: Command = Utils.makeCommand (AddTable table1)
-                let (Ok events) = command |> cafe.ProcessCommand
-                let (Ok cafe') = cafe.ProcessEvents events
+                let (Ok events) = command |> cafe.Interpret
+                let (Ok cafe') = cafe.Evolve events
                 let expected: Cafe = {cafe with tables = [ table1 ] }
                 Expect.equal cafe' expected "should be equal"
 
@@ -322,7 +340,7 @@ let CommandsTests =
                             with tables = [table1]
                     }
                 let command: Command = Utils.makeCommand (AddTable table1)
-                let (Error error) = command |> cafe.ProcessCommand
+                let (Error error) = command |> cafe.Interpret
                 Expect.equal "command error: table 1 already exists" error "should be equal"
 
             testCase "add food command returns Error if event can't add the food - Error"
@@ -333,6 +351,6 @@ let CommandsTests =
                             with availableFoods = [spaghetti]
                     }
                 let command: Command = Utils.makeCommand (AddFood spaghetti)
-                let (Error error) = command |> cafe.ProcessCommand
+                let (Error error) = command |> cafe.Interpret
                 Expect.equal "command error: there is already food named spaghetti" error "should be equal"
         ]
