@@ -125,6 +125,14 @@ module rec Domain =
                         | Error x -> Error x
                     ) (this |> Ok)
 
+            member this.UEvolve (events: List<UnionEvent>) =
+                events 
+                |> List.fold 
+                    (fun (acc: Result<State, string>) (x: UnionEvent) -> 
+                        let (Ok okAcc) = acc
+                        x.Process okAcc
+                    ) (this |> Ok)
+
             member this.ProcessSEvents sEvents =
                 sEvents 
                 |> NonEmptyList.map (fun x -> x.event) 
