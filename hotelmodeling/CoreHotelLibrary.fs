@@ -15,6 +15,13 @@ module MiscUtils =
         else
             printconflictsdays.Substring(0, printconflictsdays.Length-1)
 
+    let OkValue x =
+        let (Ok res) = x
+        res
+
+    let traverse l f =
+        ()
+
 module rec Domain =
     open MiscUtils
     [<CustomEquality; NoComparison>]
@@ -49,12 +56,12 @@ module rec Domain =
                 ]
 
     type UnionEvent =
-        | UAddRoom of Room
-        | UAddBooking of Booking
+        | URoomAdded of Room
+        | UBookingAdded of Booking
         member this.Process (x: State) =
             match this with
-            | UAddRoom r -> x.AddRoom r
-            | UAddBooking b -> x.AddBooking b
+            | URoomAdded r -> x.AddRoom r
+            | UBookingAdded b -> x.AddBooking b
 
     type Event = State -> Result<State, string>
     type Command = State -> Result<NonEmptyList<Event>, string>
@@ -64,11 +71,9 @@ module rec Domain =
             id : Guid
             event: Event
         }
-        // interface TypeShape.UnionContract.IUnionContract
 
     type SCommand = State -> Result<NonEmptyList<SEvent>, string>
 
-    // let codec = FsCodec.NewtonsoftJson.Codec.Create<SEvent>()
     type State =
         {
             rooms: List<Room>
@@ -129,8 +134,9 @@ module rec Domain =
                 events 
                 |> List.fold 
                     (fun (acc: Result<State, string>) (x: UnionEvent) -> 
-                        let (Ok okAcc) = acc
-                        x.Process okAcc
+                        match acc with  
+                            | Error _ -> acc
+                            | Ok y -> x.Process y
                     ) (this |> Ok)
 
             member this.ProcessSEvents sEvents =
@@ -195,6 +201,9 @@ module rec Domain =
                     ] 
                     |> NonEmptyList.ofList 
                     |> Ok
+
+
+
 
 // open Domain
 // module Fold =   
