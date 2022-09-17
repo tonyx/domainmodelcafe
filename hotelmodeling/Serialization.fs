@@ -46,15 +46,31 @@ module DomainSerialization =
     type UnionEvent with
         member this.Serialize() =
             JsonConvert.SerializeObject this
-        static member Deserialize(x: string) =
+        static member Deserialize(x: string) : Result<UnionEvent, string> =
             try
                 let result = JsonConvert.DeserializeObject<UnionEvent> x
                 result |> Ok
             with
                 | :? Newtonsoft.Json.JsonReaderException as ex -> Error (ex.ToString())
 
+    let separateErrors events =
+        let (okList, errors) =
+            events  
+            |> List.map UnionEvent.Deserialize 
+            |> Result.partition
+        if (errors.Length > 0) then
+            Result.Error (errors.Head)
+        else
+            okList |> Result.Ok
+
     type State with 
         member this.SUEvolve serEvents =
-            serEvents 
-            |> List.map (UnionEvent.Deserialize >> OkValue)
-            |> this.UEvolve
+            let sEvents =
+                serEvents 
+                |> separateErrors
+            match sEvents with
+            | Error x -> Error x
+            | Ok x -> x |> this.UEvolve
+
+
+
