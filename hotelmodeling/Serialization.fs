@@ -6,6 +6,8 @@ open hotelmodeling.MiscUtils
 open FSharp.Data
 open Newtonsoft
 open Newtonsoft.Json
+open FSharpPlus
+open FSharpPlus.Operators
 
 open System.IO
 open System.Text
@@ -52,8 +54,7 @@ module DomainSerialization =
                 | :? Newtonsoft.Json.JsonReaderException as ex -> Error (ex.ToString())
 
     type State with 
-        member this.SUEvolve events =
-            events 
-            |> List.map UnionEvent.Deserialize
-            |> List.map OkValue 
+        member this.SUEvolve serEvents =
+            serEvents 
+            |> List.map (UnionEvent.Deserialize >> OkValue)
             |> this.UEvolve
