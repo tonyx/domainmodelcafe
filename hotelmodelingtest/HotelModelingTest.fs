@@ -821,7 +821,7 @@ module Tests =
 
             testCase "add room event UNION BASED - Ok" <| fun _ ->
                 let hotel = State.GetEmpty()
-                let uEvent = UnionEvent.UAddRoom room1
+                let uEvent = UnionEvent.URoomAdded room1
                 let (Ok hotel') = hotel |> uEvent.Process
                 let expected = 
                     {
@@ -879,37 +879,9 @@ module Tests =
                         State.GetEmpty() with
                             rooms = [room1]
                     }
-                let uEvent = UnionEvent.UAddBooking booking
+                let uEvent = UnionEvent.UBookingAdded booking
                 let (Ok hotel') = hotel |> uEvent.Process
                 Expect.isSome hotel'.bookings.Head.id "should be some"
-
-            // testCase "add booking event Refactor-serialiazble - Ok" <| fun _ ->
-            //     let booking: Booking =
-            //         {
-            //             id = None
-            //             roomId = 1
-            //             customerEmail = "email@me.com"
-            //             plannedCheckin= DateTime.Parse("2022-11-11 01:01:01")
-            //             plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
-            //         }
-            //     let hotel = 
-            //         {
-            //             State.GetEmpty() with
-            //                 rooms = [room1]
-            //         }
-            //     let event = 
-            //         {
-            //             id = Guid.NewGuid()
-            //             event = bookingAdded booking
-            //         }
-            //     let (Ok hotel') =  hotel |> event.event
-            //     Expect.isSome hotel'.bookings.Head.id "should be some"
-            //     let actualBookingNoId = 
-            //         {
-            //             hotel'.bookings.Head with
-            //             id = None
-            //         }
-            //     Expect.equal actualBookingNoId booking "should be true"
 
             testCase "add two rooms event - Ok" <| fun _ ->
                 let room2 =
@@ -931,17 +903,11 @@ module Tests =
                         description = None
                     }
                 let hotel = State.GetEmpty()
-                // let room1Added = UnionEvent.
-                let uRoom1Added = UnionEvent.UAddRoom room1
-                let uRoom2Added = UnionEvent.UAddRoom room2
-                // let room1Added = room1 |> roomAdded
-                // let room2Added = room2 |> roomAdded
-                // let events = [room1Added; room2Added] |> NonEmptyList.ofList
+                let uRoom1Added = UnionEvent.URoomAdded room1
+                let uRoom2Added = UnionEvent.URoomAdded room2
                 let uEvents = [uRoom1Added; uRoom2Added]
                 let (Ok hotel') = uEvents |> hotel.UEvolve
                 Expect.equal hotel' {hotel with rooms = [room2; room1]; id = 2} "should be equal"
-
-                // Expect.isTrue true "true"
 
             testCase "add two rooms event Refactor-Serializable - Ok" <| fun _ ->
                 let room2 =
@@ -1001,6 +967,29 @@ module Tests =
                 Expect.equal (hotel'.rooms.Head) room1 "should be equal"
                 Expect.equal actualBookingNoId booking "should be equal"
 
+            testCase "add a room and a booking UNION EVENT - Ok" <| fun _ ->
+                let booking: Booking =
+                    {
+                        id = None
+                        roomId = 1
+                        customerEmail = "email@me.com"
+                        plannedCheckin= DateTime.Parse("2022-11-11 01:01:01")
+                        plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
+                    }
+                let hotel = State.GetEmpty()
+                let room1Added = UnionEvent.URoomAdded room1 
+                let booking1Added = UnionEvent.UBookingAdded booking
+                let events = [room1Added; booking1Added]
+                let (Ok hotel') = events |> hotel.UEvolve
+                let actualBookingNoId =
+                    {
+                        hotel'.bookings.Head 
+                            with 
+                                id = None
+                    }
+                Expect.equal (hotel'.rooms.Head) room1 "should be equal"
+                Expect.equal actualBookingNoId booking "should be equal"
+
             testCase "add a room and a booking refactor-serializable - Ok" <| fun _ ->
                 let booking: Booking =
                     {
@@ -1041,6 +1030,17 @@ module Tests =
                 let room1Added = room1 |> roomAdded
                 let events = [room1Added] |> NonEmptyList.ofList
                 let (Error error) = events |> hotel.Evolve
+                Expect.equal error "a room with number 1 already exists" "should be equal"
+
+            testCase "add already existing room UNION BASED - Error" <| fun _ ->
+                let hotel = 
+                    {
+                        State.GetEmpty()
+                            with rooms = [room1]
+                    }
+                let room1Added = UnionEvent.URoomAdded room1
+                let events = [room1Added] 
+                let (Error error) = events |> hotel.UEvolve
                 Expect.equal error "a room with number 1 already exists" "should be equal"
 
             testCase "add already existing room Refactor-serializable - Error" <| fun _ ->
