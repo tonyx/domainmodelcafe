@@ -173,31 +173,107 @@ module SerializeTests =
                 let (Ok actual) = State.Deserialize input
                 Expect.equal actual expected "should be bla true"
 
-            testCase "union event test serialize "  <| fun _ ->
+            testCase "union event room added test serialize "  <| fun _ ->
                 let room = {
                     id = 1
                     description = None
                 }
-                let input = UnionEvent.URoomAdded room
+                let input = Event.RoomAdded room
                 let actual = input.Serialize() 
                 let expected = 
                     """
-                        {"Case":"URoomAdded","Fields":[{"id":1,"description":null}]}
+                        {"Case":"RoomAdded","Fields":[{"id":1,"description":null}]}
                     """.Trim()
                 Expect.equal actual expected "should be equal"
+                
+            testCase "union event booking added test serialize - OK"  <| fun _ ->
+                let booking = 
+                    {
+                        id = None
+                        roomId = 1
+                        customerEmail = "me@you.us"
+                        plannedCheckin = DateTime.Parse("2022-11-11 00:00:00")
+                        plannedCheckout = DateTime.Parse("2022-11-12 00:00:00")
+                    }
+                let input = Event.BookingAdded booking
+                let actual = input.Serialize() 
+                let expected =
+                    """
+                        {"Case":"BookingAdded","Fields":[{"id":null,"roomId":1,"customerEmail":"me@you.us","plannedCheckin":"2022-11-11T00:00:00","plannedCheckout":"2022-11-12T00:00:00"}]}
+                    """.Trim()
+                Expect.equal actual expected "should be true"
+
+            testCase "union event booking added test deserialize - OK"  <| fun _ ->
+                let booking = 
+                    {
+                        id = None
+                        roomId = 1
+                        customerEmail = "me@you.us"
+                        plannedCheckin = DateTime.Parse("2022-11-11 00:00:00")
+                        plannedCheckout = DateTime.Parse("2022-11-12 00:00:00")
+                    }
+                let expected = Event.BookingAdded booking
+                let input =
+                    """
+                        {"Case":"BookingAdded","Fields":[{"id":null,"roomId":1,"customerEmail":"me@you.us","plannedCheckin":"2022-11-11T00:00:00","plannedCheckout":"2022-11-12T00:00:00"}]}
+                    """.Trim()
+                let (Ok result) = Event.Deserialize input
+                Expect.equal result expected "should be true"
 
             testCase "union event test deserialize" <| fun _ ->
                 let room = {
                     id = 1
                     description = None
                 }
-                let event = UnionEvent.URoomAdded room
+                let event = Event.RoomAdded room
                 let input = 
                     """
-                        {"Case":"URoomAdded","Fields":[{"id":1,"description":null}]}
+                        {"Case":"RoomAdded","Fields":[{"id":1,"description":null}]}
                     """.Trim()
-                let (Ok actual) = UnionEvent.Deserialize input 
+                let (Ok actual) = Event.Deserialize input 
                 Expect.equal actual event "shoud be equal"
+
+            testCase "union event roomAdded test deserialize  - error" <| fun _ ->
+                let room = {
+                    id = 1
+                    description = None
+                }
+                let event = Event.RoomAdded room
+                let input = 
+                    """
+                        {"CaseWWW":"RoomAdded","Fields":[{"id":1,"description":null}]}
+                    """.Trim()
+                let (Error actual) = Event.Deserialize input 
+                Expect.isTrue true "true"
+        ]
+    [<Tests>]
+    let serializeCommandsTests =
+        testList "serializeCommandstests" [
+            testCase "serialize AddRoom" <| fun _ ->
+                let hotel = State.GetEmpty()
+                let room: Room = 
+                    {
+                        id = 1
+                        description = None
+                    }
+                let addRoomCommand =
+                    Command.AddRoom room
+                let actual = addRoomCommand.Serialize()
+                let expected = """{"Case":"AddRoom","Fields":[{"id":1,"description":null}]}"""
+                Expect.equal actual expected "should be equal"
+                
+            // testCase "serialize AddBooking" <| fun _ ->
+            //     let hotel = State.GetEmpty()
+            //     let room: Room = 
+            //         {
+            //             id = 1
+            //             description = None
+            //         }
+            //     let addRoomCommand =
+            //         Command.AddRoom room
+            //     let actual = addRoomCommand.Serialize()
+            //     let expected = """{"Case":"AddRoom","Fields":[{"id":1,"description":null}]}"""
+            //     Expect.equal actual expected "should be equal"
         ]
 
     [<Tests>]
@@ -211,10 +287,10 @@ module SerializeTests =
                 }
                 let sEvent = 
                     """
-                        {"Case":"URoomAdded","Fields":[{"id":1,"description":null}]}
+                        {"Case":"RoomAdded","Fields":[{"id":1,"description":null}]}
                     """
 
-                let (Ok hotel') = hotel.SUEvolve [sEvent]
+                let (Ok hotel') = hotel.SEvolve [sEvent]
 
                 let expected = {
                     hotel with
@@ -223,7 +299,7 @@ module SerializeTests =
                 }
                 Expect.equal hotel' expected "should be true" 
 
-            testCase "interpret two addRoom event from serialized" <| fun _ ->
+            testCase "add two addRoom - OK" <| fun _ ->
                 let hotel = State.GetEmpty()
                 let room1 = {
                     id = 1
@@ -235,14 +311,14 @@ module SerializeTests =
                 }
                 let sEvent = 
                     """
-                        {"Case":"URoomAdded","Fields":[{"id":1,"description":null}]}
+                        {"Case":"RoomAdded","Fields":[{"id":1,"description":null}]}
                     """
                 let sEvent2 = 
                     """
-                        {"Case":"URoomAdded","Fields":[{"id":2,"description":null}]}
+                        {"Case":"RoomAdded","Fields":[{"id":2,"description":null}]}
                     """
 
-                let (Ok hotel') = hotel.SUEvolve [sEvent; sEvent2]
+                let (Ok hotel') = hotel.SEvolve [sEvent; sEvent2]
 
                 let expected = {
                     hotel with
@@ -252,4 +328,41 @@ module SerializeTests =
 
                 Expect.equal hotel' expected "should be true" 
 
-        ]    
+            testCase "add room with the same id twice - Error" <| fun _ ->
+                let hotel = State.GetEmpty()
+                let room1 = {
+                    id = 1
+                    description = None
+                }
+                let room2 = {
+                    id = 2
+                    description = None
+                }
+                let sEvent = 
+                    """
+                        {"Case":"RoomAdded","Fields":[{"id":1,"description":null}]}
+                    """
+                let sEvent2 = 
+                    """ 
+                        {"Case":"RoomAdded","Fields":[{"id":1,"description":{"Case":"Some","Fields":["hot room"]}}]}
+                    """
+                let (Error result) =  hotel.SEvolve [sEvent; sEvent2]
+                Expect.equal result "a room with number 1 already exists" "should be equal"
+
+            testCase "add two rooms wrong json format - Error" <| fun _ ->
+                let hotel = State.GetEmpty()
+                let room1 = {
+                    id = 1
+                    description = None
+                }
+                let room2 = {
+                    id = 2
+                    description = None
+                }
+                let sEvent = 
+                    """ 
+                        {"CaseWWWW":"RoomAdded","Fields":[{"id":1,"description":{"Case":"Some","Fields":["hot room"]}}]}
+                    """
+                let (Error result) =  hotel.SEvolve [sEvent]
+                Expect.isTrue (result.Contains("Unexpected property 'CaseWWWW'")) "should be true"
+        ]

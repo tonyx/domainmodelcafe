@@ -2,6 +2,7 @@ namespace hostelmodeling
 
 open Expecto
 open hotelmodeling.Domain
+open hotelmodeling.MiscUtils
 open System
 open FSharp.Core
 open FSharpPlus.Data
@@ -34,7 +35,7 @@ module Tests =
                 }
                 Expect.notEqual room1 room2 "should be equal"
 
-            testCase "bookings with all fields equals are equals - Ok" <| fun _ ->
+            testCase "two bookings having all fields equals are equals - Ok" <| fun _ ->
                 let booking1 = 
                     {
                         id = Guid.Parse("d45c0760-dbf7-4453-a15f-b4cb1b78c730") |> Some
@@ -123,7 +124,7 @@ module Tests =
         ]
     [<Tests>]
     let domainModelTests =
-        testList "Domain model" [
+        testList "Domain model logic" [
             testCase "add a room to an empty hotel - Ok" <| fun _ ->
                 let hotel = State.GetEmpty()
                 let expected = 
@@ -478,10 +479,10 @@ module Tests =
     [<Tests>]
     let eventsTests =
         testList "Domain events" [
-            testCase "add room event - Ok" <| fun _ ->
+            testCase "add room event  - Ok" <| fun _ ->
                 let hotel = State.GetEmpty()
-                let event = roomAdded room1
-                let (Ok hotel') = event hotel
+                let uEvent = Event.RoomAdded room1
+                let (Ok hotel') = hotel |> uEvent.Process
                 let expected = 
                     {
                         rooms = [room1]
@@ -490,23 +491,7 @@ module Tests =
                     }
                 Expect.equal hotel' expected "should be equal"
 
-            testCase "add room event Refactor- Ok" <| fun _ ->
-                let hotel = State.GetEmpty()
-                let event = 
-                    {
-                        id = Guid.NewGuid()
-                        event = roomAdded room1
-                    }
-                let (Ok hotel') = hotel |> event.event
-                let expected = 
-                    {
-                        rooms = [room1]
-                        bookings = []
-                        id = 1
-                    }
-                Expect.equal hotel' expected "should be equal"
-
-            testCase "add booking event - Ok" <| fun _ ->
+            testCase "add booking simple event - Ok" <| fun _ ->
                 let booking: Booking =
                     {
                         id = None
@@ -524,329 +509,6 @@ module Tests =
                 let (Ok hotel') = event hotel
                 Expect.isSome hotel'.bookings.Head.id "should be some"
 
-            testCase "add booking event Refactor-serialiazble - Ok" <| fun _ ->
-                let booking: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin= DateTime.Parse("2022-11-11 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
-                    }
-                let hotel = 
-                    {
-                        State.GetEmpty() with
-                            rooms = [room1]
-                    }
-                let event = 
-                    {
-                        id = Guid.NewGuid()
-                        event = bookingAdded booking
-                    }
-                let (Ok hotel') =  hotel |> event.event
-                Expect.isSome hotel'.bookings.Head.id "should be some"
-                let actualBookingNoId = 
-                    {
-                        hotel'.bookings.Head with
-                        id = None
-                    }
-                Expect.equal actualBookingNoId booking "should be true"
-
-            testCase "add two rooms event - Ok" <| fun _ ->
-                let room2 =
-                    {
-                        id = 2
-                        description = None
-                    }
-                let hotel = State.GetEmpty()
-                let room1Added = room1 |> roomAdded
-                let room2Added = room2 |> roomAdded
-                let events = [room1Added; room2Added] |> NonEmptyList.ofList
-                let (Ok hotel') = events |> hotel.Evolve
-                Expect.equal hotel' {hotel with rooms = [room2; room1]; id = 2} "should be equal"
-
-            testCase "add two rooms event Refactor-Serializable - Ok" <| fun _ ->
-                let room2 =
-                    {
-                        id = 2
-                        description = None
-                    }
-                let hotel = State.GetEmpty()
-                let room1Added = room1 |> roomAdded
-                let room2Added = room2 |> roomAdded
-
-                let events = [room1Added; room2Added] |> NonEmptyList.ofList
-                let (Ok hotel') = events |> hotel.Evolve
-                Expect.equal hotel' {hotel with rooms = [room2; room1]; id = 2} "should be equal"
-
-            testCase "add two rooms event Refactor-serializable 2 - Ok" <| fun _ ->
-                let room2 =
-                    {
-                        id = 2
-                        description = None
-                    }
-                let hotel = State.GetEmpty()
-                let room1Added = 
-                    {
-                        id = Guid.NewGuid()
-                        event = room1 |> roomAdded
-                    }     
-                let room2Added = 
-                    {
-                        id = Guid.NewGuid()
-                        event = room2 |> roomAdded
-                    }            
-                let events = [room1Added; room2Added] |> NonEmptyList.ofList
-                let (Ok hotel') = events |> hotel.ProcessSEvents
-                Expect.equal hotel' {hotel with rooms = [room2; room1]; id = 2} "should be equal"
-
-            testCase "add a room and a booking - Ok" <| fun _ ->
-                let booking: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin= DateTime.Parse("2022-11-11 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
-                    }
-                let hotel = State.GetEmpty()
-                let room1Added = roomAdded room1
-                let booking1Added = bookingAdded booking
-                let events = [room1Added; booking1Added] |> NonEmptyList.ofList
-                let (Ok hotel') = events |> hotel.Evolve
-                let actualBookingNoId =
-                    {
-                        hotel'.bookings.Head 
-                            with 
-                                id = None
-                    }
-                Expect.equal (hotel'.rooms.Head) room1 "should be equal"
-                Expect.equal actualBookingNoId booking "should be equal"
-
-            testCase "add a room and a booking refactor-serializable - Ok" <| fun _ ->
-                let booking: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin= DateTime.Parse("2022-11-11 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
-                    }
-                let hotel = State.GetEmpty()
-                let room1Added = 
-                    {
-                        id = Guid.NewGuid()
-                        event = roomAdded room1
-                    }
-                let booking1Added = 
-                    {
-                        id = Guid.NewGuid()
-                        event = bookingAdded booking
-                    }
-                let events = [room1Added; booking1Added] |> NonEmptyList.ofList
-                let (Ok hotel') = events |> hotel.ProcessSEvents
-                let actualBookingNoId =
-                    {
-                        hotel'.bookings.Head 
-                            with 
-                                id = None
-                    }
-                Expect.equal (hotel'.rooms.Head) room1 "should be equal"
-                Expect.equal actualBookingNoId booking "should be equal"
-
-            testCase "add already existing room - Error" <| fun _ ->
-                let hotel = 
-                    {
-                        State.GetEmpty()
-                            with rooms = [room1]
-                    }
-                let room1Added = room1 |> roomAdded
-                let events = [room1Added] |> NonEmptyList.ofList
-                let (Error error) = events |> hotel.Evolve
-                Expect.equal error "a room with number 1 already exists" "should be equal"
-
-            testCase "add already existing room Refactor-serializable - Error" <| fun _ ->
-                let hotel = 
-                    {
-                        State.GetEmpty()
-                            with rooms = [room1]
-                    }
-                let room1Added = 
-                    {
-                        id = Guid.NewGuid()
-                        event = room1 |> roomAdded
-                    }
-                let events = [room1Added] |> NonEmptyList.ofList
-                let (Error error) = events |> hotel.ProcessSEvents
-                Expect.equal error "a room with number 1 already exists" "should be equal"
-
-
-            testCase "add overlapping booking - Error" <| fun _ -> 
-                let booking = 
-                    {
-                        id = Guid.Parse("d45c0760-dbf7-4453-a15f-b4cb1b78c730") |> Some
-                        roomId = 1
-                        customerEmail = "me@you.us"
-                        plannedCheckin = DateTime.Parse("2022-11-11 00:00:00")
-                        plannedCheckout = DateTime.Parse("2022-11-12 00:00:00")
-                    }
-                let hotel = 
-                    {
-                        State.GetEmpty()
-                        with
-                            rooms = [room1]
-                            bookings = [booking]
-                    }
-                let booking1 = 
-                    {
-                        booking with
-                            id = None
-                    }
-                let bookingAdded b =
-                    fun (x: State) -> x.AddBooking b
-                let booking1Added: Event = bookingAdded booking1
-                let events = [booking1Added] |> NonEmptyList.ofList
-                let (Error error) = events |> hotel.Evolve
-                Expect.equal error "overlap: \"2022/11/11\"" "should be equal"
-
-            testCase "add overlapping booking Refactor-serializable - Error" <| fun _ -> 
-                let booking = 
-                    {
-                        id = Guid.Parse("d45c0760-dbf7-4453-a15f-b4cb1b78c730") |> Some
-                        roomId = 1
-                        customerEmail = "me@you.us"
-                        plannedCheckin = DateTime.Parse("2022-11-11 00:00:00")
-                        plannedCheckout = DateTime.Parse("2022-11-12 00:00:00")
-                    }
-                let hotel = 
-                    {
-                        State.GetEmpty()
-                        with
-                            rooms = [room1]
-                            bookings = [booking]
-                    }
-                let booking1 = 
-                    {
-                        booking with
-                            id = None
-                    }
-                let booking1Added =
-                    {
-                        id = Guid.NewGuid()
-                        event = booking1 |> bookingAdded
-                    }
-                
-                let events = [booking1Added] |> NonEmptyList.ofList
-                let (Error error) = events |> hotel.ProcessSEvents
-                Expect.equal error "overlap: \"2022/11/11\"" "should be equal"
-
-            testCase "add booking on free period - Ok" <| fun _ -> 
-                let booking = 
-                    {
-                        id = Guid.Parse("d45c0760-dbf7-4453-a15f-b4cb1b78c730") |> Some
-                        roomId = 1
-                        customerEmail = "me@you.us"
-                        plannedCheckin = DateTime.Parse("2022-11-11 00:00:00")
-                        plannedCheckout = DateTime.Parse("2022-11-12 00:00:00")
-                    }
-                let hotel = 
-                    {
-                        State.GetEmpty()
-                        with
-                            rooms = [room1]
-                            bookings = [booking]
-                    }
-                let booking1 = 
-                    {
-                        booking with
-                            id = None
-                            plannedCheckin = DateTime.Parse("2022-11-12 00:00:00")
-                            plannedCheckout = DateTime.Parse("2022-11-20 00:00:00")
-                    }
-
-                let bookingAdded b =
-                    fun (x: State) -> x.AddBooking b
-
-                let booking1Added: Event = bookingAdded booking1
-                let events = [booking1Added] |> NonEmptyList.ofList
-                let (Ok hotel') = events |> hotel.Evolve
-                Expect.equal (hotel'.bookings.Length) 2 "should be equal"
-
-            testCase "add booking on free period Refactor-serializable - Ok" <| fun _ -> 
-                let booking = 
-                    {
-                        id = Guid.Parse("d45c0760-dbf7-4453-a15f-b4cb1b78c730") |> Some
-                        roomId = 1
-                        customerEmail = "me@you.us"
-                        plannedCheckin = DateTime.Parse("2022-11-11 00:00:00")
-                        plannedCheckout = DateTime.Parse("2022-11-12 00:00:00")
-                    }
-                let hotel = 
-                    {
-                        State.GetEmpty()
-                        with
-                            rooms = [room1]
-                            bookings = [booking]
-                    }
-                let booking1 = 
-                    {
-                        booking with
-                            id = None
-                            plannedCheckin = DateTime.Parse("2022-11-12 00:00:00")
-                            plannedCheckout = DateTime.Parse("2022-11-20 00:00:00")
-                    }
-                let booking1Added =
-                    {
-                        id = Guid.NewGuid()
-                        event = booking1 |> bookingAdded
-                    }
-                let events = [booking1Added] |> NonEmptyList.ofList
-                let (Ok hotel') = events |> hotel.ProcessSEvents
-                Expect.equal (hotel'.bookings.Length) 2 "should be equal"
-        ]
-    [<Tests>]
-    let eventsTestsRefacot =
-        testList "Domain events refactor" [
-            // testCase "add room event OLD - Ok" <| fun _ ->
-            //     let hotel = State.GetEmpty()
-            //     let event = roomAdded room1
-            //     let (Ok hotel') = event hotel
-            //     let expected = 
-            //         {
-            //             rooms = [room1]
-            //             bookings = []
-            //             id = 1
-            //         }
-            //     Expect.equal hotel' expected "should be equal"
-
-            testCase "add room event UNION BASED - Ok" <| fun _ ->
-                let hotel = State.GetEmpty()
-                let uEvent = UnionEvent.URoomAdded room1
-                let (Ok hotel') = hotel |> uEvent.Process
-                let expected = 
-                    {
-                        rooms = [room1]
-                        bookings = []
-                        id = 1
-                    }
-                Expect.equal hotel' expected "should be equal"
-
-            // testCase "add room event Refactor- Ok" <| fun _ ->
-            //     let hotel = State.GetEmpty()
-            //     let event = 
-            //         {
-            //             id = Guid.NewGuid()
-            //             event = roomAdded room1
-            //         }
-            //     let (Ok hotel') = hotel |> event.event
-            //     let expected = 
-            //         {
-            //             rooms = [room1]
-            //             bookings = []
-            //             id = 1
-            //         }
-            //     Expect.equal hotel' expected "should be equal"
-
             testCase "add booking event - Ok" <| fun _ ->
                 let booking: Booking =
                     {
@@ -861,87 +523,21 @@ module Tests =
                         State.GetEmpty() with
                             rooms = [room1]
                     }
-                let event = bookingAdded booking
-                let (Ok hotel') = event hotel
-                Expect.isSome hotel'.bookings.Head.id "should be some"
-
-            testCase "add booking event UNION BASED - Ok" <| fun _ ->
-                let booking: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin= DateTime.Parse("2022-11-11 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
-                    }
-                let hotel = 
-                    {
-                        State.GetEmpty() with
-                            rooms = [room1]
-                    }
-                let uEvent = UnionEvent.UBookingAdded booking
+                let uEvent = Event.BookingAdded booking
                 let (Ok hotel') = hotel |> uEvent.Process
                 Expect.isSome hotel'.bookings.Head.id "should be some"
 
-            testCase "add two rooms event - Ok" <| fun _ ->
+            testCase "add two rooms - Ok" <| fun _ ->
                 let room2 =
                     {
                         id = 2
                         description = None
                     }
                 let hotel = State.GetEmpty()
-                let room1Added = room1 |> roomAdded
-                let room2Added = room2 |> roomAdded
-                let events = [room1Added; room2Added] |> NonEmptyList.ofList
-                let (Ok hotel') = events |> hotel.Evolve
-                Expect.equal hotel' {hotel with rooms = [room2; room1]; id = 2} "should be equal"
-
-            testCase "add two rooms event UNION BASED - Ok" <| fun _ ->
-                let room2 =
-                    {
-                        id = 2
-                        description = None
-                    }
-                let hotel = State.GetEmpty()
-                let uRoom1Added = UnionEvent.URoomAdded room1
-                let uRoom2Added = UnionEvent.URoomAdded room2
+                let uRoom1Added = Event.RoomAdded room1
+                let uRoom2Added = Event.RoomAdded room2
                 let uEvents = [uRoom1Added; uRoom2Added]
-                let (Ok hotel') = uEvents |> hotel.UEvolve
-                Expect.equal hotel' {hotel with rooms = [room2; room1]; id = 2} "should be equal"
-
-            testCase "add two rooms event Refactor-Serializable - Ok" <| fun _ ->
-                let room2 =
-                    {
-                        id = 2
-                        description = None
-                    }
-                let hotel = State.GetEmpty()
-                let room1Added = room1 |> roomAdded
-                let room2Added = room2 |> roomAdded
-
-                let events = [room1Added; room2Added] |> NonEmptyList.ofList
-                let (Ok hotel') = events |> hotel.Evolve
-                Expect.equal hotel' {hotel with rooms = [room2; room1]; id = 2} "should be equal"
-
-            testCase "add two rooms event Refactor-serializable 2 - Ok" <| fun _ ->
-                let room2 =
-                    {
-                        id = 2
-                        description = None
-                    }
-                let hotel = State.GetEmpty()
-                let room1Added = 
-                    {
-                        id = Guid.NewGuid()
-                        event = room1 |> roomAdded
-                    }     
-                let room2Added = 
-                    {
-                        id = Guid.NewGuid()
-                        event = room2 |> roomAdded
-                    }            
-                let events = [room1Added; room2Added] |> NonEmptyList.ofList
-                let (Ok hotel') = events |> hotel.ProcessSEvents
+                let (Ok hotel') = uEvents |> hotel.Evolve
                 Expect.equal hotel' {hotel with rooms = [room2; room1]; id = 2} "should be equal"
 
             testCase "add a room and a booking - Ok" <| fun _ ->
@@ -954,9 +550,9 @@ module Tests =
                         plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
                     }
                 let hotel = State.GetEmpty()
-                let room1Added = roomAdded room1
-                let booking1Added = bookingAdded booking
-                let events = [room1Added; booking1Added] |> NonEmptyList.ofList
+                let room1Added = Event.RoomAdded room1
+                let booking1Added = Event.BookingAdded booking
+                let events = [room1Added; booking1Added] 
                 let (Ok hotel') = events |> hotel.Evolve
                 let actualBookingNoId =
                     {
@@ -977,41 +573,10 @@ module Tests =
                         plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
                     }
                 let hotel = State.GetEmpty()
-                let room1Added = UnionEvent.URoomAdded room1 
-                let booking1Added = UnionEvent.UBookingAdded booking
+                let room1Added = Event.RoomAdded room1 
+                let booking1Added = Event.BookingAdded booking
                 let events = [room1Added; booking1Added]
-                let (Ok hotel') = events |> hotel.UEvolve
-                let actualBookingNoId =
-                    {
-                        hotel'.bookings.Head 
-                            with 
-                                id = None
-                    }
-                Expect.equal (hotel'.rooms.Head) room1 "should be equal"
-                Expect.equal actualBookingNoId booking "should be equal"
-
-            testCase "add a room and a booking refactor-serializable - Ok" <| fun _ ->
-                let booking: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin= DateTime.Parse("2022-11-11 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
-                    }
-                let hotel = State.GetEmpty()
-                let room1Added = 
-                    {
-                        id = Guid.NewGuid()
-                        event = roomAdded room1
-                    }
-                let booking1Added = 
-                    {
-                        id = Guid.NewGuid()
-                        event = bookingAdded booking
-                    }
-                let events = [room1Added; booking1Added] |> NonEmptyList.ofList
-                let (Ok hotel') = events |> hotel.ProcessSEvents
+                let (Ok hotel') = events |> hotel.Evolve
                 let actualBookingNoId =
                     {
                         hotel'.bookings.Head 
@@ -1027,37 +592,10 @@ module Tests =
                         State.GetEmpty()
                             with rooms = [room1]
                     }
-                let room1Added = room1 |> roomAdded
-                let events = [room1Added] |> NonEmptyList.ofList
+                let room1Added = Event.RoomAdded room1
+                let events = [room1Added] 
                 let (Error error) = events |> hotel.Evolve
                 Expect.equal error "a room with number 1 already exists" "should be equal"
-
-            testCase "add already existing room UNION BASED - Error" <| fun _ ->
-                let hotel = 
-                    {
-                        State.GetEmpty()
-                            with rooms = [room1]
-                    }
-                let room1Added = UnionEvent.URoomAdded room1
-                let events = [room1Added] 
-                let (Error error) = events |> hotel.UEvolve
-                Expect.equal error "a room with number 1 already exists" "should be equal"
-
-            testCase "add already existing room Refactor-serializable - Error" <| fun _ ->
-                let hotel = 
-                    {
-                        State.GetEmpty()
-                            with rooms = [room1]
-                    }
-                let room1Added = 
-                    {
-                        id = Guid.NewGuid()
-                        event = room1 |> roomAdded
-                    }
-                let events = [room1Added] |> NonEmptyList.ofList
-                let (Error error) = events |> hotel.ProcessSEvents
-                Expect.equal error "a room with number 1 already exists" "should be equal"
-
 
             testCase "add overlapping booking - Error" <| fun _ -> 
                 let booking = 
@@ -1080,43 +618,9 @@ module Tests =
                         booking with
                             id = None
                     }
-                let bookingAdded b =
-                    fun (x: State) -> x.AddBooking b
-                let booking1Added: Event = bookingAdded booking1
-                let events = [booking1Added] |> NonEmptyList.ofList
-                let (Error error) = events |> hotel.Evolve
-                Expect.equal error "overlap: \"2022/11/11\"" "should be equal"
-
-            testCase "add overlapping booking Refactor-serializable - Error" <| fun _ -> 
-                let booking = 
-                    {
-                        id = Guid.Parse("d45c0760-dbf7-4453-a15f-b4cb1b78c730") |> Some
-                        roomId = 1
-                        customerEmail = "me@you.us"
-                        plannedCheckin = DateTime.Parse("2022-11-11 00:00:00")
-                        plannedCheckout = DateTime.Parse("2022-11-12 00:00:00")
-                    }
-                let hotel = 
-                    {
-                        State.GetEmpty()
-                        with
-                            rooms = [room1]
-                            bookings = [booking]
-                    }
-                let booking1 = 
-                    {
-                        booking with
-                            id = None
-                    }
-                let booking1Added =
-                    {
-                        id = Guid.NewGuid()
-                        event = booking1 |> bookingAdded
-                    }
-                
-                let events = [booking1Added] |> NonEmptyList.ofList
-                let (Error error) = events |> hotel.ProcessSEvents
-                Expect.equal error "overlap: \"2022/11/11\"" "should be equal"
+                let bookingAdded = Event.BookingAdded booking1
+                let (Error result) = [bookingAdded] |> hotel.Evolve
+                Expect.equal result "overlap: \"2022/11/11\"" "should be equal"
 
             testCase "add booking on free period - Ok" <| fun _ -> 
                 let booking = 
@@ -1141,86 +645,25 @@ module Tests =
                             plannedCheckin = DateTime.Parse("2022-11-12 00:00:00")
                             plannedCheckout = DateTime.Parse("2022-11-20 00:00:00")
                     }
-
-                let bookingAdded b =
-                    fun (x: State) -> x.AddBooking b
-
-                let booking1Added: Event = bookingAdded booking1
-                let events = [booking1Added] |> NonEmptyList.ofList
+                let booking1Added = Event.BookingAdded booking1
+                let events = [booking1Added] 
                 let (Ok hotel') = events |> hotel.Evolve
-                Expect.equal (hotel'.bookings.Length) 2 "should be equal"
 
-            testCase "add booking on free period Refactor-serializable - Ok" <| fun _ -> 
-                let booking = 
-                    {
-                        id = Guid.Parse("d45c0760-dbf7-4453-a15f-b4cb1b78c730") |> Some
-                        roomId = 1
-                        customerEmail = "me@you.us"
-                        plannedCheckin = DateTime.Parse("2022-11-11 00:00:00")
-                        plannedCheckout = DateTime.Parse("2022-11-12 00:00:00")
-                    }
-                let hotel = 
-                    {
-                        State.GetEmpty()
-                        with
-                            rooms = [room1]
-                            bookings = [booking]
-                    }
-                let booking1 = 
-                    {
-                        booking with
-                            id = None
-                            plannedCheckin = DateTime.Parse("2022-11-12 00:00:00")
-                            plannedCheckout = DateTime.Parse("2022-11-20 00:00:00")
-                    }
-                let booking1Added =
-                    {
-                        id = Guid.NewGuid()
-                        event = booking1 |> bookingAdded
-                    }
-                let events = [booking1Added] |> NonEmptyList.ofList
-                let (Ok hotel') = events |> hotel.ProcessSEvents
                 Expect.equal (hotel'.bookings.Length) 2 "should be equal"
         ]
+
     [<Tests>]
-    let commandTests =
-        testList "Commands on domain" [
+    let CommandTests =
+        testList "Union" [
             testCase "addRoom command returns roomAdded event - Ok" <| fun _ ->
                 let hotel = State.GetEmpty()
-                let addRoom1Command: Command =
-                    let room1Added: Event = roomAdded room1
-                    fun _ -> ([room1Added] |> NonEmptyList.ofList) |> Ok
-                let (Ok events) = addRoom1Command |> hotel.Interpret
-                let (Ok hotel') = hotel.Evolve events
-                let expected: State = {hotel with rooms = [room1]; id = 1}
-                Expect.equal hotel' expected "should be equal"
+                let command = Command.AddRoom room1
+                let expected = [Event.RoomAdded room1] |> Ok
+                let actual = command.Execute hotel
+                Expect.equal actual expected "should be equal"
 
-            testCase "addRoom command returns roomAdded event 2 - Ok" <| fun _ ->
-                let hotel = State.GetEmpty()
-                let (Ok events) = makeCommand (AddRoom room1) |> hotel.Interpret
-                let (Ok hotel') = hotel.Evolve events
-                let expected: State = 
-                    {
-                        hotel with 
-                            rooms = [room1]
-                            id = 1
-                    }
-                Expect.equal hotel' expected "should be equal"
-
-            testCase "addRoom command returns roomAdded event Refactor-serialize 2 - Ok" <| fun _ ->
-                let hotel = State.GetEmpty()
-                let (Ok events) = makeSCommand (AddRoom room1) |> hotel.ProcessSCommand
-                let (Ok hotel') = hotel.ProcessSEvents events
-                let expected: State = 
-                    {
-                        hotel with 
-                            rooms = [room1]
-                            id = 1
-                    }
-                Expect.equal hotel' expected "should be equal"
-
-            testCase "addBooking command returns bookingAdded event 2 - Ok"
-            <| fun _ ->
+            testCase "addBooking command returns bookingAdded event - Ok" <| fun _ ->
+                let hotel = State.GetEmpty().AddRoom room1 |> OkValue
                 let booking = 
                     {
                         id = None
@@ -1229,151 +672,22 @@ module Tests =
                         plannedCheckin = DateTime.Parse("2022-11-11 00:00:00")
                         plannedCheckout = DateTime.Parse("2022-11-12 00:00:00")
                     }
-                let hotel = 
-                    {
-                        State.GetEmpty()
-                        with rooms = [room1]
-                    }
-                let (Ok events) = makeCommand (AddBooking booking) |> hotel.Interpret
-                let (Ok hotel') = hotel.Evolve events
-                Expect.isSome (hotel'.bookings.Head.id) "should be some"
-                let actualNoId = {hotel'.bookings.Head with id = None}
-                Expect.equal booking actualNoId "should be equal"
+                let command = Command.AddBooking booking
+                let expected = [Event.BookingAdded booking] |> Ok
+                let actual = command.Execute hotel
+                Expect.equal actual expected "should be equal"
 
-            testCase "addBooking command returns bookingAdded event refactor-serializable 2 - Ok"
-            <| fun _ ->
+            testCase "addBooking command returns Error in booking unxisting room - KO" <| fun _ ->
+                let hotel = State.GetEmpty().AddRoom room1 |> OkValue
                 let booking = 
                     {
                         id = None
-                        roomId = 1
+                        roomId = 666 
                         customerEmail = "me@you.us"
                         plannedCheckin = DateTime.Parse("2022-11-11 00:00:00")
                         plannedCheckout = DateTime.Parse("2022-11-12 00:00:00")
                     }
-                let hotel = 
-                    {
-                        State.GetEmpty()
-                        with rooms = [room1]
-                    }
-                let (Ok events) = makeSCommand (AddBooking booking) |> hotel.ProcessSCommand
-                let (Ok hotel') = hotel.ProcessSEvents events
-                Expect.isSome (hotel'.bookings.Head.id) "should be some"
-                let actualNoId = {hotel'.bookings.Head with id = None}
-                Expect.equal booking actualNoId "should be equal"
-
-
-            testCase "two non overlapping bookings - Ok"
-            <| fun _ ->
-                let booking1 = 
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "me@you.us"
-                        plannedCheckin = DateTime.Parse("2022-11-11 00:00:00")
-                        plannedCheckout = DateTime.Parse("2022-11-12 00:00:00")
-                    }
-                let booking2 = 
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "me@you.us"
-                        plannedCheckin = DateTime.Parse("2022-11-12 00:00:00")
-                        plannedCheckout = DateTime.Parse("2022-11-14 00:00:00")
-                    }
-                let hotel = 
-                    {
-                        State.GetEmpty()
-                        with rooms = [room1]
-                    }
-                let (Ok events) = makeCommand (AddBooking booking1) |> hotel.Interpret
-                let (Ok hotel') = hotel.Evolve events
-                let (Ok events') = makeCommand (AddBooking booking2) |> hotel'.Interpret
-                let (Ok hotel'') = hotel'.Evolve events'
-                Expect.equal (hotel''.bookings.Length) 2 "should be equal"
-
-            testCase "two non overlapping bookings refactor-serialize - Ok"
-            <| fun _ ->
-                let booking1 = 
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "me@you.us"
-                        plannedCheckin = DateTime.Parse("2022-11-11 00:00:00")
-                        plannedCheckout = DateTime.Parse("2022-11-12 00:00:00")
-                    }
-                let booking2 = 
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "me@you.us"
-                        plannedCheckin = DateTime.Parse("2022-11-12 00:00:00")
-                        plannedCheckout = DateTime.Parse("2022-11-14 00:00:00")
-                    }
-                let hotel = 
-                    {
-                        State.GetEmpty()
-                        with rooms = [room1]
-                    }
-                let (Ok events) = makeSCommand (AddBooking booking1) |> hotel.ProcessSCommand
-                let (Ok hotel') = hotel.ProcessSEvents events
-                let (Ok events') = makeSCommand (AddBooking booking2) |> hotel'.ProcessSCommand
-                let (Ok hotel'') = hotel'.ProcessSEvents events'
-                Expect.equal (hotel''.bookings.Length) 2 "should be equal"
-
-            testCase "two overlapping bookings - Error"
-            <| fun _ ->
-                let booking1 = 
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "me@you.us"
-                        plannedCheckin = DateTime.Parse("2022-11-11 00:00:00")
-                        plannedCheckout = DateTime.Parse("2022-11-13 00:00:00")
-                    }
-                let booking2 = 
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "me@you.us"
-                        plannedCheckin = DateTime.Parse("2022-11-12 00:00:00")
-                        plannedCheckout = DateTime.Parse("2022-11-14 00:00:00")
-                    }
-                let hotel = 
-                    {
-                        State.GetEmpty()
-                        with rooms = [room1]
-                    }
-                let (Ok events) = makeCommand (AddBooking booking1) |> hotel.Interpret
-                let (Ok hotel') = hotel.Evolve events
-                let (Error error) = makeCommand (AddBooking booking2) |> hotel'.Interpret
-                Expect.equal error "command error: overlap: \"2022/11/12\"" "should be equal"
-
-            testCase "two overlapping bookings Refactor-serializable - Error"
-            <| fun _ ->
-                let booking1 = 
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "me@you.us"
-                        plannedCheckin = DateTime.Parse("2022-11-11 00:00:00")
-                        plannedCheckout = DateTime.Parse("2022-11-13 00:00:00")
-                    }
-                let booking2 = 
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "me@you.us"
-                        plannedCheckin = DateTime.Parse("2022-11-12 00:00:00")
-                        plannedCheckout = DateTime.Parse("2022-11-14 00:00:00")
-                    }
-                let hotel = 
-                    {
-                        State.GetEmpty()
-                        with rooms = [room1]
-                    }
-                let (Ok events) = makeSCommand (AddBooking booking1) |> hotel.ProcessSCommand
-                let (Ok hotel') = hotel.ProcessSEvents events
-                let (Error error) = makeSCommand (AddBooking booking2) |> hotel'.ProcessSCommand
-                Expect.equal error "command error: overlap: \"2022/11/12\"" "should be equal"
+                let command = Command.AddBooking booking
+                let (Error actual) = command.Execute hotel
+                Expect.equal actual "room 666 doesn't exist" "should be equal"
         ]
-
