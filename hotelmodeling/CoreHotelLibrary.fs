@@ -9,17 +9,13 @@ module MiscUtils =
     let daysToString(days: Set<DateTime>) = 
         let printconflictsdays = 
             days 
-                |> Set.fold (fun x y -> (sprintf "%A" (y.ToString("yyy/MM/dd")))+"," + x) ""
+            |> Set.fold (fun x y -> (sprintf "%A" (y.ToString("yyy/MM/dd")))+"," + x) ""
         if (printconflictsdays = String.Empty) then
             String.Empty
         else
             printconflictsdays.Substring(0, printconflictsdays.Length-1)
 
-    let OkValue x =
-        let (Ok res) = x
-        res
-
-module rec Domain =
+module Domain =
     open MiscUtils
     [<CustomEquality; NoComparison>]
     type Room =
@@ -52,24 +48,12 @@ module rec Domain =
                         yield (this.plannedCheckin.Date + TimeSpan(i - 1, 0, 0, 0))
                 ]
 
-    type UnionEvent =
-        | URoomAdded of Room
-        | UBookingAdded of Booking
-        member this.Process (x: State) =
-            match this with
-            | URoomAdded r -> x.AddRoom r
-            | UBookingAdded b -> x.AddBooking b
-
-    // type Event = State -> Result<State, string>
-    // type Command = State -> Result<NonEmptyList<Event>, string>
-
-    type SEvent = 
-        {
-            id : Guid
-            event: Event
-        }
-
-    type SCommand = State -> Result<NonEmptyList<SEvent>, string>
+    type Event =
+        | RoomAdded of Room
+        | BookingAdded of Booking
+    type Command =
+        | AddRoom of Room
+        | AddBooking of Booking
 
     type State =
         {
@@ -118,26 +102,13 @@ module rec Domain =
                     |> List.fold (@) []
                     |> Set.ofList 
 
-            member this.Evolve (events: List<Event>) =
-                events 
-                |> List.fold 
-                    (fun (acc: Result<State, string>) (x: Event) -> 
-                        match acc with  
-                            | Error _ -> acc
-                            | Ok y -> x.Process y
-                    ) (this |> Ok)
-
-    type Event =
-        | RoomAdded of Room
-        | BookingAdded of Booking
+    type Event with
         member this.Process (x: State) =
             match this with
             | RoomAdded r -> x.AddRoom r
             | BookingAdded b -> x.AddBooking b
 
-    type Command =
-        | AddRoom of Room
-        | AddBooking of Booking
+    type Command with
         member this.Execute (x: State) =
             match this with
             | AddRoom r -> 
@@ -147,6 +118,15 @@ module rec Domain =
             | AddBooking b ->
                 match x.AddBooking b with
                     | Ok _ -> [Event.BookingAdded b] |> Ok
-                    | Error x ->  x |> Error
+                    | Error x ->  x |> Error    
 
+    type State with
+        member this.Evolve (events: List<Event>) =
+            events 
+            |> List.fold 
+                (fun (acc: Result<State, string>) (x: Event) -> 
+                    match acc with  
+                        | Error _ -> acc
+                        | Ok y -> x.Process y
+                ) (this |> Ok)
     let initState: State = State.GetEmpty()

@@ -5,6 +5,7 @@ open hotelmodeling.Domain
 open hotelmodeling.MiscUtils
 open System
 open FSharp.Core
+open FSharpPlus
 open FSharpPlus.Data
 
 module Tests =
@@ -663,7 +664,7 @@ module Tests =
                 Expect.equal actual expected "should be equal"
 
             testCase "addBooking command returns bookingAdded event - Ok" <| fun _ ->
-                let hotel = State.GetEmpty().AddRoom room1 |> OkValue
+                let hotel = State.GetEmpty().AddRoom room1 |> Result.get 
                 let booking = 
                     {
                         id = None
@@ -678,7 +679,7 @@ module Tests =
                 Expect.equal actual expected "should be equal"
 
             testCase "addBooking command returns Error in booking unxisting room - KO" <| fun _ ->
-                let hotel = State.GetEmpty().AddRoom room1 |> OkValue
+                let hotel = State.GetEmpty().AddRoom room1 |>  Result.get 
                 let booking = 
                     {
                         id = None
