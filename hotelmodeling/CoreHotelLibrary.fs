@@ -19,9 +19,6 @@ module MiscUtils =
         let (Ok res) = x
         res
 
-    let traverse l f =
-        ()
-
 module rec Domain =
     open MiscUtils
     [<CustomEquality; NoComparison>]
@@ -63,8 +60,8 @@ module rec Domain =
             | URoomAdded r -> x.AddRoom r
             | UBookingAdded b -> x.AddBooking b
 
-    type Event = State -> Result<State, string>
-    type Command = State -> Result<NonEmptyList<Event>, string>
+    // type Event = State -> Result<State, string>
+    // type Command = State -> Result<NonEmptyList<Event>, string>
 
     type SEvent = 
         {
@@ -121,117 +118,35 @@ module rec Domain =
                     |> List.fold (@) []
                     |> Set.ofList 
 
-            member this.Evolve events =
-                events |> NonEmptyList.toList
-                |> List.fold 
-                    (fun x f -> 
-                        match x with
-                        | Ok x1 -> f x1
-                        | Error x -> Error x
-                    ) (this |> Ok)
-
-            member this.UEvolve (events: List<UnionEvent>) =
+            member this.Evolve (events: List<Event>) =
                 events 
                 |> List.fold 
-                    (fun (acc: Result<State, string>) (x: UnionEvent) -> 
+                    (fun (acc: Result<State, string>) (x: Event) -> 
                         match acc with  
                             | Error _ -> acc
                             | Ok y -> x.Process y
                     ) (this |> Ok)
 
-            member this.ProcessSEvents sEvents =
-                sEvents 
-                |> NonEmptyList.map (fun x -> x.event) 
-                |> this.Evolve
+    type Event =
+        | RoomAdded of Room
+        | BookingAdded of Booking
+        member this.Process (x: State) =
+            match this with
+            | RoomAdded r -> x.AddRoom r
+            | BookingAdded b -> x.AddBooking b
 
-            member this.Interpret command =
-                match command this with
-                | Ok x -> 
-                    match this.Evolve x with
-                    | Ok _ -> Ok x
-                    | Error e -> Error (sprintf "command error: %s" e)
-                | Error x ->  Error (sprintf "command error: %s" x)
-
-            member this.ProcessSCommand command =
-                match command this with
-                | Ok x -> 
-                    match this.ProcessSEvents x with
-                    | Ok _ -> Ok x
-                    | Error e -> Error (sprintf "command error: %s" e)
-                | Error x ->  Error (sprintf "command error: %s" x)
-
-    let initState: State = State.GetEmpty()
-    type CommandMaker =
+    type Command =
         | AddRoom of Room
         | AddBooking of Booking
+        member this.Execute (x: State) =
+            match this with
+            | AddRoom r -> 
+                match x.AddRoom r with 
+                    | Ok _ -> [Event.RoomAdded r] |> Ok
+                    | Error x ->  x |> Error
+            | AddBooking b ->
+                match x.AddBooking b with
+                    | Ok _ -> [Event.BookingAdded b] |> Ok
+                    | Error x ->  x |> Error
 
-    let makeCommand commandMaker: Command =
-        match commandMaker with
-            | AddRoom t ->
-                fun _ -> 
-                    [fun (x: State) -> x.AddRoom t] 
-                    |> NonEmptyList.ofList 
-                    |> Ok
-            | AddBooking f ->
-                fun _ -> 
-                    [fun (x: State) -> x.AddBooking f] 
-                    |> NonEmptyList.ofList 
-                    |> Ok
-
-    let makeSCommand commandMaker: SCommand =
-        match commandMaker with
-            | AddRoom t ->
-                fun _ -> 
-                    [
-                        {
-                            id = Guid.NewGuid()
-                            event = fun (x: State) -> x.AddRoom t
-                        }
-                            
-                    ] 
-                    |> NonEmptyList.ofList 
-                    |> Ok
-            | AddBooking f ->
-                fun _ -> 
-                    [
-                        {
-                            id = Guid.NewGuid()
-                            event = fun (x: State) -> x.AddBooking f
-                        }
-                    ] 
-                    |> NonEmptyList.ofList 
-                    |> Ok
-
-
-
-
-// open Domain
-// module Fold =   
-//     let initial = State.GetEmpty()
-//     let evolve (s: State) e = 
-//         let (Result.Ok res) = s.ProcessSEvents ([e] |> NonEmptyList.ofList)
-//         res
-
-//     let fold: State -> List<SEvent> -> State =
-//         Seq.fold evolve
-
-//     let interpret c (s: State) =
-//         let (Ok res) = s.ProcessSCommand c
-//         res
-
-
-// open Domain
-// open Fold
-// type Service internal (resolve : string -> Equinox.Decider<Domain.SEvent, State>) =
-//     let handle clientId sCommand =
-//         let stream = resolve clientId
-
-//         stream.Transact
-//             (
-//                 fun state ->
-//                     let events = interpret sCommand state 
-//                     let newState = Fold.fold state (events |> NonEmptyList.toList)
-//                     newState, (events |> NonEmptyList.toList)
-//             )
-
-    
+    let initState: State = State.GetEmpty()

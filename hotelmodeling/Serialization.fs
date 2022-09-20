@@ -21,7 +21,7 @@ module DomainSerialization =
                 let result = JsonConvert.DeserializeObject<State> x 
                 result |> Ok
             with
-                | :? Newtonsoft.Json.JsonReaderException as ex -> Error (ex.ToString())
+                | _ as ex -> Error (ex.ToString())
 
     type Room with
         member this.Serialize() =
@@ -31,7 +31,7 @@ module DomainSerialization =
                 let result = JsonConvert.DeserializeObject<Room> x
                 result |> Ok
             with
-                | :? Newtonsoft.Json.JsonReaderException as ex -> Error (ex.ToString())
+                | _ as ex -> Error (ex.ToString())
 
     type Booking with
         member this.Serialize() =
@@ -41,22 +41,32 @@ module DomainSerialization =
                 let result = JsonConvert.DeserializeObject<Booking> x
                 result |> Ok
             with
-                | :? Newtonsoft.Json.JsonReaderException as ex -> Error (ex.ToString())
+                | _ as ex -> Error (ex.ToString())
 
-    type UnionEvent with
+    type Event with
         member this.Serialize() =
             JsonConvert.SerializeObject this
-        static member Deserialize(x: string) : Result<UnionEvent, string> =
+        static member Deserialize(x: string) : Result<Event, string> =
             try
-                let result = JsonConvert.DeserializeObject<UnionEvent> x
+                let result = JsonConvert.DeserializeObject<Event> x
                 result |> Ok
             with
-                | :? Newtonsoft.Json.JsonReaderException as ex -> Error (ex.ToString())
+                | _ as ex -> Error (ex.ToString())
 
-    let separateErrors events =
+    type Command with
+        member this.Serialize() =
+            JsonConvert.SerializeObject this
+        static member Deserialize(x: string) : Result<Command, string> =
+            try
+                let result = JsonConvert.DeserializeObject<Command> x
+                result |> Ok
+            with
+                | _ as ex -> Error (ex.ToString())
+
+    let catchErrors f l =
         let (okList, errors) =
-            events  
-            |> List.map UnionEvent.Deserialize 
+            l  
+            |> List.map f 
             |> Result.partition
         if (errors.Length > 0) then
             Result.Error (errors.Head)
@@ -64,13 +74,8 @@ module DomainSerialization =
             okList |> Result.Ok
 
     type State with 
-        member this.SUEvolve serEvents =
-            let sEvents =
-                serEvents 
-                |> separateErrors
-            match sEvents with
-            | Error x -> Error x
-            | Ok x -> x |> this.UEvolve
-
-
-
+        member this.SEvolve serEvents =
+            match serEvents |> catchErrors Event.Deserialize
+                with
+                | Error x -> Error x
+                | Ok x -> x |> this.Evolve
