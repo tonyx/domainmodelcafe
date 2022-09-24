@@ -48,14 +48,7 @@ module Domain =
                         yield (this.plannedCheckin.Date + TimeSpan(i - 1, 0, 0, 0))
                 ]
 
-    type Event =
-        | RoomAdded of Room
-        | BookingAdded of Booking
-    type Command =
-        | AddRoom of Room
-        | AddBooking of Booking
-
-    type State =
+    type Hotel =
         {
             rooms: List<Room>
             bookings: List<Booking>
@@ -68,7 +61,7 @@ module Domain =
                     bookings = []
                     id = 0
                 }
-            member this.AddRoom (room: Room): Result<State, string> =
+            member this.AddRoom (room: Room): Result<Hotel, string> =
                 if ((this.rooms) |> List.contains room) then   
                     sprintf "a room with number %d already exists" room.id |> Error
                 else 
@@ -78,7 +71,7 @@ module Domain =
                             id = this.id + 1
                     } 
                     |> Ok
-            member this.AddBooking (booking: Booking): Result<State, string> =
+            member this.AddBooking (booking: Booking): Result<Hotel, string> =
                 let roomExists = this.rooms |> List.exists (fun x -> x.id = booking.roomId) 
                 let claimedDays = booking.getDaysInterval() |> Set.ofList
                 let alreadyBookedDays = this.GetBookedDaysOfRoom (booking.roomId)
@@ -102,31 +95,37 @@ module Domain =
                     |> List.fold (@) []
                     |> Set.ofList 
 
-    type Event with
-        member this.Process (x: State) =
-            match this with
-            | RoomAdded r -> x.AddRoom r
-            | BookingAdded b -> x.AddBooking b
+    // type Event =
+    //     | RoomAdded of Room
+    //     | BookingAdded of Booking
+    // type Command =
+    //     | AddRoom of Room
+    //     | AddBooking of Booking
+    // type Event with
+    //     member this.Process (x: Hotel) =
+    //         match this with
+    //         | RoomAdded r -> x.AddRoom r
+    //         | BookingAdded b -> x.AddBooking b
 
-    type Command with
-        member this.Execute (x: State) =
-            match this with
-            | AddRoom r -> 
-                match x.AddRoom r with 
-                    | Ok _ -> [Event.RoomAdded r] |> Ok
-                    | Error x ->  x |> Error
-            | AddBooking b ->
-                match x.AddBooking b with
-                    | Ok _ -> [Event.BookingAdded b] |> Ok
-                    | Error x ->  x |> Error    
+    // type Command with
+    //     member this.Execute (x: Hotel) =
+    //         match this with
+    //         | AddRoom r -> 
+    //             match x.AddRoom r with 
+    //                 | Ok _ -> [Event.RoomAdded r] |> Ok
+    //                 | Error x ->  x |> Error
+    //         | AddBooking b ->
+    //             match x.AddBooking b with
+    //                 | Ok _ -> [Event.BookingAdded b] |> Ok
+    //                 | Error x ->  x |> Error    
 
-    type State with
-        member this.Evolve (events: List<Event>) =
-            events 
-            |> List.fold 
-                (fun (acc: Result<State, string>) (x: Event) -> 
-                    match acc with  
-                        | Error _ -> acc
-                        | Ok y -> x.Process y
-                ) (this |> Ok)
-    let initState: State = State.GetEmpty()
+    // type Hotel with
+    //     member this.Evolve (events: List<Event>) =
+    //         events 
+    //         |> List.fold 
+    //             (fun (acc: Result<Hotel, string>) (x: Event) -> 
+    //                 match acc with  
+    //                     | Error _ -> acc
+    //                     | Ok y -> x.Process y
+    //             ) (this |> Ok)
+    // let initHotel: Hotel = Hotel.GetEmpty()

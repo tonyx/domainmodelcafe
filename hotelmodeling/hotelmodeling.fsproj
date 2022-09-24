@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <Compile Include="CoreHotelLibrary.fs" />
+    <Compile Include="HotelCommandEvents.fs" />
     <Compile Include="Serialization.fs" />
     <Compile Include="Db.fs" />
   </ItemGroup>

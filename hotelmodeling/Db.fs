@@ -26,3 +26,5 @@ type Sql =
         indivAmount,
         UseOptionTypes=Common.NullableColumnType.VALUE_OPTION>
 
+type dbContext = Sql.dataContext
+type SqlEvents = dbContext.``public.eventsEntity``

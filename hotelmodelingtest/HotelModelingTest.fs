@@ -2,6 +2,7 @@ namespace hostelmodeling
 
 open Expecto
 open hotelmodeling.Domain
+open hotelmodeling.CommandEvents
 open hotelmodeling.MiscUtils
 open System
 open FSharp.Core
@@ -14,10 +15,11 @@ module Tests =
         id = 1
         description = None
     }
+
     let roomAdded r =
-        fun (x: State) -> x.AddRoom r
+        fun (x: Hotel) -> x.AddRoom r
     let bookingAdded b =
-        fun (x: State) -> x.AddBooking b
+        fun (x: Hotel) -> x.AddBooking b
 
     [<Tests>]
     let domainObjectTests =
@@ -127,7 +129,7 @@ module Tests =
     let domainModelTests =
         testList "Domain model logic" [
             testCase "add a room to an empty hotel - Ok" <| fun _ ->
-                let hotel = State.GetEmpty()
+                let hotel = Hotel.GetEmpty()
                 let expected = 
                     {
                         hotel with
@@ -146,7 +148,7 @@ module Tests =
                     } 
                 let hotel = 
                     {
-                        State.GetEmpty()
+                        Hotel.GetEmpty()
                             with
                                 rooms = [room1]
                     }
@@ -156,7 +158,7 @@ module Tests =
             testCase "create booking about a room that does exists - Ok" <| fun _ ->
                 let hotel = 
                     {
-                        State.GetEmpty()
+                        Hotel.GetEmpty()
                             with
                                 rooms = [room1]
                     }
@@ -179,7 +181,7 @@ module Tests =
             testCase "create a booking about a room that doesn't exist - Error" <| fun _ ->
                 let hotel = 
                     {
-                        State.GetEmpty()
+                        Hotel.GetEmpty()
                             with
                                 rooms = [room1]
                     }
@@ -197,7 +199,7 @@ module Tests =
             testCase "after creating a booking, then the booking must have an id - Ok" <| fun _ ->
                 let hotel = 
                     {
-                        State.GetEmpty()
+                        Hotel.GetEmpty()
                             with
                                 rooms = [room1]
                     }
@@ -215,7 +217,7 @@ module Tests =
             testCase "after creating a booking, then the busy days of the booking are the days in the checkin checkout interval (excluding checkout day) - Ok" <| fun _ ->
                 let hotel = 
                     {
-                        State.GetEmpty()
+                        Hotel.GetEmpty()
                             with
                                 rooms = [room1]
                     }
@@ -235,7 +237,7 @@ module Tests =
             testCase "larger booking interval. Get the booked days. From checkin date to checkout date excluded - Ok" <| fun _ ->
                 let hotel = 
                     {
-                        State.GetEmpty()
+                        Hotel.GetEmpty()
                             with
                                 rooms = [room1]
                     }
@@ -272,7 +274,7 @@ module Tests =
             testCase "two booking intervals. Get the booked days - Ok" <| fun _ ->
                 let hotel = 
                     {
-                        State.GetEmpty()
+                        Hotel.GetEmpty()
                             with
                                 rooms = [room1]
                     }
@@ -319,7 +321,7 @@ module Tests =
             testCase "add a booking that already has an id Error - Ok" <| fun _ ->
                 let hotel = 
                     {
-                        State.GetEmpty()
+                        Hotel.GetEmpty()
                             with
                                 rooms = [room1]
                     }
@@ -342,7 +344,7 @@ module Tests =
                     }
                 let hotel = 
                     {
-                        State.GetEmpty()
+                        Hotel.GetEmpty()
                             with
                                 rooms = [room1; room2]
                     }
@@ -369,7 +371,7 @@ module Tests =
             testCase "cannot add a booking about the same room when the period is the same - Error" <| fun _ ->
                 let hotel = 
                     {
-                        State.GetEmpty()
+                        Hotel.GetEmpty()
                             with
                                 rooms = [room1]
                     }
@@ -390,14 +392,14 @@ module Tests =
                         plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
                     }
 
-                let (Ok newState) = hotel.AddBooking booking1 
-                let (Error error) = newState.AddBooking booking2
+                let (Ok newHotel) = hotel.AddBooking booking1 
+                let (Error error) = newHotel.AddBooking booking2
                 Expect.equal error "overlap: \"2022/11/11\"" "should be equal"
 
             testCase "add more bookings on same room, that have no overlaps - Ok" <| fun _ ->
                 let hotel = 
                     {
-                        State.GetEmpty()
+                        Hotel.GetEmpty()
                             with
                                 rooms = [room1]
                     }
@@ -425,7 +427,7 @@ module Tests =
             testCase "the checkin date of a booking can be the checkout date of another booking - Ok" <| fun _ ->
                 let hotel = 
                     {
-                        State.GetEmpty()
+                        Hotel.GetEmpty()
                             with
                                 rooms = [room1]
                     }
@@ -452,7 +454,7 @@ module Tests =
             testCase "add bookings that overlaps - Error" <| fun _ ->
                 let hotel = 
                     {
-                        State.GetEmpty()
+                        Hotel.GetEmpty()
                             with
                                 rooms = [room1]
                     }
@@ -481,7 +483,7 @@ module Tests =
     let eventsTests =
         testList "Domain events" [
             testCase "add room event  - Ok" <| fun _ ->
-                let hotel = State.GetEmpty()
+                let hotel = Hotel.GetEmpty()
                 let uEvent = Event.RoomAdded room1
                 let (Ok hotel') = hotel |> uEvent.Process
                 let expected = 
@@ -503,7 +505,7 @@ module Tests =
                     }
                 let hotel = 
                     {
-                        State.GetEmpty() with
+                        Hotel.GetEmpty() with
                             rooms = [room1]
                     }
                 let event = bookingAdded booking
@@ -521,7 +523,7 @@ module Tests =
                     }
                 let hotel = 
                     {
-                        State.GetEmpty() with
+                        Hotel.GetEmpty() with
                             rooms = [room1]
                     }
                 let uEvent = Event.BookingAdded booking
@@ -534,7 +536,7 @@ module Tests =
                         id = 2
                         description = None
                     }
-                let hotel = State.GetEmpty()
+                let hotel = Hotel.GetEmpty()
                 let uRoom1Added = Event.RoomAdded room1
                 let uRoom2Added = Event.RoomAdded room2
                 let uEvents = [uRoom1Added; uRoom2Added]
@@ -550,7 +552,7 @@ module Tests =
                         plannedCheckin= DateTime.Parse("2022-11-11 01:01:01")
                         plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
                     }
-                let hotel = State.GetEmpty()
+                let hotel = Hotel.GetEmpty()
                 let room1Added = Event.RoomAdded room1
                 let booking1Added = Event.BookingAdded booking
                 let events = [room1Added; booking1Added] 
@@ -573,7 +575,7 @@ module Tests =
                         plannedCheckin= DateTime.Parse("2022-11-11 01:01:01")
                         plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
                     }
-                let hotel = State.GetEmpty()
+                let hotel = Hotel.GetEmpty()
                 let room1Added = Event.RoomAdded room1 
                 let booking1Added = Event.BookingAdded booking
                 let events = [room1Added; booking1Added]
@@ -590,7 +592,7 @@ module Tests =
             testCase "add already existing room - Error" <| fun _ ->
                 let hotel = 
                     {
-                        State.GetEmpty()
+                        Hotel.GetEmpty()
                             with rooms = [room1]
                     }
                 let room1Added = Event.RoomAdded room1
@@ -609,7 +611,7 @@ module Tests =
                     }
                 let hotel = 
                     {
-                        State.GetEmpty()
+                        Hotel.GetEmpty()
                         with
                             rooms = [room1]
                             bookings = [booking]
@@ -634,7 +636,7 @@ module Tests =
                     }
                 let hotel = 
                     {
-                        State.GetEmpty()
+                        Hotel.GetEmpty()
                         with
                             rooms = [room1]
                             bookings = [booking]
@@ -657,14 +659,14 @@ module Tests =
     let CommandTests =
         testList "Union" [
             testCase "addRoom command returns roomAdded event - Ok" <| fun _ ->
-                let hotel = State.GetEmpty()
+                let hotel = Hotel.GetEmpty()
                 let command = Command.AddRoom room1
                 let expected = [Event.RoomAdded room1] |> Ok
                 let actual = command.Execute hotel
                 Expect.equal actual expected "should be equal"
 
             testCase "addBooking command returns bookingAdded event - Ok" <| fun _ ->
-                let hotel = State.GetEmpty().AddRoom room1 |> Result.get 
+                let hotel = Hotel.GetEmpty().AddRoom room1 |> Result.get 
                 let booking = 
                     {
                         id = None
@@ -679,7 +681,7 @@ module Tests =
                 Expect.equal actual expected "should be equal"
 
             testCase "addBooking command returns Error in booking unxisting room - KO" <| fun _ ->
-                let hotel = State.GetEmpty().AddRoom room1 |>  Result.get 
+                let hotel = Hotel.GetEmpty().AddRoom room1 |>  Result.get 
                 let booking = 
                     {
                         id = None

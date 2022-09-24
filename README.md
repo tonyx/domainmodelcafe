@@ -14,7 +14,7 @@ in cafemodelingtest directory using terminal/command line console:
     dotnet run
 ```
 
-## State:
+## Hotel:
 The hotel example is similar to the cafe example. There are rooms and bookings. There are methods defined at the hotel level that are wrapped in events that are wrapped in commands in a similar way as in the Cafe example.
 
 ### How to run tests:

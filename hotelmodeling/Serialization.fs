@@ -2,6 +2,7 @@
 namespace hostelmodeling
 
 open hotelmodeling.Domain
+open hotelmodeling.CommandEvents
 open hotelmodeling.MiscUtils
 open FSharp.Data
 open Newtonsoft
@@ -12,13 +13,13 @@ open FSharpPlus.Operators
 open System.IO
 open System.Text
 
-module DomainSerialization = 
-    type State with
+module HotelSerialization = 
+    type Hotel with
         member this.Serialize() =
             JsonConvert.SerializeObject this
         static member Deserialize(x: string) =
             try 
-                let result = JsonConvert.DeserializeObject<State> x 
+                let result = JsonConvert.DeserializeObject<Hotel> x 
                 result |> Ok
             with
                 | _ as ex -> Error (ex.ToString())
@@ -73,7 +74,7 @@ module DomainSerialization =
         else
             okList |> Result.Ok
 
-    type State with 
+    type Hotel with 
         member this.SEvolve serEvents =
             match serEvents |> catchErrors Event.Deserialize
                 with
