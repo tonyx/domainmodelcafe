@@ -1,4 +1,4 @@
-namespace hostelmodeling
+namespace hotelmodeling
 
 open Expecto
 open hotelmodeling.Domain
@@ -134,7 +134,7 @@ module Tests =
                     {
                         hotel with
                             rooms = [room1]
-                            id = hotel.id + 1
+                            // id = hotel.id + 1
                     } 
                     |> Ok
                 let actual = hotel.AddRoom room1
@@ -490,7 +490,7 @@ module Tests =
                     {
                         rooms = [room1]
                         bookings = []
-                        id = 1
+                        // id = 1
                     }
                 Expect.equal hotel' expected "should be equal"
 
@@ -541,7 +541,7 @@ module Tests =
                 let uRoom2Added = Event.RoomAdded room2
                 let uEvents = [uRoom1Added; uRoom2Added]
                 let (Ok hotel') = uEvents |> hotel.Evolve
-                Expect.equal hotel' {hotel with rooms = [room2; room1]; id = 2} "should be equal"
+                Expect.equal hotel' {hotel with rooms = [room2; room1]} "should be equal"
 
             testCase "add a room and a booking - Ok" <| fun _ ->
                 let booking: Booking =

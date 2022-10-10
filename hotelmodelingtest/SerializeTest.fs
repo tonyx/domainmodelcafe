@@ -1,16 +1,16 @@
 
-namespace hostelmodeling
+namespace hotelmodeling
 
 open Expecto
 open hotelmodeling.Domain
 open hotelmodeling.CommandEvents
+open hotelmodeling.HotelSerialization
 open System
 open FSharp.Core
+open FSharpPlus
 open FSharpPlus.Data
 open Newtonsoft
 open Newtonsoft.Json
-open hostelmodeling.HotelSerialization
-
 open System.IO
 open System.Text
 
@@ -75,7 +75,7 @@ module SerializeTests =
                 let actual = empty.Serialize()
                 let expected = 
                     """
-                        {"rooms":[],"bookings":[],"id":0}
+                        {"rooms":[],"bookings":[]}
                     """.Trim()
                 Expect.equal actual expected "should be true"
 
@@ -108,7 +108,7 @@ module SerializeTests =
                 let actual = input.Serialize() 
                 let expected = 
                     """
-                        {"rooms":[{"id":1,"description":null}],"bookings":[],"id":0}
+                        {"rooms":[{"id":1,"description":null}],"bookings":[]}
                     """.Trim()
                 Expect.equal expected actual "should be true"
 
@@ -147,7 +147,7 @@ module SerializeTests =
                 let actual = input.Serialize()
                 let expected = 
                     """
-                        {"rooms":[{"id":111,"description":null},{"id":666,"description":{"Case":"Some","Fields":["hot room"]}}],"bookings":[],"id":0}
+                        {"rooms":[{"id":111,"description":null},{"id":666,"description":{"Case":"Some","Fields":["hot room"]}}],"bookings":[]}
                     """.Trim()
                 Expect.equal actual expected  "should be bla true"
 
@@ -251,7 +251,6 @@ module SerializeTests =
     let serializeCommandsTests =
         testList "serializeCommandstests" [
             testCase "serialize AddRoom" <| fun _ ->
-                let hotel = Hotel.GetEmpty()
                 let room: Room = 
                     {
                         id = 1
@@ -263,18 +262,23 @@ module SerializeTests =
                 let expected = """{"Case":"AddRoom","Fields":[{"id":1,"description":null}]}"""
                 Expect.equal actual expected "should be equal"
                 
-            // testCase "serialize AddBooking" <| fun _ ->
-            //     let hotel = Hotel.GetEmpty()
-            //     let room: Room = 
-            //         {
-            //             id = 1
-            //             description = None
-            //         }
-            //     let addRoomCommand =
-            //         Command.AddRoom room
-            //     let actual = addRoomCommand.Serialize()
-            //     let expected = """{"Case":"AddRoom","Fields":[{"id":1,"description":null}]}"""
-            //     Expect.equal actual expected "should be equal"
+            testCase "serialize AddBooking" <| fun _ ->
+                let booking: Booking =
+                    {
+                        id = Guid.Parse("f1885f74-aba3-4de3-bd75-cc228078f74c") |> Some
+                        roomId = 1
+                        customerEmail = "email@you.me"
+                        plannedCheckin = DateTime.Parse("2022-11-11 00:00:00")
+                        plannedCheckout = DateTime.Parse("2022-11-12 00:00:00")
+                    }
+                let addBookingCommand =
+                    Command.AddBooking booking
+                let actual = addBookingCommand.Serialize()
+                let expected = 
+                    """
+                        {"Case":"AddBooking","Fields":[{"id":{"Case":"Some","Fields":["f1885f74-aba3-4de3-bd75-cc228078f74c"]},"roomId":1,"customerEmail":"email@you.me","plannedCheckin":"2022-11-11T00:00:00","plannedCheckout":"2022-11-12T00:00:00"}]}
+                    """.Trim()
+                Expect.equal actual expected "should be true"
         ]
 
     [<Tests>]
@@ -291,12 +295,12 @@ module SerializeTests =
                         {"Case":"RoomAdded","Fields":[{"id":1,"description":null}]}
                     """
 
-                let (Ok hotel') = hotel.SEvolve [sEvent]
+                let (Ok hotel') = hotel.Evolve [sEvent]
 
                 let expected = {
                     hotel with
                         rooms = [room1]
-                        id = 1
+                        // id = 1
                 }
                 Expect.equal hotel' expected "should be true" 
 
@@ -319,12 +323,12 @@ module SerializeTests =
                         {"Case":"RoomAdded","Fields":[{"id":2,"description":null}]}
                     """
 
-                let (Ok hotel') = hotel.SEvolve [sEvent; sEvent2]
+                let (Ok hotel') = hotel.Evolve [sEvent; sEvent2]
 
                 let expected = {
                     hotel with
                         rooms = [room2; room1]
-                        id = 2
+                        // id = 2
                 }
 
                 Expect.equal hotel' expected "should be true" 
@@ -347,7 +351,7 @@ module SerializeTests =
                     """ 
                         {"Case":"RoomAdded","Fields":[{"id":1,"description":{"Case":"Some","Fields":["hot room"]}}]}
                     """
-                let (Error result) =  hotel.SEvolve [sEvent; sEvent2]
+                let (Error result) =  hotel.Evolve [sEvent; sEvent2]
                 Expect.equal result "a room with number 1 already exists" "should be equal"
 
             testCase "add two rooms wrong json format - Error" <| fun _ ->
@@ -364,6 +368,66 @@ module SerializeTests =
                     """ 
                         {"CaseWWWW":"RoomAdded","Fields":[{"id":1,"description":{"Case":"Some","Fields":["hot room"]}}]}
                     """
-                let (Error result) =  hotel.SEvolve [sEvent]
+                let (Error result) =  hotel.Evolve [sEvent]
                 Expect.isTrue (result.Contains("Unexpected property 'CaseWWWW'")) "should be true"
+        ]
+    [<Tests>]
+    let CommandSequenceToEvents =
+        testList "commandSequenceToEventSequence" [
+            testCase "when the list contains a singl command that can be executed returning ok then the corresponding ok event is retured" <| fun _ ->
+                let hotel = Hotel.GetEmpty()
+                let room: Room = 
+                    {
+                        id = 1
+                        description = None
+                    }
+                let addRoomCommand =
+                    Command.AddRoom room
+                let commands = [addRoomCommand]
+                let (Ok actual) = Command.Executes commands hotel
+                let expected = [(Event.RoomAdded room)]
+                Expect.equal expected actual "should be equal"
+        
+            testCase "add existing room command - KO" <| fun _ ->
+                let room: Room = 
+                    {
+                        id = 1
+                        description = None
+                    }
+                let hotel =
+                    {
+                        Hotel.GetEmpty() with
+                            rooms = [room]
+                    }
+                let addRoomCommand =
+                    Command.AddRoom room
+                let commands = [addRoomCommand]
+                let (Error actual) = Command.Executes commands hotel
+                Expect.isTrue true "true"
+                Expect.equal actual "a room with number 1 already exists" "should be true"
+
+            testCase "add existing room, two commands, error from second command - KO" <| fun _ ->
+                let room1: Room = 
+                    {
+                        id = 1
+                        description = None
+                    }
+                let room2: Room = 
+                    {
+                        id = 2
+                        description = None
+                    }
+                let hotel =
+                    {
+                        Hotel.GetEmpty() with
+                            rooms = [room2]
+                    }
+                let addRoomCommand1 =
+                    Command.AddRoom room1
+                let addRoomCommand2 =
+                    Command.AddRoom room2
+                let commands = [addRoomCommand1; addRoomCommand2]
+                let (Error actual) = Command.Executes commands hotel
+                Expect.isTrue true "true"
+                Expect.equal actual "a room with number 2 already exists" "should be true"
         ]

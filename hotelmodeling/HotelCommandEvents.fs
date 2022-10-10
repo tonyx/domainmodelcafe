@@ -7,6 +7,7 @@ open FSharpPlus.Data
 open Equinox.EventStore
 
 open hotelmodeling.Domain
+open hotelmodeling.MiscUtils
 
 module CommandEvents =
     type Event =
@@ -32,6 +33,13 @@ module CommandEvents =
                 match x.AddBooking b with
                     | Ok _ -> [Event.BookingAdded b] |> Ok
                     | Error x ->  x |> Error    
+
+        static member Executes (l: List<Command>) (h: Hotel) =
+            let res =
+                l |> catchErrors (fun (c: Command) -> h |> c.Execute)
+            match res with
+                | Error x -> Error x
+                | Ok x -> x |> List.fold (@) [] |> Ok
 
     type Hotel with
         member this.Evolve (events: List<Event>) =

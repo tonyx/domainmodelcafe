@@ -15,6 +15,16 @@ module MiscUtils =
         else
             printconflictsdays.Substring(0, printconflictsdays.Length-1)
 
+    let catchErrors f l =
+        let (okList, errors) =
+            l  
+            |> List.map f 
+            |> Result.partition
+        if (errors.Length > 0) then
+            Result.Error (errors.Head)
+        else
+            okList |> Result.Ok
+
 module Domain =
     open MiscUtils
     [<CustomEquality; NoComparison>]
@@ -52,14 +62,14 @@ module Domain =
         {
             rooms: List<Room>
             bookings: List<Booking>
-            id: int
+            // id: int
         }
         with 
             static member GetEmpty() =
                 {
                     rooms = []
                     bookings = []
-                    id = 0
+                    // id = 0
                 }
             member this.AddRoom (room: Room): Result<Hotel, string> =
                 if ((this.rooms) |> List.contains room) then   
@@ -68,7 +78,7 @@ module Domain =
                     {
                         this with   
                             rooms = room::this.rooms
-                            id = this.id + 1
+                            // id = this.id + 1
                     } 
                     |> Ok
             member this.AddBooking (booking: Booking): Result<Hotel, string> =
@@ -85,7 +95,7 @@ module Domain =
                         {
                             this with
                                 bookings = ({booking with id = Guid.NewGuid()|> Some})::this.bookings
-                                id = this.id + 1
+                                // id = this.id + 1
                         } 
                         |> Ok
             member this.GetBookedDaysOfRoom roomId =
@@ -95,37 +105,3 @@ module Domain =
                     |> List.fold (@) []
                     |> Set.ofList 
 
-    // type Event =
-    //     | RoomAdded of Room
-    //     | BookingAdded of Booking
-    // type Command =
-    //     | AddRoom of Room
-    //     | AddBooking of Booking
-    // type Event with
-    //     member this.Process (x: Hotel) =
-    //         match this with
-    //         | RoomAdded r -> x.AddRoom r
-    //         | BookingAdded b -> x.AddBooking b
-
-    // type Command with
-    //     member this.Execute (x: Hotel) =
-    //         match this with
-    //         | AddRoom r -> 
-    //             match x.AddRoom r with 
-    //                 | Ok _ -> [Event.RoomAdded r] |> Ok
-    //                 | Error x ->  x |> Error
-    //         | AddBooking b ->
-    //             match x.AddBooking b with
-    //                 | Ok _ -> [Event.BookingAdded b] |> Ok
-    //                 | Error x ->  x |> Error    
-
-    // type Hotel with
-    //     member this.Evolve (events: List<Event>) =
-    //         events 
-    //         |> List.fold 
-    //             (fun (acc: Result<Hotel, string>) (x: Event) -> 
-    //                 match acc with  
-    //                     | Error _ -> acc
-    //                     | Ok y -> x.Process y
-    //             ) (this |> Ok)
-    // let initHotel: Hotel = Hotel.GetEmpty()

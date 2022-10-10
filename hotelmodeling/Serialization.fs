@@ -1,5 +1,5 @@
 
-namespace hostelmodeling
+namespace hotelmodeling
 
 open hotelmodeling.Domain
 open hotelmodeling.CommandEvents
@@ -12,6 +12,7 @@ open FSharpPlus.Operators
 
 open System.IO
 open System.Text
+open System
 
 module HotelSerialization = 
     type Hotel with
@@ -64,18 +65,8 @@ module HotelSerialization =
             with
                 | _ as ex -> Error (ex.ToString())
 
-    let catchErrors f l =
-        let (okList, errors) =
-            l  
-            |> List.map f 
-            |> Result.partition
-        if (errors.Length > 0) then
-            Result.Error (errors.Head)
-        else
-            okList |> Result.Ok
-
     type Hotel with 
-        member this.SEvolve serEvents =
+        member this.Evolve serEvents =
             match serEvents |> catchErrors Event.Deserialize
                 with
                 | Error x -> Error x
