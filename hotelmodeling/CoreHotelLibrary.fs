@@ -3,7 +3,6 @@ open System
 open FSharp.Core
 open FSharpPlus
 open FSharpPlus.Data
-open Equinox.EventStore
 
 module MiscUtils =
     let daysToString(days: Set<DateTime>) = 

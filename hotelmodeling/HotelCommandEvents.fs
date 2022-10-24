@@ -4,7 +4,6 @@ open System
 open FSharp.Core
 open FSharpPlus
 open FSharpPlus.Data
-open Equinox.EventStore
 
 open hotelmodeling.Domain
 open hotelmodeling.MiscUtils
