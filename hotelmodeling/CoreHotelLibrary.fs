@@ -3,18 +3,29 @@ open System
 open FSharp.Core
 open FSharpPlus
 open FSharpPlus.Data
+open Equinox.EventStore
 
 module MiscUtils =
     let daysToString(days: Set<DateTime>) = 
         let printconflictsdays = 
             days 
-                |> Set.fold (fun x y -> (sprintf "%A" (y.ToString("yyy/MM/dd")))+"," + x) ""
+            |> Set.fold (fun x y -> (sprintf "%A" (y.ToString("yyy/MM/dd")))+"," + x) ""
         if (printconflictsdays = String.Empty) then
             String.Empty
         else
             printconflictsdays.Substring(0, printconflictsdays.Length-1)
 
-module rec Domain =
+    let catchErrors f l =
+        let (okList, errors) =
+            l  
+            |> List.map f 
+            |> Result.partition
+        if (errors.Length > 0) then
+            Result.Error (errors.Head)
+        else
+            okList |> Result.Ok
+
+module Domain =
     open MiscUtils
     [<CustomEquality; NoComparison>]
     type Room =
@@ -47,8 +58,6 @@ module rec Domain =
                         yield (this.plannedCheckin.Date + TimeSpan(i - 1, 0, 0, 0))
                 ]
 
-    type Event = Hotel -> Result<Hotel, string>
-    type Command = Hotel -> Result<NonEmptyList<Event>, string>
     type Hotel =
         {
             rooms: List<Room>
@@ -83,6 +92,7 @@ module rec Domain =
                         {
                             this with
                                 bookings = ({booking with id = Guid.NewGuid()|> Some})::this.bookings
+                                // id = this.id + 1
                         } 
                         |> Ok
             member this.GetBookedDaysOfRoom roomId =
@@ -92,36 +102,3 @@ module rec Domain =
                     |> List.fold (@) []
                     |> Set.ofList 
 
-            member this.ProcessEvents events =
-                events |> NonEmptyList.toList
-                |> List.fold 
-                    (fun x f -> 
-                        match x with
-                        | Ok x1 -> f x1
-                        | Error x -> Error x
-                    ) (this |> Ok)
-
-            member this.ProcessCommand command =
-                match command this with
-                | Ok x -> 
-                    match this.ProcessEvents x with
-                    | Ok _ -> Ok x
-                    | Error e -> Error (sprintf "command error: %s" e)
-                | Error x ->  Error (sprintf "command error: %s" x)
-
-    type CommandMaker =
-        | AddRoom of Room
-        | AddBooking of Booking
-
-    let makeCommand commandMaker: Command =
-        match commandMaker with
-            | AddRoom t ->
-                fun _ -> 
-                    [fun (x: Hotel) -> x.AddRoom t] 
-                    |> NonEmptyList.ofList 
-                    |> Ok
-            | AddBooking f ->
-                fun _ -> 
-                    [fun (x: Hotel) -> x.AddBooking f] 
-                    |> NonEmptyList.ofList 
-                    |> Ok

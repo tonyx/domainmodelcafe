@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="e3d9ef66-6983-4c0e-837a-ee38c3fc35a2" name="@Antonios-MBP 2022-10-07 12:50:25" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2022-10-07T12:50:25.2476970+02:00" queuing="2022-10-07T12:50:25.2476970+02:00" start="2022-10-07T12:50:24.8232670+02:00" finish="2022-10-07T12:50:25.2938640+02:00" />
+  <TestSettings name="default" id="66c623f6-ff9f-4d9a-ae43-939625ffb224">
+    <Deployment runDeploymentRoot="_Antonios-MBP_2022-10-07_12_50_25" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="46bcf076-4106-4bab-bb98-9e1a1ee3b8fe" testId="1067a680-dbbf-ef8f-045c-bbf80be0f49c" testName="domain events tests.add already existing food - Error" computerName="Antonios-MBP" startTime="2022-10-07T12:50:25.2390440+02:00" endTime="2022-10-07T12:50:25.2398190+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="46bcf076-4106-4bab-bb98-9e1a1ee3b8fe" />
+    <UnitTestResult executionId="9824d72c-e998-4262-befd-f5dc4c45db34" testId="d4ddf91a-2040-9956-31a0-7262e7447b70" testName="entity comparisons.add already existing food - Error" computerName="Antonios-MBP" startTime="2022-10-07T12:50:25.2140660+02:00" endTime="2022-10-07T12:50:25.2286320+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9824d72c-e998-4262-befd-f5dc4c45db34" />
+    <UnitTestResult executionId="a19058cb-2b8f-4e87-997e-64cdf76ed14c" testId="3fcdc8dc-4821-2ed8-9cd5-5fcb26e7a3c9" testName="command tests.add table command returns tableAdded event - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:25.2390510+02:00" endTime="2022-10-07T12:50:25.2401430+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a19058cb-2b8f-4e87-997e-64cdf76ed14c" />
+    <UnitTestResult executionId="8536ae82-36b2-42ec-ad91-a108f0346e81" testId="734778f9-1a1d-43f5-a4a2-8aa752c3b3a3" testName="domain events tests.add already existing table - Error" computerName="Antonios-MBP" startTime="2022-10-07T12:50:25.2390020+02:00" endTime="2022-10-07T12:50:25.2398070+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8536ae82-36b2-42ec-ad91-a108f0346e81" />
+    <UnitTestResult executionId="e7bf9512-c6e5-4ac5-94dc-efc598e3f96b" testId="aeffc13f-d5c7-bfc4-0099-e1b61a3407bf" testName="command tests.add table command returns Error if event can't add table - Error" computerName="Antonios-MBP" startTime="2022-10-07T12:50:25.2515840+02:00" endTime="2022-10-07T12:50:25.2517090+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e7bf9512-c6e5-4ac5-94dc-efc598e3f96b" />
+    <UnitTestResult executionId="e99cd890-40a2-41e2-b510-3cc4cf9e919e" testId="8cba2bd9-8f62-822c-1fb5-70c144f8baa5" testName="entity comparisons.add table - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:25.2283900+02:00" endTime="2022-10-07T12:50:25.2285560+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e99cd890-40a2-41e2-b510-3cc4cf9e919e" />
+    <UnitTestResult executionId="fe6da240-ad44-4a62-8aa1-504616b7a540" testId="786e0304-069b-c2aa-788a-7f28198be27e" testName="domain objects tests.add a table to empty cafe - OK" computerName="Antonios-MBP" duration="00:00:00.0020000" startTime="2022-10-07T12:50:25.1981660+02:00" endTime="2022-10-07T12:50:25.2054640+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fe6da240-ad44-4a62-8aa1-504616b7a540" />
+    <UnitTestResult executionId="46c8ee6e-2669-41ee-a343-e89d704e105b" testId="842f335c-8f0c-1322-79f8-f85dd1bc8e8a" testName="domain events tests.add different tables, process event list - OK" computerName="Antonios-MBP" duration="00:00:00.0020000" startTime="2022-10-07T12:50:25.2286420+02:00" endTime="2022-10-07T12:50:25.2313460+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="46c8ee6e-2669-41ee-a343-e89d704e105b" />
+    <UnitTestResult executionId="d112b107-5fe4-4118-9257-ac658df9face" testId="a4e77b50-90c5-c8fe-2278-cc2b0395e922" testName="domain events tests.add already existing table 2 - Error" computerName="Antonios-MBP" startTime="2022-10-07T12:50:25.2390440+02:00" endTime="2022-10-07T12:50:25.2400220+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d112b107-5fe4-4118-9257-ac658df9face" />
+    <UnitTestResult executionId="7b9d07f2-a35a-4bf9-989c-1a76724f4bcc" testId="03b86c1a-2235-5589-f6c3-baa6fea5d8b4" testName="entity comparisons.tables with different ids are different table" computerName="Antonios-MBP" startTime="2022-10-07T12:50:25.2034260+02:00" endTime="2022-10-07T12:50:25.2092930+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7b9d07f2-a35a-4bf9-989c-1a76724f4bcc" />
+    <UnitTestResult executionId="db9ed5e9-e6d2-438d-8bc0-9ec45e5017a9" testId="cc6f4776-e957-aef7-e331-572d0c0a6e77" testName="command tests.add table command returns tableAdded event 3 - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:25.2392150+02:00" endTime="2022-10-07T12:50:25.2401520+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="db9ed5e9-e6d2-438d-8bc0-9ec45e5017a9" />
+    <UnitTestResult executionId="d5f8513e-ff6f-4bfd-8e6b-530c4768e60c" testId="3816e180-7bac-512a-9877-301e88dbde92" testName="command tests.add food command returns foodAdded event 2 - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:25.2391890+02:00" endTime="2022-10-07T12:50:25.2400860+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d5f8513e-ff6f-4bfd-8e6b-530c4768e60c" />
+    <UnitTestResult executionId="62762f03-601d-4c71-93b5-0b1b1a111f9a" testId="6c0b925f-7380-33c4-9aac-f3089476f285" testName="domain events tests.add table event - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:25.2284800+02:00" endTime="2022-10-07T12:50:25.2291850+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="62762f03-601d-4c71-93b5-0b1b1a111f9a" />
+    <UnitTestResult executionId="d2fdb960-9fa5-4259-89ce-1787d567f77a" testId="a6a7a525-5126-42c5-9786-4e2678423e84" testName="domain objects tests.can't add food that already exists - OK" computerName="Antonios-MBP" duration="00:00:00.0080000" startTime="2022-10-07T12:50:25.1985990+02:00" endTime="2022-10-07T12:50:25.2085720+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d2fdb960-9fa5-4259-89ce-1787d567f77a" />
+    <UnitTestResult executionId="1c69a4c6-246b-491d-bd2a-1cef74faadf2" testId="617af68e-d762-99db-3f61-d4e0ee6a037f" testName="domain objects tests.add food to empty cafe - OK" computerName="Antonios-MBP" duration="00:00:00.0020000" startTime="2022-10-07T12:50:25.1985910+02:00" endTime="2022-10-07T12:50:25.2054910+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1c69a4c6-246b-491d-bd2a-1cef74faadf2" />
+    <UnitTestResult executionId="05a670ab-70a1-4fb4-9f60-6a79ef1badb1" testId="33f2b549-c21a-3d25-c292-56694379b4c9" testName="entity comparisons.tables with same id are the same table" computerName="Antonios-MBP" startTime="2022-10-07T12:50:25.2034160+02:00" endTime="2022-10-07T12:50:25.2092900+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="05a670ab-70a1-4fb4-9f60-6a79ef1badb1" />
+    <UnitTestResult executionId="2bc71d7b-538d-415e-81fe-0e0f8f0483bc" testId="5beccef3-03f7-9833-6c36-9e9db4c6867c" testName="domain events tests.add table and food - Ok" computerName="Antonios-MBP" duration="00:00:00.0020000" startTime="2022-10-07T12:50:25.2291890+02:00" endTime="2022-10-07T12:50:25.2313370+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2bc71d7b-538d-415e-81fe-0e0f8f0483bc" />
+    <UnitTestResult executionId="23020153-5a7d-4c38-a941-fedb3db70c44" testId="5dceedf8-4c10-d53d-0252-bbf30a8bc919" testName="entity comparisons.add food to unexisting table - Error" computerName="Antonios-MBP" startTime="2022-10-07T12:50:25.2140640+02:00" endTime="2022-10-07T12:50:25.2293590+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="23020153-5a7d-4c38-a941-fedb3db70c44" />
+    <UnitTestResult executionId="2b806ce2-94b1-4626-9df3-7ff5ed85b33f" testId="cf4f8a3b-6a19-1e99-49b5-09a304718b5c" testName="command tests.add table command returns tableAdded event 2 - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:25.2391800+02:00" endTime="2022-10-07T12:50:25.2401630+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2b806ce2-94b1-4626-9df3-7ff5ed85b33f" />
+    <UnitTestResult executionId="464845a7-61af-4405-864d-e7315dc1a43b" testId="27f39991-c02c-4518-305e-3f2d1498a9a5" testName="domain events tests.add orderitem  - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:25.2390420+02:00" endTime="2022-10-07T12:50:25.2399120+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="464845a7-61af-4405-864d-e7315dc1a43b" />
+    <UnitTestResult executionId="35af0f4a-b35f-4e73-b861-65f2906ae0a4" testId="b79bb358-d0c7-fd8f-09c0-da8e56d2f9c5" testName="entity comparisons.add unexisting food to orderitem - Error" computerName="Antonios-MBP" duration="00:00:00.0010000" startTime="2022-10-07T12:50:25.2140410+02:00" endTime="2022-10-07T12:50:25.2293730+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="35af0f4a-b35f-4e73-b861-65f2906ae0a4" />
+    <UnitTestResult executionId="b2c54aa1-9190-4c1e-bb21-35336b5ea42d" testId="38515ebf-2910-b30c-9c05-1575f7e9e705" testName="domain events tests.add food event - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:25.2285790+02:00" endTime="2022-10-07T12:50:25.2292060+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b2c54aa1-9190-4c1e-bb21-35336b5ea42d" />
+    <UnitTestResult executionId="5506e2dd-adeb-49fc-9cc9-f5fae7aec6b9" testId="03be2931-f116-2f50-d40f-88002dc70725" testName="entity comparisons.add food to orderitems - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:25.2136880+02:00" endTime="2022-10-07T12:50:25.2141460+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5506e2dd-adeb-49fc-9cc9-f5fae7aec6b9" />
+    <UnitTestResult executionId="43821049-f22e-43f9-b8ea-33fd3b58dc6e" testId="bdf9678e-5434-a7b9-7c3f-8a38b0dbdf52" testName="command tests.add food command returns Error if event can't add the food - Error" computerName="Antonios-MBP" startTime="2022-10-07T12:50:25.2516010+02:00" endTime="2022-10-07T12:50:25.2520020+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="43821049-f22e-43f9-b8ea-33fd3b58dc6e" />
+    <UnitTestResult executionId="dfbcf80a-05d3-4c68-8d33-33635e80f04c" testId="3b53acab-43c4-3f31-8abf-47576615c59c" testName="entity comparisons.add orderitem - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:25.2136900+02:00" endTime="2022-10-07T12:50:25.2285430+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dfbcf80a-05d3-4c68-8d33-33635e80f04c" />
+    <UnitTestResult executionId="79382ff0-5e3d-48f8-a76a-11154ab1f106" testId="60b324b1-aaba-0a83-da3f-6bbc9278e665" testName="entity comparisons.foods with the same name are the same food" computerName="Antonios-MBP" duration="00:00:00.0020000" startTime="2022-10-07T12:50:25.1986170+02:00" endTime="2022-10-07T12:50:25.2054700+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="79382ff0-5e3d-48f8-a76a-11154ab1f106" />
+    <UnitTestResult executionId="e4b88c77-405d-4bd7-8548-7f5cfeb484c2" testId="c52dd863-08e1-b91f-478b-e06a0d51b30f" testName="entity comparisons.foods with different names are different foods" computerName="Antonios-MBP" duration="00:00:00.0010000" startTime="2022-10-07T12:50:25.1986360+02:00" endTime="2022-10-07T12:50:25.2054880+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e4b88c77-405d-4bd7-8548-7f5cfeb484c2" />
+    <UnitTestResult executionId="45747474-f70e-4be0-b1b2-f709998b3110" testId="9363bc97-0b45-c55f-0021-1cf1a0886fef" testName="domain objects tests.add already existing table - Error " computerName="Antonios-MBP" duration="00:00:00.0080000" startTime="2022-10-07T12:50:25.1981910+02:00" endTime="2022-10-07T12:50:25.2085730+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="45747474-f70e-4be0-b1b2-f709998b3110" />
+    <UnitTestResult executionId="82de7af7-bae5-49f9-abf4-575ec3faf2cb" testId="fb6445df-ed5a-e863-3da4-20f1eba7f440" testName="entity comparisons.add orderitem 2 - Ok" computerName="Antonios-MBP" duration="00:00:00.0010000" startTime="2022-10-07T12:50:25.2140330+02:00" endTime="2022-10-07T12:50:25.2294120+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="82de7af7-bae5-49f9-abf4-575ec3faf2cb" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="domain events tests.add different tables, process event list - OK" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="842f335c-8f0c-1322-79f8-f85dd1bc8e8a">
+      <Execution id="46c8ee6e-2669-41ee-a343-e89d704e105b" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="domain events tests" name="add different tables, process event list - OK" />
+    </UnitTest>
+    <UnitTest name="entity comparisons.tables with different ids are different table" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="03b86c1a-2235-5589-f6c3-baa6fea5d8b4">
+      <Execution id="7b9d07f2-a35a-4bf9-989c-1a76724f4bcc" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="entity comparisons" name="tables with different ids are different table" />
+    </UnitTest>
+    <UnitTest name="entity comparisons.add unexisting food to orderitem - Error" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="b79bb358-d0c7-fd8f-09c0-da8e56d2f9c5">
+      <Execution id="35af0f4a-b35f-4e73-b861-65f2906ae0a4" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="entity comparisons" name="add unexisting food to orderitem - Error" />
+    </UnitTest>
+    <UnitTest name="command tests.add table command returns tableAdded event 3 - Ok" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="cc6f4776-e957-aef7-e331-572d0c0a6e77">
+      <Execution id="db9ed5e9-e6d2-438d-8bc0-9ec45e5017a9" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="command tests" name="add table command returns tableAdded event 3 - Ok" />
+    </UnitTest>
+    <UnitTest name="domain events tests.add table and food - Ok" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="5beccef3-03f7-9833-6c36-9e9db4c6867c">
+      <Execution id="2bc71d7b-538d-415e-81fe-0e0f8f0483bc" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="domain events tests" name="add table and food - Ok" />
+    </UnitTest>
+    <UnitTest name="domain objects tests.add already existing table - Error " storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="9363bc97-0b45-c55f-0021-1cf1a0886fef">
+      <Execution id="45747474-f70e-4be0-b1b2-f709998b3110" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="domain objects tests" name="add already existing table - Error " />
+    </UnitTest>
+    <UnitTest name="domain events tests.add table event - Ok" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="6c0b925f-7380-33c4-9aac-f3089476f285">
+      <Execution id="62762f03-601d-4c71-93b5-0b1b1a111f9a" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="domain events tests" name="add table event - Ok" />
+    </UnitTest>
+    <UnitTest name="command tests.add table command returns Error if event can't add table - Error" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="aeffc13f-d5c7-bfc4-0099-e1b61a3407bf">
+      <Execution id="e7bf9512-c6e5-4ac5-94dc-efc598e3f96b" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="command tests" name="add table command returns Error if event can't add table - Error" />
+    </UnitTest>
+    <UnitTest name="domain objects tests.can't add food that already exists - OK" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="a6a7a525-5126-42c5-9786-4e2678423e84">
+      <Execution id="d2fdb960-9fa5-4259-89ce-1787d567f77a" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="domain objects tests" name="can't add food that already exists - OK" />
+    </UnitTest>
+    <UnitTest name="entity comparisons.add orderitem - Ok" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="3b53acab-43c4-3f31-8abf-47576615c59c">
+      <Execution id="dfbcf80a-05d3-4c68-8d33-33635e80f04c" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="entity comparisons" name="add orderitem - Ok" />
+    </UnitTest>
+    <UnitTest name="domain events tests.add already existing table - Error" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="734778f9-1a1d-43f5-a4a2-8aa752c3b3a3">
+      <Execution id="8536ae82-36b2-42ec-ad91-a108f0346e81" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="domain events tests" name="add already existing table - Error" />
+    </UnitTest>
+    <UnitTest name="command tests.add table command returns tableAdded event 2 - Ok" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="cf4f8a3b-6a19-1e99-49b5-09a304718b5c">
+      <Execution id="2b806ce2-94b1-4626-9df3-7ff5ed85b33f" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="command tests" name="add table command returns tableAdded event 2 - Ok" />
+    </UnitTest>
+    <UnitTest name="domain events tests.add orderitem  - Ok" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="27f39991-c02c-4518-305e-3f2d1498a9a5">
+      <Execution id="464845a7-61af-4405-864d-e7315dc1a43b" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="domain events tests" name="add orderitem  - Ok" />
+    </UnitTest>
+    <UnitTest name="command tests.add food command returns foodAdded event 2 - Ok" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="3816e180-7bac-512a-9877-301e88dbde92">
+      <Execution id="d5f8513e-ff6f-4bfd-8e6b-530c4768e60c" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="command tests" name="add food command returns foodAdded event 2 - Ok" />
+    </UnitTest>
+    <UnitTest name="entity comparisons.add already existing food - Error" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="d4ddf91a-2040-9956-31a0-7262e7447b70">
+      <Execution id="9824d72c-e998-4262-befd-f5dc4c45db34" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="entity comparisons" name="add already existing food - Error" />
+    </UnitTest>
+    <UnitTest name="domain events tests.add already existing food - Error" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="1067a680-dbbf-ef8f-045c-bbf80be0f49c">
+      <Execution id="46bcf076-4106-4bab-bb98-9e1a1ee3b8fe" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="domain events tests" name="add already existing food - Error" />
+    </UnitTest>
+    <UnitTest name="entity comparisons.tables with same id are the same table" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="33f2b549-c21a-3d25-c292-56694379b4c9">
+      <Execution id="05a670ab-70a1-4fb4-9f60-6a79ef1badb1" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="entity comparisons" name="tables with same id are the same table" />
+    </UnitTest>
+    <UnitTest name="entity comparisons.add table - Ok" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="8cba2bd9-8f62-822c-1fb5-70c144f8baa5">
+      <Execution id="e99cd890-40a2-41e2-b510-3cc4cf9e919e" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="entity comparisons" name="add table - Ok" />
+    </UnitTest>
+    <UnitTest name="domain objects tests.add food to empty cafe - OK" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="617af68e-d762-99db-3f61-d4e0ee6a037f">
+      <Execution id="1c69a4c6-246b-491d-bd2a-1cef74faadf2" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="domain objects tests" name="add food to empty cafe - OK" />
+    </UnitTest>
+    <UnitTest name="entity comparisons.add food to unexisting table - Error" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="5dceedf8-4c10-d53d-0252-bbf30a8bc919">
+      <Execution id="23020153-5a7d-4c38-a941-fedb3db70c44" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="entity comparisons" name="add food to unexisting table - Error" />
+    </UnitTest>
+    <UnitTest name="entity comparisons.foods with the same name are the same food" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="60b324b1-aaba-0a83-da3f-6bbc9278e665">
+      <Execution id="79382ff0-5e3d-48f8-a76a-11154ab1f106" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="entity comparisons" name="foods with the same name are the same food" />
+    </UnitTest>
+    <UnitTest name="domain events tests.add already existing table 2 - Error" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="a4e77b50-90c5-c8fe-2278-cc2b0395e922">
+      <Execution id="d112b107-5fe4-4118-9257-ac658df9face" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="domain events tests" name="add already existing table 2 - Error" />
+    </UnitTest>
+    <UnitTest name="domain objects tests.add a table to empty cafe - OK" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="786e0304-069b-c2aa-788a-7f28198be27e">
+      <Execution id="fe6da240-ad44-4a62-8aa1-504616b7a540" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="domain objects tests" name="add a table to empty cafe - OK" />
+    </UnitTest>
+    <UnitTest name="domain events tests.add food event - Ok" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="38515ebf-2910-b30c-9c05-1575f7e9e705">
+      <Execution id="b2c54aa1-9190-4c1e-bb21-35336b5ea42d" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="domain events tests" name="add food event - Ok" />
+    </UnitTest>
+    <UnitTest name="command tests.add food command returns Error if event can't add the food - Error" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="bdf9678e-5434-a7b9-7c3f-8a38b0dbdf52">
+      <Execution id="43821049-f22e-43f9-b8ea-33fd3b58dc6e" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="command tests" name="add food command returns Error if event can't add the food - Error" />
+    </UnitTest>
+    <UnitTest name="entity comparisons.add food to orderitems - Ok" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="03be2931-f116-2f50-d40f-88002dc70725">
+      <Execution id="5506e2dd-adeb-49fc-9cc9-f5fae7aec6b9" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="entity comparisons" name="add food to orderitems - Ok" />
+    </UnitTest>
+    <UnitTest name="entity comparisons.foods with different names are different foods" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="c52dd863-08e1-b91f-478b-e06a0d51b30f">
+      <Execution id="e4b88c77-405d-4bd7-8548-7f5cfeb484c2" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="entity comparisons" name="foods with different names are different foods" />
+    </UnitTest>
+    <UnitTest name="command tests.add table command returns tableAdded event - Ok" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="3fcdc8dc-4821-2ed8-9cd5-5fcb26e7a3c9">
+      <Execution id="a19058cb-2b8f-4e87-997e-64cdf76ed14c" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="command tests" name="add table command returns tableAdded event - Ok" />
+    </UnitTest>
+    <UnitTest name="entity comparisons.add orderitem 2 - Ok" storage="/users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/debug/net6.0/cafemodelingtest.dll" id="fb6445df-ed5a-e863-3da4-20f1eba7f440">
+      <Execution id="82de7af7-bae5-49f9-abf4-575ec3faf2cb" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/cafemodelingtest/bin/Debug/net6.0/cafemodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="entity comparisons" name="add orderitem 2 - Ok" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="1067a680-dbbf-ef8f-045c-bbf80be0f49c" executionId="46bcf076-4106-4bab-bb98-9e1a1ee3b8fe" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d4ddf91a-2040-9956-31a0-7262e7447b70" executionId="9824d72c-e998-4262-befd-f5dc4c45db34" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3fcdc8dc-4821-2ed8-9cd5-5fcb26e7a3c9" executionId="a19058cb-2b8f-4e87-997e-64cdf76ed14c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="734778f9-1a1d-43f5-a4a2-8aa752c3b3a3" executionId="8536ae82-36b2-42ec-ad91-a108f0346e81" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="aeffc13f-d5c7-bfc4-0099-e1b61a3407bf" executionId="e7bf9512-c6e5-4ac5-94dc-efc598e3f96b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8cba2bd9-8f62-822c-1fb5-70c144f8baa5" executionId="e99cd890-40a2-41e2-b510-3cc4cf9e919e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="786e0304-069b-c2aa-788a-7f28198be27e" executionId="fe6da240-ad44-4a62-8aa1-504616b7a540" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="842f335c-8f0c-1322-79f8-f85dd1bc8e8a" executionId="46c8ee6e-2669-41ee-a343-e89d704e105b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a4e77b50-90c5-c8fe-2278-cc2b0395e922" executionId="d112b107-5fe4-4118-9257-ac658df9face" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="03b86c1a-2235-5589-f6c3-baa6fea5d8b4" executionId="7b9d07f2-a35a-4bf9-989c-1a76724f4bcc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cc6f4776-e957-aef7-e331-572d0c0a6e77" executionId="db9ed5e9-e6d2-438d-8bc0-9ec45e5017a9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3816e180-7bac-512a-9877-301e88dbde92" executionId="d5f8513e-ff6f-4bfd-8e6b-530c4768e60c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6c0b925f-7380-33c4-9aac-f3089476f285" executionId="62762f03-601d-4c71-93b5-0b1b1a111f9a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a6a7a525-5126-42c5-9786-4e2678423e84" executionId="d2fdb960-9fa5-4259-89ce-1787d567f77a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="617af68e-d762-99db-3f61-d4e0ee6a037f" executionId="1c69a4c6-246b-491d-bd2a-1cef74faadf2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="33f2b549-c21a-3d25-c292-56694379b4c9" executionId="05a670ab-70a1-4fb4-9f60-6a79ef1badb1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5beccef3-03f7-9833-6c36-9e9db4c6867c" executionId="2bc71d7b-538d-415e-81fe-0e0f8f0483bc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5dceedf8-4c10-d53d-0252-bbf30a8bc919" executionId="23020153-5a7d-4c38-a941-fedb3db70c44" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cf4f8a3b-6a19-1e99-49b5-09a304718b5c" executionId="2b806ce2-94b1-4626-9df3-7ff5ed85b33f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="27f39991-c02c-4518-305e-3f2d1498a9a5" executionId="464845a7-61af-4405-864d-e7315dc1a43b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b79bb358-d0c7-fd8f-09c0-da8e56d2f9c5" executionId="35af0f4a-b35f-4e73-b861-65f2906ae0a4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="38515ebf-2910-b30c-9c05-1575f7e9e705" executionId="b2c54aa1-9190-4c1e-bb21-35336b5ea42d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="03be2931-f116-2f50-d40f-88002dc70725" executionId="5506e2dd-adeb-49fc-9cc9-f5fae7aec6b9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bdf9678e-5434-a7b9-7c3f-8a38b0dbdf52" executionId="43821049-f22e-43f9-b8ea-33fd3b58dc6e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3b53acab-43c4-3f31-8abf-47576615c59c" executionId="dfbcf80a-05d3-4c68-8d33-33635e80f04c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="60b324b1-aaba-0a83-da3f-6bbc9278e665" executionId="79382ff0-5e3d-48f8-a76a-11154ab1f106" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c52dd863-08e1-b91f-478b-e06a0d51b30f" executionId="e4b88c77-405d-4bd7-8548-7f5cfeb484c2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9363bc97-0b45-c55f-0021-1cf1a0886fef" executionId="45747474-f70e-4be0-b1b2-f709998b3110" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fb6445df-ed5a-e863-3da4-20f1eba7f440" executionId="82de7af7-bae5-49f9-abf4-575ec3faf2cb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="29" executed="29" passed="29" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+</TestRun>
