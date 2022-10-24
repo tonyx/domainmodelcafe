@@ -62,14 +62,12 @@ module Domain =
         {
             rooms: List<Room>
             bookings: List<Booking>
-            // id: int
         }
         with 
             static member GetEmpty() =
                 {
                     rooms = []
                     bookings = []
-                    // id = 0
                 }
             member this.AddRoom (room: Room): Result<Hotel, string> =
                 if ((this.rooms) |> List.contains room) then   
@@ -78,7 +76,6 @@ module Domain =
                     {
                         this with   
                             rooms = room::this.rooms
-                            // id = this.id + 1
                     } 
                     |> Ok
             member this.AddBooking (booking: Booking): Result<Hotel, string> =

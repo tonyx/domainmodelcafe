@@ -83,7 +83,7 @@ module SerializeTests =
                 let empty = Hotel.GetEmpty()
                 let input = 
                     """
-                        {"rooms":[],"bookings":[],"id":0}
+                        {"rooms":[],"bookings":[]}
                     """.Trim()
                 let (Ok actual) = Hotel.Deserialize input
                 Expect.equal actual empty "should be true"
@@ -356,14 +356,14 @@ module SerializeTests =
 
             testCase "add two rooms wrong json format - Error" <| fun _ ->
                 let hotel = Hotel.GetEmpty()
-                let room1 = {
-                    id = 1
-                    description = None
-                }
-                let room2 = {
-                    id = 2
-                    description = None
-                }
+                // let room1 = {
+                //     id = 1
+                //     description = None
+                // }
+                // let room2 = {
+                //     id = 2
+                //     description = None
+                // }
                 let sEvent = 
                     """ 
                         {"CaseWWWW":"RoomAdded","Fields":[{"id":1,"description":{"Case":"Some","Fields":["hot room"]}}]}

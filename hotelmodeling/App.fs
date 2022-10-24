@@ -12,77 +12,92 @@ open System.Data
 open System.Globalization
 open System.Data.Common
 open Utils
+open System.Threading
+open System.Runtime.CompilerServices
+open System.Threading;
+open Newtonsoft.Json
 
 let ceError = CeErrorBuilder()
-
 let initState = Hotel.GetEmpty()
 
-// this will translate the call from the web app to commands event store
-let getLatestSnapshot() =
+let getLastSnapshot() =
     let ctx = Db.getContext()
-    let idWithJson = Db.getLatestSnapshotWithId(ctx)
-    match idWithJson with
-        | Some (id, json) -> Hotel.Deserialize json
-        | _ -> Hotel.GetEmpty() |> Result.Ok
+    let (id, json) = Db.getLastSnapshot ctx 
+    ceError {
+        let! state = json |> Hotel.Deserialize
+        return (id, state)
+    }
 
 let getState() =
     ceError {
         let ctx = Db.getContext()
-        let idSnapshot = Db.getLatestSnapshotWithId ctx
-        let! (id, state) =
-            match idSnapshot with
-            | None -> (0, initState) |> Ok
-            | Some (id, jsonState) ->
-                let state = jsonState |> Hotel.Deserialize |> Result.get
-                (id, state) |> Ok
+        let! (id, state) = getLastSnapshot()
         let jsonEvents = Db.getEventsAfterId id ctx 
-        let events = 
-            jsonEvents 
-            |>> 
-                (fun 
-                    (_, x) -> 
-                        Event.Deserialize x 
-                        |> Result.get
-                ) 
-        let result = events |> state.Evolve |> Result.get
-        return result
+        let lastId =
+            match jsonEvents.Length with
+            | x when x > 0 -> jsonEvents |> List.last |> fst
+            | _ -> id
+        let! result = jsonEvents |>> snd |> state.Evolve
+        return (lastId, result)
     }
 
-let getIdAndLatestSnapshot() =
-    let ctx = Db.getContext()
-    let idWithJson = Db.getLatestSnapshotWithId(ctx)
-    match idWithJson with
-        | Some (id, json) -> 
-            match Hotel.Deserialize json with
-            | Result.Error x -> Result.Error x
-            | Result.Ok x ->  (id, x) |> Result.Ok
-        | _ -> (0, Hotel.GetEmpty()) |> Result.Ok
-
-
 let mkRoom id description: Room =
-            {
-                id = id
-                description = 
-                    match description with
-                    | "" -> None
-                    | x -> x |> Some
-            }
+    {
+        id = id
+        description = 
+            match description with
+            | "" -> None
+            | x -> x |> Some
+    }
 
+[<MethodImpl(MethodImplOptions.Synchronized)>]
 let addRoom roomId description =
     ceError {
         let room = mkRoom roomId description
         let addCommand =
             Command.AddRoom room
-        let state = getState() |> Result.get
+        let! (_, state) = getState() 
         let! events = 
             state 
             |> addCommand.Execute 
         let ctx = Db.getContext()
-        let! _ = 
-            events 
-            |> catchErrors (fun x -> Db.addEvent (x.Serialize()) ctx)
+        let! _ =
+            ctx |> Db.addEvents (events |>> Event.Serialize)
         return sprintf "room %d has been Added" roomId
     }
 
-let getEventsAfterId(id: int) =
-    ()
+let mkBooking roomId email checkin checkout: Booking =
+    {
+        id = None
+        roomId = roomId
+        customerEmail = email
+        plannedCheckin = checkin
+        plannedCheckout = checkout
+    }
+
+[<MethodImpl(MethodImplOptions.Synchronized)>]
+let addBooking (roomId: int) (email: string) (checkin: DateTime) (checkout: DateTime) =
+    let booking = mkBooking roomId email checkin checkout  
+    let addCommand =
+        Command.AddBooking booking
+    ceError {
+        let ctx = Db.getContext()
+        let! (_, state) = getState()
+        let! events =
+            state 
+            |> addCommand.Execute
+        let! _ =
+            ctx |> Db.addEvents (events |>> Event.Serialize)
+        return sprintf "booking %s added" (booking.ToString())
+    }
+    
+let mkSnapshot() = 
+    ceError 
+        {
+            let ctx = Db.getContext()
+            let! (id, state) = getState()
+            let snapshot = state.Serialize()
+            let! result =  Db.setSnapshot id snapshot ctx
+            return result
+        }
+

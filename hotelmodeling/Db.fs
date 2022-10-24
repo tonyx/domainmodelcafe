@@ -25,6 +25,8 @@ let [<Literal>] resPath = ""
 let [<Literal>] indivAmount = 1000 
 let [<Literal>] useOptTypes  = false
 
+let initState = "{\"rooms\":[],\"bookings\":[]}"
+
 type Sql =
     SqlDataProvider< 
         dbVendor,
@@ -48,32 +50,51 @@ let getAllEvents (ctx: DbContext ) =
 
 let addEvent cont (ctx: DbContext) =
     try 
-        let event = ctx.Public.Events.``Create(event, timestamp)``(cont, System.DateTime.Now)
+        let _ = ctx.Public.Events.``Create(event, timestamp)``(cont, System.DateTime.Now)
         ctx.SubmitUpdates()
-        event |> Result.Ok
+        () |> Ok
     with
-        | _ as ex -> Error (ex.ToString())
+        | _ as ex -> (ex.ToString()) |> Error
 
-let addEventWithSnapshot cont snapshot (ctx: DbContext) =
+let addEvents (events: List<string>) (ctx: DbContext) =
     try 
-        let event = ctx.Public.Events.``Create(event, timestamp)``(cont, System.DateTime.Now)
-        event.Snapshot <- snapshot |> Some
+        let _ = 
+            events 
+            |> List.map
+                (fun x -> (ctx.Public.Events.``Create(event, timestamp)``(x, System.DateTime.Now)))
         ctx.SubmitUpdates()
-        event |> Result.Ok
+        () |> Ok
     with
-        | _ as ex -> Error (ex.ToString())
-        
-let getLatestSnapshotWithId (ctx: DbContext)  =
-    query {
-        for event in ctx.Public.Events do
-            sortByDescending event.Id
-            where event.Snapshot.IsSome
-            select (event.Id, event.Snapshot.Value)
-    } |> Seq.tryHead
+        | _ as ex -> (ex.ToString()) |> Error
 
-// let getCurrentState (ctx: DbContext) =
-//     let (_, s) = getLatestSnapshotWithId ctx
-//     match s with
+let getLastSnapshot (ctx: DbContext) =
+    let lastSnapshot =
+        query {
+            for event in ctx.Public.Events do
+                sortByDescending event.Id
+                where event.Snapshot.IsSome
+                select (event.Id, event.Snapshot.Value)
+        } |> Seq.tryHead
+    match lastSnapshot with
+        Some x ->  x
+        | _ ->  (0, initState)
+    
+let setSnapshot id snapshot (ctx: DbContext) =
+    try
+        let event = 
+            query {
+                for event in ctx.Public.Events do 
+                    where (event.Id = id)
+                    select event
+            } |> Seq.tryHead
+        match event with
+            | Some x -> 
+                x.Snapshot <- snapshot |> Some
+                ctx.SubmitUpdates()
+            | None -> ()
+        () |> Ok
+    with
+        | _ as ex ->  (ex.ToString()) |> Error
 
 let getEventsAfterId id (ctx: DbContext) =
     query {

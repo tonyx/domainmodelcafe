@@ -16,6 +16,8 @@ open System
 
 module HotelSerialization = 
     type Hotel with
+        static member Serialize(x: Hotel) =
+            JsonConvert.SerializeObject x
         member this.Serialize() =
             JsonConvert.SerializeObject this
         static member Deserialize(x: string) =
@@ -26,6 +28,8 @@ module HotelSerialization =
                 | _ as ex -> Error (ex.ToString())
 
     type Room with
+        static member Serialize(x: Room) =
+            JsonConvert.SerializeObject x
         member this.Serialize() =
             JsonConvert.SerializeObject this
         static member Deserialize(x: string) =
@@ -36,6 +40,8 @@ module HotelSerialization =
                 | _ as ex -> Error (ex.ToString())
 
     type Booking with
+        static member Serialize(x: Booking) =
+            JsonConvert.SerializeObject x
         member this.Serialize() =
             JsonConvert.SerializeObject this
         static member Deserialize(x: string) =
@@ -46,6 +52,8 @@ module HotelSerialization =
                 | _ as ex -> Error (ex.ToString())
 
     type Event with
+        static member Serialize(x: Event) =
+            JsonConvert.SerializeObject x
         member this.Serialize() =
             JsonConvert.SerializeObject this
         static member Deserialize(x: string) : Result<Event, string> =
@@ -56,6 +64,8 @@ module HotelSerialization =
                 | _ as ex -> Error (ex.ToString())
 
     type Command with
+        static member Serialize(x: Command) =
+            JsonConvert.SerializeObject x
         member this.Serialize() =
             JsonConvert.SerializeObject this
         static member Deserialize(x: string) : Result<Command, string> =
