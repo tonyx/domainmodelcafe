@@ -91,7 +91,6 @@ module Domain =
                         {
                             this with
                                 bookings = ({booking with id = Guid.NewGuid()|> Some})::this.bookings
-                                // id = this.id + 1
                         } 
                         |> Ok
             member this.GetBookedDaysOfRoom roomId =

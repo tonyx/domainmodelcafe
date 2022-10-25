@@ -21,6 +21,17 @@ module Tests =
     let bookingAdded b =
         fun (x: Hotel) -> x.AddBooking b
 
+    let sameBooking (booking1: Booking) (booking2: Booking) =
+        let b1  =
+            {
+                booking1 with id = None
+            } 
+        let b2 = 
+            {   
+                booking2 with id = None
+            }
+        b1 = b2
+
     [<Tests>]
     let domainObjectTests =
         testList "Domain objects" [
@@ -139,7 +150,7 @@ module Tests =
                 let actual = hotel.AddRoom room1
                 Expect.equal expected actual "shold be equal"
 
-            testCase "add a room when a room with the same id already exists in the hotel - Error" <| fun _ ->
+            ftestCase "add a room when a room with the same id already exists in the hotel - Error" <| fun _ ->
                 let room1b =
                     {
                         id = 1
@@ -151,10 +162,12 @@ module Tests =
                             with
                                 rooms = [room1]
                     }
-                let (Error actual) = hotel.AddRoom room1b
+                let result = hotel.AddRoom room1b
+                Expect.isError result "should be error"
+                let (Error actual) = result
                 Expect.equal actual "a room with number 1 already exists" "shold be true"
 
-            testCase "create booking about a room that does exists - Ok" <| fun _ ->
+            testCase "create booking about an existing room - Ok" <| fun _ ->
                 let hotel = 
                     {
                         Hotel.GetEmpty()
@@ -169,13 +182,11 @@ module Tests =
                         plannedCheckin = DateTime.Parse("2022-11-11 01:01:01")
                         plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
                     }
-                let (Ok hotelWithBooking) = hotel.AddBooking booking
-                let actualBooking = 
-                    {
-                        hotelWithBooking.bookings.Head with
-                            id = None
-                    }        
-                Expect.equal actualBooking booking "should be equal"
+                let result = hotel.AddBooking booking 
+                Expect.isOk result "should be ok"
+                let hotelWithBooking = result |> Result.get
+                let actualBooking = hotelWithBooking.bookings.Head 
+                Expect.isTrue (sameBooking actualBooking booking) "should be true"
 
             testCase "create a booking about a room that doesn't exist - Error" <| fun _ ->
                 let hotel = 
