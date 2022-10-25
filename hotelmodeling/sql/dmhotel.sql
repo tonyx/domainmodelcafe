@@ -27,7 +27,8 @@ SET default_table_access_method = heap;
 CREATE TABLE public.events (
     id integer NOT NULL,
     event json NOT NULL,
-    "timestamp" timestamp without time zone NOT NULL
+    "timestamp" timestamp without time zone NOT NULL,
+    snapshot json
 );
 
 
@@ -51,7 +52,7 @@ ALTER TABLE public.events ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
 -- Data for Name: events; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.events (id, event, "timestamp") FROM stdin;
+COPY public.events (id, event, "timestamp", snapshot) FROM stdin;
 \.
 
 
@@ -59,7 +60,7 @@ COPY public.events (id, event, "timestamp") FROM stdin;
 -- Name: events_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.events_id_seq', 1, false);
+SELECT pg_catalog.setval('public.events_id_seq', 1070, true);
 
 
 --

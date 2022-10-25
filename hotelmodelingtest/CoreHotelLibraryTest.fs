@@ -134,7 +134,6 @@ module Tests =
                     {
                         hotel with
                             rooms = [room1]
-                            // id = hotel.id + 1
                     } 
                     |> Ok
                 let actual = hotel.AddRoom room1

@@ -76,8 +76,8 @@ module HotelSerialization =
                 | _ as ex -> Error (ex.ToString())
 
     type Hotel with 
-        member this.Evolve serEvents =
-            match serEvents |> catchErrors Event.Deserialize
+        member this.Evolve jsonEvents =
+            match jsonEvents |> catchErrors Event.Deserialize
                 with
                 | Error x -> Error x
                 | Ok x -> x |> this.Evolve

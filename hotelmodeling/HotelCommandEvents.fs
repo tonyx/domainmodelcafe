@@ -27,11 +27,11 @@ module CommandEvents =
             | AddRoom r -> 
                 match x.AddRoom r with 
                     | Ok _ -> [Event.RoomAdded r] |> Ok
-                    | Error x ->  x |> Error
+                    | Error x -> x |> Error
             | AddBooking b ->
                 match x.AddBooking b with
                     | Ok _ -> [Event.BookingAdded b] |> Ok
-                    | Error x ->  x |> Error    
+                    | Error x -> x |> Error    
 
         static member Executes (l: List<Command>) (h: Hotel) =
             let res =
@@ -44,9 +44,9 @@ module CommandEvents =
         member this.Evolve (events: List<Event>) =
             events 
             |> List.fold 
-                (fun (acc: Result<Hotel, string>) (x: Event) -> 
+                (fun (acc: Result<Hotel, string>) (e: Event) -> 
                     match acc with  
-                        | Error _ -> acc
-                        | Ok y -> x.Process y
+                        | Error err -> Error err
+                        | Ok h -> h |> e.Process 
                 ) (this |> Ok)
     let initHotel: Hotel = Hotel.GetEmpty()

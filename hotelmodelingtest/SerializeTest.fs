@@ -7,12 +7,6 @@ open hotelmodeling.CommandEvents
 open hotelmodeling.HotelSerialization
 open System
 open FSharp.Core
-open FSharpPlus
-open FSharpPlus.Data
-open Newtonsoft
-open Newtonsoft.Json
-open System.IO
-open System.Text
 
 module SerializeTests =
     [<Tests>]
@@ -44,7 +38,7 @@ module SerializeTests =
                 let (Ok deserialized) = Room.Deserialize input 
                 Expect.equal deserialized room  "should be equal"
 
-            testCase "serialize room2" <| fun _ ->
+            testCase "serialize room2 - OK" <| fun _ ->
                 let room: Room = 
                     {
                         id = 42 
@@ -57,7 +51,7 @@ module SerializeTests =
                     """.Trim()
                 Expect.equal serialized expected  "should be equal"
 
-            testCase "deserialize room2" <| fun _ ->
+            testCase "deserialize room2 - OK" <| fun _ ->
                 let room: Room = 
                     {
                         id = 42 
@@ -86,7 +80,7 @@ module SerializeTests =
                         {"rooms":[],"bookings":[]}
                     """.Trim()
                 let (Ok actual) = Hotel.Deserialize input
-                Expect.equal actual empty "should be true"
+                Expect.equal actual empty "should be equal"
 
             testCase "deserialize hotel state 1 - Error" <| fun _ ->
                 let input = 
@@ -110,7 +104,7 @@ module SerializeTests =
                     """
                         {"rooms":[{"id":1,"description":null}],"bookings":[]}
                     """.Trim()
-                Expect.equal expected actual "should be true"
+                Expect.equal expected actual "should be equal"
 
             testCase "deserialize hotel state 2" <| fun _ ->
                 let expected: Hotel = 
@@ -126,7 +120,7 @@ module SerializeTests =
                         {"rooms":[{"id":1,"description":null}],"bookings":[],"id":0}
                     """.Trim()
                 let (Ok actual) = Hotel.Deserialize input 
-                Expect.equal expected actual "should be true"
+                Expect.equal expected actual "should be equal"
                 
             testCase "serialize hotel state 3" <| fun _ ->
                 let input: Hotel = 
@@ -149,7 +143,7 @@ module SerializeTests =
                     """
                         {"rooms":[{"id":111,"description":null},{"id":666,"description":{"Case":"Some","Fields":["hot room"]}}],"bookings":[]}
                     """.Trim()
-                Expect.equal actual expected  "should be bla true"
+                Expect.equal actual expected  "should be equal"
 
             testCase "deserialize hotel state 4" <| fun _ ->
                 let expected: Hotel = 
@@ -172,7 +166,7 @@ module SerializeTests =
                         {"rooms":[{"id":42,"description":null},{"id":666,"description":{"Case":"Some","Fields":["hot room"]}}],"bookings":[],"id":0}
                     """.Trim()
                 let (Ok actual) = Hotel.Deserialize input
-                Expect.equal actual expected "should be bla true"
+                Expect.equal actual expected "should be equal"
 
             testCase "union event room added test serialize "  <| fun _ ->
                 let room = {
@@ -356,14 +350,6 @@ module SerializeTests =
 
             testCase "add two rooms wrong json format - Error" <| fun _ ->
                 let hotel = Hotel.GetEmpty()
-                // let room1 = {
-                //     id = 1
-                //     description = None
-                // }
-                // let room2 = {
-                //     id = 2
-                //     description = None
-                // }
                 let sEvent = 
                     """ 
                         {"CaseWWWW":"RoomAdded","Fields":[{"id":1,"description":{"Case":"Some","Fields":["hot room"]}}]}
@@ -399,9 +385,9 @@ module SerializeTests =
                         Hotel.GetEmpty() with
                             rooms = [room]
                     }
-                let addRoomCommand =
+                let addRoom =
                     Command.AddRoom room
-                let commands = [addRoomCommand]
+                let commands = [addRoom]
                 let (Error actual) = Command.Executes commands hotel
                 Expect.isTrue true "true"
                 Expect.equal actual "a room with number 1 already exists" "should be true"
@@ -422,11 +408,11 @@ module SerializeTests =
                         Hotel.GetEmpty() with
                             rooms = [room2]
                     }
-                let addRoomCommand1 =
+                let addRoom1 =
                     Command.AddRoom room1
-                let addRoomCommand2 =
+                let addRoom2 =
                     Command.AddRoom room2
-                let commands = [addRoomCommand1; addRoomCommand2]
+                let commands = [addRoom1; addRoom2]
                 let (Error actual) = Command.Executes commands hotel
                 Expect.isTrue true "true"
                 Expect.equal actual "a room with number 2 already exists" "should be true"

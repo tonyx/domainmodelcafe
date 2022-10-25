@@ -3,19 +3,11 @@ module hotelmodeling.App
 open hotelmodeling.Domain
 open hotelmodeling.HotelSerialization
 open hotelmodeling.CommandEvents
+open hotelmodeling.Utils
 open FSharpPlus
-open MiscUtils
-open FSharpPlus.Extensions
 open FSharp.Data.Sql
 open System
-open System.Data
-open System.Globalization
-open System.Data.Common
-open Utils
-open System.Threading
 open System.Runtime.CompilerServices
-open System.Threading;
-open Newtonsoft.Json
 
 let ceError = CeErrorBuilder()
 let initState = Hotel.GetEmpty()
@@ -32,12 +24,12 @@ let getState() =
     ceError {
         let ctx = Db.getContext()
         let! (id, state) = getLastSnapshot()
-        let jsonEvents = Db.getEventsAfterId id ctx 
+        let events = Db.getEventsAfterId id ctx 
         let lastId =
-            match jsonEvents.Length with
-            | x when x > 0 -> jsonEvents |> List.last |> fst
+            match events.Length with
+            | x when x > 0 -> events |> List.last |> fst
             | _ -> id
-        let! result = jsonEvents |>> snd |> state.Evolve
+        let! result = events |>> snd |> state.Evolve
         return (lastId, result)
     }
 
@@ -54,12 +46,12 @@ let mkRoom id description: Room =
 let addRoom roomId description =
     ceError {
         let room = mkRoom roomId description
-        let addCommand =
+        let addRoom =
             Command.AddRoom room
         let! (_, state) = getState() 
         let! events = 
             state 
-            |> addCommand.Execute 
+            |> addRoom.Execute 
         let ctx = Db.getContext()
         let! _ =
             ctx |> Db.addEvents (events |>> Event.Serialize)
@@ -78,14 +70,14 @@ let mkBooking roomId email checkin checkout: Booking =
 [<MethodImpl(MethodImplOptions.Synchronized)>]
 let addBooking (roomId: int) (email: string) (checkin: DateTime) (checkout: DateTime) =
     let booking = mkBooking roomId email checkin checkout  
-    let addCommand =
+    let addBooking =
         Command.AddBooking booking
     ceError {
         let ctx = Db.getContext()
         let! (_, state) = getState()
         let! events =
             state 
-            |> addCommand.Execute
+            |> addBooking.Execute
         let! _ =
             ctx |> Db.addEvents (events |>> Event.Serialize)
         return sprintf "booking %s added" (booking.ToString())
@@ -100,4 +92,3 @@ let mkSnapshot() =
             let! result =  Db.setSnapshot id snapshot ctx
             return result
         }
-

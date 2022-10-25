@@ -15,7 +15,7 @@ in cafemodelingtest directory using terminal/command line console:
 ```
 
 ## Hotel:
-The hotel example is similar to the cafe example. There are rooms and bookings. There are methods defined at the hotel level that are wrapped in events that are wrapped in commands in a similar way as in the Cafe example.
+The hotel example is similar to the cafe example. There are rooms and bookings. There are methods defined at the hotel level that are wrapped in events that are wrapped in commands in a similar way as in the Cafe example. Edit: events are stored in a Postgres database that needs setup. The project will not compile if the db isn't ready.
 
 ### How to run tests:
 in hotelmodelingtest directory using terminal/command line console:

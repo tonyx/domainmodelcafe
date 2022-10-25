@@ -2,24 +2,16 @@ namespace hotelmodeling
 
 open hotelmodeling
 open hotelmodeling.Domain
-open hotelmodeling.CommandEvents
-open hotelmodeling.HotelSerialization
-open hotelmodeling.MiscUtils
 open FSharp.Core
 open hotelmodeling.App
-open FSharp.Core.Result
-open Microsoft.FSharp.Core.Result
-open Microsoft.FSharp.Core
-open FSharp
 open System
 open Expecto
 open FSharpPlus
 open FSharpPlus.Data
-open Npgsql.FSharp
 
 module AppTests =
-    open Db
-    open DbTests
+    // open Db
+    // open DbTests
     [<Tests>]
     let AppTests =
         testList
@@ -27,7 +19,7 @@ module AppTests =
             [ 
                 testCase "add a new room command and get the state that will have a room" 
                     <| fun _ ->
-                        let _ = hotelmodeling.DbTests.deleteAllevents()
+                        let _ = DbTests.deleteAllevents()
                         let result = App.addRoom 1 ""
                         Expect.isOk result "should be ok"
                         let room = 
@@ -45,7 +37,7 @@ module AppTests =
 
                 testCase "add a new room command and get the state. the last snapshot is not the state without calling mksnapshot" 
                     <| fun _ ->
-                        let _ = hotelmodeling.DbTests.deleteAllevents()
+                        let _ = DbTests.deleteAllevents()
                         let result = App.addRoom 1 ""
                         Expect.isOk result "should be ok"
                         let room = 
@@ -65,7 +57,7 @@ module AppTests =
 
                 testCase "add a new room command and get the state. the last snapshot is the same as the state if I call mksnapshot" 
                     <| fun _ ->
-                        let _ = hotelmodeling.DbTests.deleteAllevents()
+                        let _ = DbTests.deleteAllevents()
                         let result = App.addRoom 1 ""
                         Expect.isOk result "should be ok"
                         let room = 
@@ -93,7 +85,7 @@ module AppTests =
                 testCase "add rooms commands and get the state that will have two rooms - OK" 
                     <| fun _ ->
 
-                        let _ = hotelmodeling.DbTests.deleteAllevents()
+                        let _ = DbTests.deleteAllevents()
                         let result = App.addRoom 1 ""
                         Expect.isOk result "should be ok"
                         let result2 = App.addRoom 2 ""
@@ -119,7 +111,7 @@ module AppTests =
                 testCase "add two rooms commands and make a snapshot of the current state - OK" 
                     <| fun _ ->
                         // prepare
-                        let _ = hotelmodeling.DbTests.deleteAllevents()
+                        let _ = DbTests.deleteAllevents()
 
                         // act
                         let result = App.addRoom 1 ""
@@ -153,7 +145,7 @@ module AppTests =
 
                 testCase "add already existing rooms command error - ok" 
                     <| fun _ ->
-                        let _ = hotelmodeling.DbTests.deleteAllevents()
+                        let _ = DbTests.deleteAllevents()
                         let result = App.addRoom 1 ""
                         Expect.isOk result "should be ok"
                         let result2 = App.addRoom 1 "description"
@@ -163,7 +155,7 @@ module AppTests =
 
                 testCase "add a room and a booking, then get state - ok" 
                     <| fun _ ->
-                        let _ = hotelmodeling.DbTests.deleteAllevents()
+                        let _ = DbTests.deleteAllevents()
                         let result = App.addRoom 1 ""
                         Expect.isOk result "should be ok"
                         let result2 = App.addBooking 1 "customer@anyemail.it" (DateTime.Parse("2022-01-01")) (DateTime.Parse("2022-01-02"))
@@ -184,7 +176,7 @@ module AppTests =
 
                 testCase "add a room and two overlapping booking, - Error" 
                     <| fun _ ->
-                        let _ = hotelmodeling.DbTests.deleteAllevents()
+                        let _ = DbTests.deleteAllevents()
                         let result = App.addRoom 1 ""
                         Expect.isOk result "should be ok"
                         let result2 = App.addBooking 1 "customer@anyemail.it" (DateTime.Parse("2022-01-01")) (DateTime.Parse("2022-01-05"))
