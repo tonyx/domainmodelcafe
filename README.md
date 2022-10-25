@@ -13,20 +13,29 @@ in cafemodelingtest directory using terminal/command line console:
 ```
     dotnet run
 ```
+or
+```
+    dotnet test
+```
 
 ## Hotel:
-The hotel example is similar to the cafe example. There are rooms and bookings. There are methods defined at the hotel level that are wrapped in events that are wrapped in commands in a similar way as in the Cafe example. Edit: events are stored in a Postgres database that needs setup. The project will not compile if the db isn't ready.
+The hotel example is an evolution to the cafe example. There are rooms and bookings. Events, commands, and domain objects are seralizable via json. Events and snapshots are stored in a Postgres database that needs proper setup.  Note: proper postgres setup is needed to compile. See the dmhotel.slq script and Db.fs source file to figure out proper dbname and user and user credentials needed.
 
 ### How to run tests:
 in hotelmodelingtest directory using terminal/command line console:
 ```
     dotnet run
 ```
+or
+```
+    dotnet test
+```
 
-## Not done yet:
+## Todo:
 1) move some events and command related methods that are similar, in a common library/project
-2) store events somewhere
-3) ...
+2) a web interface
+3) evolve the cafe subproject in the same way as hotel subproject did (serialize and store events)
+
 
 
 
