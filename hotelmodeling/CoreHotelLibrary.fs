@@ -14,6 +14,14 @@ module MiscUtils =
         else
             printconflictsdays.Substring(0, printconflictsdays.Length-1)
 
+    let daysOfInterval (startInterval: DateTime) endInterval =
+        let spanInterval = endInterval - startInterval
+        let days = spanInterval.Days
+        [
+            for i = 1 to days do 
+                yield (startInterval.Date + TimeSpan(i - 1, 0, 0, 0))
+        ]
+
     let catchErrors f l =
         let (okList, errors) =
             l  
@@ -26,19 +34,11 @@ module MiscUtils =
 
 module Domain =
     open MiscUtils
-    [<CustomEquality; NoComparison>]
     type Room =
         {
             id: int
             description: Option<string>
         }
-        with 
-            override this.Equals(obj) =
-                match obj with
-                    | :? Room as r -> this.id = r.id
-                    | _ -> false
-                override this.GetHashCode() =
-                    this.id
 
     type Booking =
         {
@@ -50,12 +50,7 @@ module Domain =
         }
         with 
             member this.getDaysInterval() =
-                let spanInterval = this.plannedCheckout - this.plannedCheckin
-                let days = spanInterval.Days
-                [
-                    for i = 1 to days do 
-                        yield (this.plannedCheckin.Date + TimeSpan(i - 1, 0, 0, 0))
-                ]
+                daysOfInterval this.plannedCheckin this.plannedCheckout
 
     type Hotel =
         {
@@ -69,7 +64,7 @@ module Domain =
                     bookings = []
                 }
             member this.AddRoom (room: Room): Result<Hotel, string> =
-                if ((this.rooms) |> List.contains room) then   
+                if ((this.rooms) |>> (fun x -> x.id) |> List.contains room.id) then   
                     sprintf "a room with number %d already exists" room.id |> Error
                 else 
                     {
@@ -77,11 +72,13 @@ module Domain =
                             rooms = room::this.rooms
                     } 
                     |> Ok
+
             member this.AddBooking (booking: Booking): Result<Hotel, string> =
                 let roomExists = this.rooms |> List.exists (fun x -> x.id = booking.roomId) 
                 let claimedDays = booking.getDaysInterval() |> Set.ofList
                 let alreadyBookedDays = this.GetBookedDaysOfRoom (booking.roomId)
                 let conflictingDays = alreadyBookedDays |> Set.intersect claimedDays
+                
 
                 match (booking.id, roomExists, conflictingDays.IsEmpty ) with
                     | Some _, _, _ -> "cannot add a booking that already has an id" |> Error
@@ -93,10 +90,21 @@ module Domain =
                                 bookings = ({booking with id = Guid.NewGuid()|> Some})::this.bookings
                         } 
                         |> Ok
+
             member this.GetBookedDaysOfRoom roomId =
-                    this.bookings 
-                    |> List.filter (fun x -> x.roomId = roomId)                    
-                    |> List.map (fun x -> x.getDaysInterval())
-                    |> List.fold (@) []
-                    |> Set.ofList 
+                this.bookings 
+                |> List.filter (fun x -> x.roomId = roomId)                    
+                |> List.map (fun x -> x.getDaysInterval())
+                |> List.fold (@) []
+                |> Set.ofList 
+
+            member this.FindFullVacancies (checkin: DateTime) (checkout: DateTime) =    
+                let claimedDays = 
+                    daysOfInterval checkin checkout 
+                    |> Set.ofList
+
+                this.rooms 
+                |>> (fun x -> (x, this.GetBookedDaysOfRoom x.id)) 
+                |> List.filter (fun (_, d) -> (d |> Set.intersect claimedDays).IsEmpty )
+                |>> fst
 

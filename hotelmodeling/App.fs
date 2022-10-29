@@ -22,8 +22,8 @@ let getLastSnapshot() =
 
 let getState() =
     ceError {
-        let ctx = Db.getContext()
         let! (id, state) = getLastSnapshot()
+        let ctx = Db.getContext()
         let events = Db.getEventsAfterId id ctx 
         let lastId =
             match events.Length with

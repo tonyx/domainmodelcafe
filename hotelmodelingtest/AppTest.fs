@@ -2,16 +2,14 @@ namespace hotelmodeling
 
 open hotelmodeling
 open hotelmodeling.Domain
-open FSharp.Core
 open hotelmodeling.App
 open System
+open FSharp.Core
 open Expecto
 open FSharpPlus
 open FSharpPlus.Data
 
 module AppTests =
-    // open Db
-    // open DbTests
     [<Tests>]
     let AppTests =
         testList
@@ -32,6 +30,8 @@ module AppTests =
                                 Hotel.GetEmpty() with   
                                     rooms = [room]
                             }
+                        let result = App.getState()
+                        Expect.isOk result "should be ok"
                         let (_, actual) = App.getState() |> Result.get
                         Expect.equal actual expected "should be true"
 

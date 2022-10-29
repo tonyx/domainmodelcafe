@@ -8,6 +8,9 @@ open System
 open FSharp.Core
 open FSharpPlus
 open FSharpPlus.Data
+open Utils
+open App
+
 
 module Tests =
 
@@ -22,25 +25,28 @@ module Tests =
         fun (x: Hotel) -> x.AddBooking b
 
     let sameBooking (booking1: Booking) (booking2: Booking) =
-        let b1  =
-            {
-                booking1 with id = None
-            } 
-        let b2 = 
-            {   
-                booking2 with id = None
-            }
+        let b1  = { booking1 with id = None } 
+        let b2 =  { booking2 with id = None }
         b1 = b2
+
+    let mkRoom id =
+        {
+            id = id
+            description = None
+        }
+
+    let mkBooking roomId plannedCheckin plannedCheckout =
+        {
+            id = None
+            roomId = roomId 
+            customerEmail = "email@me.com"
+            plannedCheckin = plannedCheckin 
+            plannedCheckout = plannedCheckout 
+        }
 
     [<Tests>]
     let domainObjectTests =
         testList "Domain objects" [
-            testCase "rooms with the same id are the same room" <| fun _ ->
-                let room1WithDescription = {
-                    id = 1
-                    description = "nice view" |> Some
-                }
-                Expect.equal room1 room1WithDescription "should be equal"
                 
             testCase "rooms with different ids are the different room" <| fun _ ->
                 let room2 = {
@@ -150,7 +156,7 @@ module Tests =
                 let actual = hotel.AddRoom room1
                 Expect.equal expected actual "shold be equal"
 
-            ftestCase "add a room when a room with the same id already exists in the hotel - Error" <| fun _ ->
+            testCase "add a room when a room with the same id already exists in the hotel - Error" <| fun _ ->
                 let room1b =
                     {
                         id = 1
@@ -162,7 +168,7 @@ module Tests =
                             with
                                 rooms = [room1]
                     }
-                let result = hotel.AddRoom room1b
+                let result = room1b |> hotel.AddRoom 
                 Expect.isError result "should be error"
                 let (Error actual) = result
                 Expect.equal actual "a room with number 1 already exists" "shold be true"
@@ -174,15 +180,8 @@ module Tests =
                             with
                                 rooms = [room1]
                     }
-                let booking: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin = DateTime.Parse("2022-11-11 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
-                    }
-                let result = hotel.AddBooking booking 
+                let booking = mkBooking 1  (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-12 01:01:01"))
+                let result = booking |> hotel.AddBooking  
                 Expect.isOk result "should be ok"
                 let hotelWithBooking = result |> Result.get
                 let actualBooking = hotelWithBooking.bookings.Head 
@@ -195,33 +194,25 @@ module Tests =
                             with
                                 rooms = [room1]
                     }
-                let booking: Booking =
-                    {
-                        id = None
-                        roomId = 666
-                        customerEmail = "email@me.com"
-                        plannedCheckin = DateTime.Parse("2022-11-11 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
-                    }
-                let (Error error) = hotel.AddBooking booking
+                let booking = mkBooking 666 (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-12 01:01:01"))
+
+                let result =  booking |> hotel.AddBooking 
+                Expect.isError result  "should be error"
+                let (Error error) = result
                 Expect.equal error "room 666 doesn't exist" "should be equal"
 
-            testCase "after creating a booking, then the booking must have an id - Ok" <| fun _ ->
+            testCase "after creating a booking, the booking must have an id - Ok" <| fun _ ->
                 let hotel = 
                     {
                         Hotel.GetEmpty()
                             with
                                 rooms = [room1]
                     }
-                let booking: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin= DateTime.Parse("2022-11-11 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
-                    }
-                let (Ok hotel') = hotel.AddBooking booking
+                let booking = mkBooking 1 (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-12 01:01:01"))
+
+                let result = booking |> hotel.AddBooking 
+                Expect.isOk result "should be ok"
+                let (Ok hotel') = result
                 Expect.isSome hotel'.bookings.Head.id  "should be some"
 
             testCase "after creating a booking, then the busy days of the booking are the days in the checkin checkout interval (excluding checkout day) - Ok" <| fun _ ->
@@ -231,16 +222,12 @@ module Tests =
                             with
                                 rooms = [room1]
                     }
-                let booking: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin= DateTime.Parse("2022-11-11 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
-                    }
-                let (Ok hotel') = hotel.AddBooking booking
-                Expect.isSome hotel'.bookings.Head.id  "should be some"
+                let booking = mkBooking 1 (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-12 01:01:01"))
+                let result = hotel.AddBooking booking
+                Expect.isOk result "should be ok"
+                let (Ok hotel') = result
+                Expect.isTrue (hotel'.bookings.Length > 0) "should be true"
+                Expect.isSome hotel'.bookings.Head.id "should be some"
                 let bookedDays = hotel'.GetBookedDaysOfRoom 1
                 Expect.equal bookedDays ([DateTime.Parse("2022-11-11 00:00:00")] |> Set.ofList) "should be true"
 
@@ -251,16 +238,12 @@ module Tests =
                             with
                                 rooms = [room1]
                     }
-                let booking: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin = DateTime.Parse("2022-11-11 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-20 01:01:01")
-                    }
 
-                let (Ok hotel') = hotel.AddBooking booking
+                let booking = mkBooking 1 (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-20 01:01:01"))
+
+                let result = hotel.AddBooking booking
+                Expect.isOk result "should be Ok"
+                let hotel' = result |> Result.get
                 Expect.isSome hotel'.bookings.Head.id  "should be some"
                 let bookedDays = hotel'.GetBookedDaysOfRoom 1
                 Expect.equal 
@@ -288,25 +271,20 @@ module Tests =
                             with
                                 rooms = [room1]
                     }
-                let booking: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin = DateTime.Parse("2022-11-11 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-20 01:01:01")
-                    }
-                let booking2: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin = DateTime.Parse("2022-12-01 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-12-04 01:01:01")
-                    }
-                let (Ok hotel') = hotel.AddBooking booking
-                let (Ok hotel'') = hotel'.AddBooking booking2
-                let bookedDays = hotel''.GetBookedDaysOfRoom 1
+
+                let booking = mkBooking 1 (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-20 01:01:01"))
+                let booking2 = mkBooking 1 (DateTime.Parse("2022-12-01 01:01:01")) (DateTime.Parse("2022-12-04 01:01:01"))
+
+                let hotelWithBookings =
+                    ceError 
+                        {
+                            let! hotel' = hotel.AddBooking booking
+                            let! hotel'' = hotel'.AddBooking booking2
+                            return hotel''
+                        }
+                Expect.isOk hotelWithBookings "should be ok"
+                let hotel' = hotelWithBookings |> Result.get
+                let bookedDays = hotel'.GetBookedDaysOfRoom 1
 
                 Expect.equal 
                     bookedDays 
@@ -335,104 +313,83 @@ module Tests =
                             with
                                 rooms = [room1]
                     }
-                let booking: Booking =
+                let booking = 
                     {
-                        id = Guid.Parse("a338074d-98bd-4e64-b76a-b72cd3b0d9dd") |> Some
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin = DateTime.Parse("2022-11-11 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
+                        mkBooking 1  (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-12 01:01:01"))
+                            with
+                                id = Guid.Parse("a338074d-98bd-4e64-b76a-b72cd3b0d9dd") |> Some
                     }
-                let (Error error) = hotel.AddBooking booking
+
+                let result = hotel.AddBooking booking
+                Expect.isError result "should be error"
+                let (Error error) = result
                 Expect.equal error "cannot add a booking that already has an id" "should be equal"
 
             testCase "two booking on two different available rooms - Ok" <| fun _ ->
-                let room2 =
-                    {
-                        id = 2
-                        description = None
-                    }
+                let room2 = mkRoom 2
                 let hotel = 
                     {
                         Hotel.GetEmpty()
                             with
                                 rooms = [room1; room2]
                     }
-                let booking1: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin = DateTime.Parse("2022-11-11 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
-                    }
-                let booking2: Booking =
-                    {
-                        id = None
-                        roomId = 2
-                        customerEmail = "email@me.com"
-                        plannedCheckin = DateTime.Parse("2022-11-11 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
-                    }
-                let (Ok hotel') = hotel.AddBooking booking1
-                let (Ok hotel'') = hotel'.AddBooking booking2
+
+                let booking1 = mkBooking 1  (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-12 01:01:01"))
+                let booking2 = mkBooking 2  (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-12 01:01:01"))
+
+                let hotel' =
+                    ceError 
+                        {
+                            let! hotel' = hotel.AddBooking booking1
+                            let! hotel'' = hotel'.AddBooking booking2
+                            return hotel''
+                        }
+                Expect.isOk hotel' "should be ok"
+                let hotel'' = hotel' |> Result.get
+                
                 Expect.equal (hotel''.bookings.Length) 2 "should be equal"
 
-            testCase "cannot add a booking about the same room when the period is the same - Error" <| fun _ ->
+            testCase "cannot add a booking about the same in the same time interval - Error" <| fun _ ->
                 let hotel = 
                     {
                         Hotel.GetEmpty()
                             with
                                 rooms = [room1]
                     }
-                let booking1: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin = DateTime.Parse("2022-11-11 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
-                    }
-                let booking2: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin = DateTime.Parse("2022-11-11 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
-                    }
 
-                let (Ok newHotel) = hotel.AddBooking booking1 
+                let booking1 = mkBooking 1 (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-12 01:01:01"))
+                let booking2 = mkBooking 1 (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-12 01:01:01"))
+                let result1 = hotel.AddBooking booking1 
+                Expect.isOk result1 "should be ok"
+
+                let (Ok newHotel) = result1
+                let result2 =  newHotel.AddBooking booking2
+                Expect.isError result2 "should be error"
                 let (Error error) = newHotel.AddBooking booking2
+                
                 Expect.equal error "overlap: \"2022/11/11\"" "should be equal"
 
-            testCase "add more bookings on same room, that have no overlaps - Ok" <| fun _ ->
+            testCase "add more bookings on same room if there is no overlapping days - Ok" <| fun _ ->
                 let hotel = 
                     {
                         Hotel.GetEmpty()
                             with
                                 rooms = [room1]
                     }
-                let booking1: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin = DateTime.Parse("2022-11-11 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
-                    }
-                let booking2: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin= DateTime.Parse("2022-11-15 01:01:01")
-                        plannedCheckout= DateTime.Parse("2022-11-16 01:01:01")
-                    }
 
-                let (Ok hotel') = hotel.AddBooking booking1 
-                let (Ok hotel'') = hotel'.AddBooking booking2 
-                Expect.equal (hotel''.bookings.Length) 2 "should be equal"
+                let booking1 = mkBooking 1 (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-12 01:01:01"))
+                let booking2 = mkBooking 1 (DateTime.Parse("2022-11-15 01:01:01")) (DateTime.Parse("2022-11-16 01:01:01"))
+                
+                let result =
+                    ceError
+                        {
+                            let! hotel' = hotel.AddBooking booking1 
+                            let! hotel'' = hotel'.AddBooking booking2
+                            return hotel''
+                        }
+                Expect.isOk result "should be ok"
+                let hotel' = result |> Result.get
+                Expect.equal (hotel'.bookings.Length) 2 "should be equal"
 
             testCase "the checkin date of a booking can be the checkout date of another booking - Ok" <| fun _ ->
                 let hotel = 
@@ -441,22 +398,10 @@ module Tests =
                             with
                                 rooms = [room1]
                     }
-                let booking1: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin = DateTime.Parse("2022-11-11 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
-                    }
-                let booking2: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin = DateTime.Parse("2022-11-12 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-16 01:01:01")
-                    }
+
+                let booking1 = mkBooking 1 (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-12 01:01:01"))
+                let booking2 = mkBooking 1 (DateTime.Parse("2022-11-12 01:01:01")) (DateTime.Parse("2022-11-16 01:01:01"))
+
                 let (Ok hotel') = hotel.AddBooking booking1 
                 let (Ok hotel'') = hotel'.AddBooking booking2 
                 Expect.equal (hotel''.bookings.Length) 2 "should be equal"
@@ -468,239 +413,155 @@ module Tests =
                             with
                                 rooms = [room1]
                     }
-                let booking1: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin = DateTime.Parse("2022-11-11 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-15 01:01:01")
-                    }
-                let booking2: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin= DateTime.Parse("2022-11-14 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-16 01:01:01")
-                    }
-                let (Ok hotel') = hotel.AddBooking booking1 
-                let (Error error) = hotel'.AddBooking booking2 
+                let booking1 = mkBooking 1 (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-15 01:01:01"))
+                let booking2 = mkBooking 1 (DateTime.Parse("2022-11-14 01:01:01")) (DateTime.Parse("2022-11-16 01:01:01"))
+                let result =
+                    ceError 
+                        {
+                            let! hotel' = hotel.AddBooking booking1
+                            let! hotel'' = hotel'.AddBooking booking2
+                            return hotel''
+                        }
+                Expect.isError result "should be error"                        
+                let (Error error) = result
                 Expect.equal error "overlap: \"2022/11/14\"" "should be equal"
-        ] 
 
-    [<Tests>]
-    let eventsTests =
-        testList "Domain events" [
-            testCase "add room event  - Ok" <| fun _ ->
-                let hotel = Hotel.GetEmpty()
-                let uEvent = Event.RoomAdded room1
-                let (Ok hotel') = hotel |> uEvent.Process
-                let expected = 
-                    {
-                        rooms = [room1]
-                        bookings = []
-                        // id = 1
-                    }
-                Expect.equal hotel' expected "should be equal"
+            testCase "a hotel with three rooms: add more bookings - OK" <| fun _ ->
+                let room2 = mkRoom 2
+                let room3 = mkRoom 3
 
-            testCase "add booking simple event - Ok" <| fun _ ->
-                let booking: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin= DateTime.Parse("2022-11-11 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
-                    }
                 let hotel = 
                     {
-                        Hotel.GetEmpty() with
-                            rooms = [room1]
+                        Hotel.GetEmpty()
+                            with rooms = [room1; room2; room3]
                     }
-                let event = bookingAdded booking
-                let (Ok hotel') = event hotel
-                Expect.isSome hotel'.bookings.Head.id "should be some"
+                let booking = mkBooking 1 (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-15 01:01:01"))
+                let booking2 = mkBooking 2 (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-17 01:01:01"))
+                let booking3 = mkBooking 3 (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-15 01:01:01"))
 
-            testCase "add booking event - Ok" <| fun _ ->
-                let booking: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin= DateTime.Parse("2022-11-11 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
-                    }
-                let hotel = 
-                    {
-                        Hotel.GetEmpty() with
-                            rooms = [room1]
-                    }
-                let uEvent = Event.BookingAdded booking
-                let (Ok hotel') = hotel |> uEvent.Process
-                Expect.isSome hotel'.bookings.Head.id "should be some"
+                let hotelWithBookings =
+                    ceError
+                        {
+                            let! hotel' = hotel.AddBooking booking 
+                            let! hotel'' = hotel'.AddBooking booking2
+                            let! hotel''' = hotel''.AddBooking booking3
+                            return hotel'''
+                        }
 
-            testCase "add two rooms - Ok" <| fun _ ->
-                let room2 =
-                    {
-                        id = 2
-                        description = None
-                    }
+                Expect.isOk hotelWithBookings "should be ok"
+                let hotelWithBookings' = hotelWithBookings |> Result.get
+                Expect.equal (hotelWithBookings'.bookings.Length) 3 "should be equal"
+
+            testCase "an empty hotel will give empty list of room available for any checkin-checkout period" <| fun _ ->
                 let hotel = Hotel.GetEmpty()
-                let uRoom1Added = Event.RoomAdded room1
-                let uRoom2Added = Event.RoomAdded room2
-                let uEvents = [uRoom1Added; uRoom2Added]
-                let (Ok hotel') = uEvents |> hotel.Evolve
-                Expect.equal hotel' {hotel with rooms = [room2; room1]} "should be equal"
+                let availableRooms = hotel.FindFullVacancies (DateTime.Parse("2022-11-14 01:01:01")) (DateTime.Parse("2022-11-16 01:01:01"))
+                Expect.equal availableRooms [] "should be equal"
 
-            testCase "add a room and a booking - Ok" <| fun _ ->
-                let booking: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin= DateTime.Parse("2022-11-11 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
-                    }
-                let hotel = Hotel.GetEmpty()
-                let room1Added = Event.RoomAdded room1
-                let booking1Added = Event.BookingAdded booking
-                let events = [room1Added; booking1Added] 
-                let (Ok hotel') = events |> hotel.Evolve
-                let actualBookingNoId =
-                    {
-                        hotel'.bookings.Head 
-                            with 
-                                id = None
-                    }
-                Expect.equal (hotel'.rooms.Head) room1 "should be equal"
-                Expect.equal actualBookingNoId booking "should be equal"
-
-            testCase "add a room and a booking UNION EVENT - Ok" <| fun _ ->
-                let booking: Booking =
-                    {
-                        id = None
-                        roomId = 1
-                        customerEmail = "email@me.com"
-                        plannedCheckin= DateTime.Parse("2022-11-11 01:01:01")
-                        plannedCheckout = DateTime.Parse("2022-11-12 01:01:01")
-                    }
-                let hotel = Hotel.GetEmpty()
-                let room1Added = Event.RoomAdded room1 
-                let booking1Added = Event.BookingAdded booking
-                let events = [room1Added; booking1Added]
-                let (Ok hotel') = events |> hotel.Evolve
-                let actualBookingNoId =
-                    {
-                        hotel'.bookings.Head 
-                            with 
-                                id = None
-                    }
-                Expect.equal (hotel'.rooms.Head) room1 "should be equal"
-                Expect.equal actualBookingNoId booking "should be equal"
-
-            testCase "add already existing room - Error" <| fun _ ->
+            testCase "an hotel with a room and no booking will give the room as available for any checkin-checkout period " <| fun _ ->
                 let hotel = 
                     {
                         Hotel.GetEmpty()
                             with rooms = [room1]
                     }
-                let room1Added = Event.RoomAdded room1
-                let events = [room1Added] 
-                let (Error error) = events |> hotel.Evolve
-                Expect.equal error "a room with number 1 already exists" "should be equal"
+                let availableRooms = hotel.FindFullVacancies (DateTime.Parse("2022-11-14 01:01:01")) (DateTime.Parse("2022-11-16 01:01:01"))
+                Expect.equal availableRooms [room1] "should be equal"
 
-            testCase "add overlapping booking - Error" <| fun _ -> 
-                let booking = 
-                    {
-                        id = Guid.Parse("d45c0760-dbf7-4453-a15f-b4cb1b78c730") |> Some
-                        roomId = 1
-                        customerEmail = "me@you.us"
-                        plannedCheckin = DateTime.Parse("2022-11-11 00:00:00")
-                        plannedCheckout = DateTime.Parse("2022-11-12 00:00:00")
-                    }
+            testCase "a hotel with only a room which is booked in the queried period will give an empty room as result" <| fun _ ->
                 let hotel = 
                     {
                         Hotel.GetEmpty()
-                        with
-                            rooms = [room1]
-                            bookings = [booking]
+                            with rooms = [room1]
                     }
-                let booking1 = 
-                    {
-                        booking with
-                            id = None
-                    }
-                let bookingAdded = Event.BookingAdded booking1
-                let (Error result) = [bookingAdded] |> hotel.Evolve
-                Expect.equal result "overlap: \"2022/11/11\"" "should be equal"
+                let booking = mkBooking 1 (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-15 01:01:01"))
 
-            testCase "add booking on free period - Ok" <| fun _ -> 
-                let booking = 
-                    {
-                        id = Guid.Parse("d45c0760-dbf7-4453-a15f-b4cb1b78c730") |> Some
-                        roomId = 1
-                        customerEmail = "me@you.us"
-                        plannedCheckin = DateTime.Parse("2022-11-11 00:00:00")
-                        plannedCheckout = DateTime.Parse("2022-11-12 00:00:00")
-                    }
+                let hotel' = hotel.AddBooking booking |> Result.get
+                let availableRooms = hotel'.FindFullVacancies (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-15 01:01:01"))
+                Expect.equal availableRooms [] "should be equal"
+
+            testCase "a hotel with only a room which is free in the queried period will give the room as result" <| fun _ ->
                 let hotel = 
                     {
                         Hotel.GetEmpty()
-                        with
-                            rooms = [room1]
-                            bookings = [booking]
+                            with rooms = [room1]
                     }
-                let booking1 = 
+                let booking = mkBooking 1 (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-15 01:01:01"))
+                let result =  hotel.AddBooking booking
+                Expect.isOk result "should be ok"
+                let hotel' = result |> Result.get
+                let availableRooms = hotel'.FindFullVacancies (DateTime.Parse("2022-11-16 01:01:01")) (DateTime.Parse("2022-11-19 01:01:01"))
+                Expect.equal availableRooms [room1] "should be equal"
+
+            testCase "a hotel with two free rooms in the queried period will give both the room as result" <| fun _ ->
+                let room2 = {
+                    id = 2
+                    description = None
+                }
+                let hotel = 
                     {
-                        booking with
-                            id = None
-                            plannedCheckin = DateTime.Parse("2022-11-12 00:00:00")
-                            plannedCheckout = DateTime.Parse("2022-11-20 00:00:00")
+                        Hotel.GetEmpty()
+                            with rooms = [room1; room2]
                     }
-                let booking1Added = Event.BookingAdded booking1
-                let events = [booking1Added] 
-                let (Ok hotel') = events |> hotel.Evolve
+                let booking = mkBooking 1 (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-15 01:01:01"))
+                let booking2 = mkBooking 2 (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-15 01:01:01"))
 
-                Expect.equal (hotel'.bookings.Length) 2 "should be equal"
-        ]
+                let result =
+                    ceError
+                        {
+                            let! hotel' = hotel.AddBooking booking
+                            let! hotel'' = hotel'.AddBooking booking2
+                            return hotel''
 
-    [<Tests>]
-    let CommandTests =
-        testList "Union" [
-            testCase "addRoom command returns roomAdded event - Ok" <| fun _ ->
-                let hotel = Hotel.GetEmpty()
-                let command = Command.AddRoom room1
-                let expected = [Event.RoomAdded room1] |> Ok
-                let actual = command.Execute hotel
-                Expect.equal actual expected "should be equal"
+                        }
+                Expect.isOk result "should be ok"
+                let hotel' = result |> Result.get
+                let availableRooms = hotel'.FindFullVacancies (DateTime.Parse("2022-11-16 01:01:01")) (DateTime.Parse("2022-11-19 01:01:01"))
+                Expect.equal availableRooms [room1; room2] "should be equal"
 
-            testCase "addBooking command returns bookingAdded event - Ok" <| fun _ ->
-                let hotel = Hotel.GetEmpty().AddRoom room1 |> Result.get 
-                let booking = 
+            testCase "a hotel with two rooms: only one is busy in the queried period, will return only the free one" <| fun _ ->
+                let room2 = {
+                    id = 2
+                    description = None
+                }
+                let hotel = 
                     {
-                        id = None
-                        roomId = 1
-                        customerEmail = "me@you.us"
-                        plannedCheckin = DateTime.Parse("2022-11-11 00:00:00")
-                        plannedCheckout = DateTime.Parse("2022-11-12 00:00:00")
+                        Hotel.GetEmpty()
+                            with rooms = [room1; room2]
                     }
-                let command = Command.AddBooking booking
-                let expected = [Event.BookingAdded booking] |> Ok
-                let actual = command.Execute hotel
-                Expect.equal actual expected "should be equal"
+                let booking = mkBooking 1 (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-15 01:01:01"))
+                let booking2 = mkBooking 2 (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-17 01:01:01"))
+                let result = 
+                    ceError {
+                        let! hotel' = hotel.AddBooking booking
+                        let! hotel'' = hotel'.AddBooking booking2
+                        return hotel''
+                    }
+                Expect.isOk result "should be ok"
+                let hotel' = result |> Result.get
+                let availableRooms = hotel'.FindFullVacancies (DateTime.Parse("2022-11-16 01:01:01")) (DateTime.Parse("2022-11-19 01:01:01"))
+                Expect.equal availableRooms [room1] "should be equal"
 
-            testCase "addBooking command returns Error in booking unxisting room - KO" <| fun _ ->
-                let hotel = Hotel.GetEmpty().AddRoom room1 |>  Result.get 
-                let booking = 
+            testCase "a hotel with three rooms: only one is busy in the queried period, will return only the free one" <| fun _ ->
+                let room2 = mkRoom 2
+                let room3 = mkRoom 3
+                let hotel = 
                     {
-                        id = None
-                        roomId = 666 
-                        customerEmail = "me@you.us"
-                        plannedCheckin = DateTime.Parse("2022-11-11 00:00:00")
-                        plannedCheckout = DateTime.Parse("2022-11-12 00:00:00")
+                        Hotel.GetEmpty()
+                            with rooms = [room1; room2; room3]
                     }
-                let command = Command.AddBooking booking
-                let (Error actual) = command.Execute hotel
-                Expect.equal actual "room 666 doesn't exist" "should be equal"
-        ]
+                let booking = mkBooking 1 (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-15 01:01:01"))
+                let booking2 = mkBooking 2  (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-17 01:01:01"))
+                let booking3 = mkBooking 3 (DateTime.Parse("2022-11-11 01:01:01")) (DateTime.Parse("2022-11-15 01:01:01"))
+
+                let hotelWithBookings =
+                    ceError
+                        {
+                            let! hotel' = hotel.AddBooking booking 
+                            let! hotel'' = hotel'.AddBooking booking2
+                            let! hotel''' = hotel''.AddBooking booking3
+                            return hotel'''
+                        }
+                Expect.isOk hotelWithBookings "should be ok"   
+                let hotelWithBookings' = hotelWithBookings |> Result.get
+                let availableRooms = hotelWithBookings'.FindFullVacancies (DateTime.Parse("2022-11-16 01:01:01")) (DateTime.Parse("2022-11-19 01:01:01"))
+                Expect.equal availableRooms [room1; room3] "should be equal"
+        ] 

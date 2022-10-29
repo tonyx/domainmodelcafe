@@ -1,809 +1,506 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TestRun id="92b79785-ce17-4263-8e75-8c2e9395a237" name="@Antonios-MBP 2022-10-07 12:50:20" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
-  <Times creation="2022-10-07T12:50:20.0338450+02:00" queuing="2022-10-07T12:50:20.0338450+02:00" start="2022-10-07T12:50:19.5822850+02:00" finish="2022-10-07T12:50:20.5079940+02:00" />
-  <TestSettings name="default" id="0294c0a0-a354-4546-998b-e99f50d81c82">
-    <Deployment runDeploymentRoot="_Antonios-MBP_2022-10-07_12_50_20" />
+<TestRun id="6523e6d4-e7fb-4544-bd32-e2cd4af2ed62" name="@Antonios-MBP 2022-10-28 23:21:52" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2022-10-28T23:21:52.7506940+02:00" queuing="2022-10-28T23:21:52.7506940+02:00" start="2022-10-28T23:21:52.1751410+02:00" finish="2022-10-28T23:21:53.3480750+02:00" />
+  <TestSettings name="default" id="84136856-bd18-4aa1-96ce-0bd1d8d4f3aa">
+    <Deployment runDeploymentRoot="_Antonios-MBP_2022-10-28_23_21_52" />
   </TestSettings>
   <Results>
-    <UnitTestResult executionId="c2b0e864-3197-42d8-a5c0-9016460523f6" testId="ec11ab20-36e8-0336-bde0-6bac95d4d447" testName="Domain model logic.add a booking that already has an id Error - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0511140+02:00" endTime="2022-10-07T12:50:20.0513920+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c2b0e864-3197-42d8-a5c0-9016460523f6">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="1124add8-2735-4305-9a18-8a7ab4ccaf8e" testId="fbe13574-e2b3-b5df-5591-40f0909cc419" testName="Domain events.add overlapping booking - Error" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0752800+02:00" endTime="2022-10-07T12:50:20.0753190+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1124add8-2735-4305-9a18-8a7ab4ccaf8e">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="e1cccb27-c504-41de-9cda-c2cce76a39c3" testId="b9961cf9-3537-f75d-0e1b-95a5a21eb89d" testName="serializetests.deserialize hotel state 1 - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:19.9845350+02:00" endTime="2022-10-07T12:50:19.9905680+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e1cccb27-c504-41de-9cda-c2cce76a39c3">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="08b4db8d-058a-4e2b-af63-e896cbc66dbb" testId="d29128ae-b25a-2392-2573-2312f520344a" testName="Domain events.add booking simple event - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0627070+02:00" endTime="2022-10-07T12:50:20.0629490+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="08b4db8d-058a-4e2b-af63-e896cbc66dbb">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="dff4ab4f-8924-4071-b29d-f5d77295290b" testId="81fe1005-1a3d-40b0-d8b4-dcf236241ec6" testName="serializetests.serialize room - OK" computerName="Antonios-MBP" startTime="2022-10-07T12:50:19.9840100+02:00" endTime="2022-10-07T12:50:19.9905570+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dff4ab4f-8924-4071-b29d-f5d77295290b">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="c9af8839-ef33-45ef-9003-b429f29486b8" testId="7ebb4df5-9432-45da-8bfe-8e94e5d57892" testName="Domain model logic.two booking on two different available rooms - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0511240+02:00" endTime="2022-10-07T12:50:20.0513990+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c9af8839-ef33-45ef-9003-b429f29486b8">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="c72fc6df-a2c9-44de-8702-afbe0271b24f" testId="dfdeb31b-c74f-2bf6-58ae-298e1b3f388a" testName="commandSequenceToEventSequence.when the list contains a singl command that can be executed returning ok then the corresponding ok event is retured" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0265340+02:00" endTime="2022-10-07T12:50:20.0268950+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c72fc6df-a2c9-44de-8702-afbe0271b24f">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="63b32417-d04f-49df-914f-e789f00fc562" testId="3459327b-38be-bd49-46f3-d0f8457fc868" testName="domain objects tests.when db is empty the last snapshot is the init" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0921760+02:00" endTime="2022-10-07T12:50:20.0921870+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="63b32417-d04f-49df-914f-e789f00fc562">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="cb55622c-be09-4029-be27-851044f25df4" testId="98950fc7-74c9-455e-6eea-4aa7fa3f330b" testName="serializetests.union event test deserialize" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0003120+02:00" endTime="2022-10-07T12:50:20.0139740+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cb55622c-be09-4029-be27-851044f25df4">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="86a5dbb4-69e0-45c3-9355-140820079432" testId="e80d0658-8cd1-eb2c-576c-3afde8f7dd5c" testName="serializetests.deserialize hotel state 1 - Error" computerName="Antonios-MBP" startTime="2022-10-07T12:50:19.9885410+02:00" endTime="2022-10-07T12:50:19.9950870+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="86a5dbb4-69e0-45c3-9355-140820079432">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="d410964a-754e-46d9-95be-5146f6386964" testId="4af5199e-882c-83fa-50ac-4ad764633859" testName="Domain model logic.add bookings that overlaps - Error" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0626660+02:00" endTime="2022-10-07T12:50:20.0629350+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d410964a-754e-46d9-95be-5146f6386964">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="bac3bfd9-e35a-4ef5-b4f1-b37001516adf" testId="8d4d8e6b-7a21-e3cc-c038-b79e36ecd20b" testName="serializetests.serialize hotel state 2" computerName="Antonios-MBP" startTime="2022-10-07T12:50:19.9885460+02:00" endTime="2022-10-07T12:50:19.9950880+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bac3bfd9-e35a-4ef5-b4f1-b37001516adf">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="3f0ace14-a26f-4a79-979c-927b6f425324" testId="8a58f7e6-fa5d-e050-071b-b735ab40e67d" testName="Domain objects.the busy day of a two days night will be the checkin day and the one after" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0390870+02:00" endTime="2022-10-07T12:50:20.0394290+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3f0ace14-a26f-4a79-979c-927b6f425324">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="f03bc130-7f0d-4841-9e26-cda66f3147d8" testId="011844c5-ab7c-87a3-1ccb-e3bd7236f72d" testName="commandSequenceToEventSequence.add existing room, two commands, error from second command - KO" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0265250+02:00" endTime="2022-10-07T12:50:20.0265490+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f03bc130-7f0d-4841-9e26-cda66f3147d8">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="dbb27d1f-82ae-4834-986c-647f3036b015" testId="5342ea11-8fea-afb4-7d9d-d843dd53a169" testName="Domain objects.two bookings with different roomid are not equal" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0390620+02:00" endTime="2022-10-07T12:50:20.0390830+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dbb27d1f-82ae-4834-986c-647f3036b015">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="a64cb0e3-2ceb-46b1-a2b0-72b112bc3223" testId="0e906688-ef31-38a6-5416-86493a352f3a" testName="Domain model logic.the checkin date of a booking can be the checkout date of another booking - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0626530+02:00" endTime="2022-10-07T12:50:20.0626600+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a64cb0e3-2ceb-46b1-a2b0-72b112bc3223">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="3981fe74-97be-4d67-9e41-de42f2069d46" testId="921813ed-c4d7-826b-5b7f-b8a29207a9a8" testName="serializetests.serialize hotel state 1" computerName="Antonios-MBP" startTime="2022-10-07T12:50:19.9845130+02:00" endTime="2022-10-07T12:50:19.9905600+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3981fe74-97be-4d67-9e41-de42f2069d46">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="a1d5a2f1-2675-4aea-b6af-0038470979cd" testId="053004a9-8cfa-251b-618b-7c7e90555703" testName="serializeCommandstests.serialize AddBooking" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0139420+02:00" endTime="2022-10-07T12:50:20.0139710+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a1d5a2f1-2675-4aea-b6af-0038470979cd">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="458a116f-58f9-4c28-bcb4-eae0285ec427" testId="48601633-dd24-1d46-2b43-f3e3d31eefd3" testName="serializetests.union event booking added test serialize - OK" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0003080+02:00" endTime="2022-10-07T12:50:20.0139900+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="458a116f-58f9-4c28-bcb4-eae0285ec427">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="5fea994c-2108-4bac-a4c2-f9048ef0db27" testId="14e40356-6495-cfab-1d03-0c4a835425ef" testName="Domain events.add booking event - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0627160+02:00" endTime="2022-10-07T12:50:20.0629800+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5fea994c-2108-4bac-a4c2-f9048ef0db27">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="1eb1dfef-e473-4f16-bd9d-ba79a5485d28" testId="c39c8b41-04d3-d17c-f5d9-db608a500c06" testName="Domain events.add booking on free period - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0752960+02:00" endTime="2022-10-07T12:50:20.0771640+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1eb1dfef-e473-4f16-bd9d-ba79a5485d28">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="48ac1898-25d2-45e8-b12d-6d3f848a32ca" testId="e0677495-19d1-35e1-c6d1-6498f0db53ec" testName="serializeEventsTests.add two rooms wrong json format - Error" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0265180+02:00" endTime="2022-10-07T12:50:20.0265530+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="48ac1898-25d2-45e8-b12d-6d3f848a32ca">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="c134ea35-a948-48aa-b226-388f01955031" testId="a9e3dc4b-83f5-7bd7-bda6-271bba442e84" testName="Domain objects.the busy day of a one day night is only the checkin day" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0390870+02:00" endTime="2022-10-07T12:50:20.0394380+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c134ea35-a948-48aa-b226-388f01955031">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="94f06f25-bcdf-45e8-9399-65b9789182ee" testId="52828b1e-17f6-23a7-10ac-34891c1d199d" testName="serializetests.union event roomAdded test deserialize  - error" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0138880+02:00" endTime="2022-10-07T12:50:20.0139110+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="94f06f25-bcdf-45e8-9399-65b9789182ee">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="0ead45ac-b337-4624-9a52-7c5d5c5321f3" testId="e7a4501a-0efe-f569-1c92-6724bc4cef1e" testName="serializeEventsTests.interpret single addRoom event from serialized" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0139390+02:00" endTime="2022-10-07T12:50:20.0139750+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0ead45ac-b337-4624-9a52-7c5d5c5321f3">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="9045b5ed-257e-401a-a5ff-b32ca31b0b61" testId="3cd9b3a2-a7e5-de0e-5d29-d9a6617bc734" testName="Domain events.add a room and a booking - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0627240+02:00" endTime="2022-10-07T12:50:20.0630300+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9045b5ed-257e-401a-a5ff-b32ca31b0b61">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="017d4f6d-cc7b-4aeb-ba72-458f129aa496" testId="c0ab15bc-8f9d-dbc9-cd95-81a73bb886ac" testName="Domain objects.two bookings with different day of checkin/out, are not equal" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0390770+02:00" endTime="2022-10-07T12:50:20.0391110+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="017d4f6d-cc7b-4aeb-ba72-458f129aa496">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="d0efc811-c4f2-4779-b7d4-237418f7615b" testId="6dfbebd9-f56b-5aa5-8caf-f54bfc451bba" testName="commandSequenceToEventSequence.add existing room command - KO" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0265330+02:00" endTime="2022-10-07T12:50:20.0268300+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d0efc811-c4f2-4779-b7d4-237418f7615b">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="a8b65d9e-8c56-4042-b78e-c9b9b6c82c04" testId="a43e6dd0-0876-ecde-2397-451fc1d191a7" testName="Domain model logic.add a room to an empty hotel - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0390870+02:00" endTime="2022-10-07T12:50:20.0394480+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a8b65d9e-8c56-4042-b78e-c9b9b6c82c04">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="8aabd607-8faf-4571-8417-9f1d377ecee3" testId="8402aa69-c2f7-e83d-7775-793652b9cb11" testName="Domain model logic.create booking about a room that does exists - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0390910+02:00" endTime="2022-10-07T12:50:20.0393920+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8aabd607-8faf-4571-8417-9f1d377ecee3">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="1d3a23d4-4903-44fb-83b4-f1e7abbc1c05" testId="346a9703-c748-87ca-0f3b-8f9b3b254028" testName="serializetests.deserialize room2" computerName="Antonios-MBP" startTime="2022-10-07T12:50:19.9843840+02:00" endTime="2022-10-07T12:50:19.9905510+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1d3a23d4-4903-44fb-83b4-f1e7abbc1c05">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="d12d4d0a-0076-46d0-800c-91094920f633" testId="8b3de2af-eb30-7f22-52d8-78101323d115" testName="Domain events.add two rooms - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0627230+02:00" endTime="2022-10-07T12:50:20.0629960+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d12d4d0a-0076-46d0-800c-91094920f633">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="328a55fd-ced7-46a8-a89a-c7535d3cea13" testId="28b80a9b-353f-8ff5-35d8-0dcc0e464ae2" testName="Domain events.add already existing room - Error" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0629280+02:00" endTime="2022-10-07T12:50:20.0629450+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="328a55fd-ced7-46a8-a89a-c7535d3cea13">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="c3c06b7c-6610-4e0f-aaa8-c4a45b07f7e2" testId="b77bb403-f527-7a99-46d4-f7bb101dd095" testName="serializetests.deserialize hotel state 4" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0003030+02:00" endTime="2022-10-07T12:50:20.0139900+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c3c06b7c-6610-4e0f-aaa8-c4a45b07f7e2">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="50ed75d8-e920-40cb-af9a-b10e4c5b5a1c" testId="aea8dd3f-904e-1b4e-3565-f1f99a1cb2fb" testName="Union.addRoom command returns roomAdded event - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0752970+02:00" endTime="2022-10-07T12:50:20.0771590+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="50ed75d8-e920-40cb-af9a-b10e4c5b5a1c">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="d593b46b-648f-4018-aa3e-c023f825cf88" testId="d1ce66b0-e3dd-f170-0dfc-c2450753eede" testName="Domain objects.rooms with different ids are the different room" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0265290+02:00" endTime="2022-10-07T12:50:20.0265770+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d593b46b-648f-4018-aa3e-c023f825cf88">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="15581465-b85e-4858-abe3-f871082bd741" testId="849d77f2-3e62-9da6-9cca-ebc2d7ff486f" testName="Domain events.add a room and a booking UNION EVENT - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0627450+02:00" endTime="2022-10-07T12:50:20.0630040+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="15581465-b85e-4858-abe3-f871082bd741">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="0d150cb9-12c4-4c2f-9699-83618789604d" testId="024969fe-490d-20a8-1c58-604d7836922d" testName="Domain model logic.add a room when a room with the same id already exists in the hotel - Error" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0390850+02:00" endTime="2022-10-07T12:50:20.0391360+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0d150cb9-12c4-4c2f-9699-83618789604d">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="b9af0d93-a760-4844-b3e4-074e5683a600" testId="2716bf02-6f70-cffa-96fa-9cd278ef4a99" testName="Domain model logic.two booking intervals. Get the booked days - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0511010+02:00" endTime="2022-10-07T12:50:20.0513990+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b9af0d93-a760-4844-b3e4-074e5683a600">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="4b012771-65cc-40a5-9583-48b3e52e3186" testId="c22534ff-135e-a0b8-0537-edafc8c99b42" testName="serializeCommandstests.serialize AddRoom" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0138920+02:00" endTime="2022-10-07T12:50:20.0139130+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4b012771-65cc-40a5-9583-48b3e52e3186">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="6296d6df-fb4a-46b9-b4fa-90496b264cff" testId="8a1b47e0-1df5-9ed3-3454-dd1ebdf3cabf" testName="Domain model logic.cannot add a booking about the same room when the period is the same - Error" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0511820+02:00" endTime="2022-10-07T12:50:20.0514250+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6296d6df-fb4a-46b9-b4fa-90496b264cff">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="76c305cd-43df-46ea-a19f-44309cdf0e39" testId="7dad93a4-d5a0-6d4b-1bef-e2a5a0863f3c" testName="Domain model logic.add more bookings on same room, that have no overlaps - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0513440+02:00" endTime="2022-10-07T12:50:20.0513580+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="76c305cd-43df-46ea-a19f-44309cdf0e39">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="d8142017-ed8b-4e55-b4d2-b09fa659fb8e" testId="2d472249-0957-9258-6d05-687f0913fd83" testName="serializeEventsTests.add room with the same id twice - Error" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0264960+02:00" endTime="2022-10-07T12:50:20.0265360+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d8142017-ed8b-4e55-b4d2-b09fa659fb8e">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="e1dc881b-1129-4656-89cb-0a600413c50c" testId="f070a9e0-1d62-b852-be1f-73f0d047eb48" testName="serializetests.serialize hotel state 3" computerName="Antonios-MBP" startTime="2022-10-07T12:50:19.9999850+02:00" endTime="2022-10-07T12:50:20.0138970+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e1dc881b-1129-4656-89cb-0a600413c50c">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="95208ed5-c723-4634-a97f-10ca95d8f929" testId="a79359dc-9b8c-8bcd-4f74-f88918bf16f4" testName="Domain model logic.larger booking interval. Get the booked days. From checkin date to checkout date excluded - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0510630+02:00" endTime="2022-10-07T12:50:20.0513490+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="95208ed5-c723-4634-a97f-10ca95d8f929">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="a75e264b-60e4-4a1b-bb6a-ee539d51c9da" testId="d06fc3d2-c667-360c-b921-65f02a3bdbb3" testName="Domain events.add room event  - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0626610+02:00" endTime="2022-10-07T12:50:20.0629330+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a75e264b-60e4-4a1b-bb6a-ee539d51c9da">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="23d3de8f-d66c-4644-b791-2974f8c1390d" testId="59ec0422-e867-60c2-aad7-7ea675661997" testName="Union.addBooking command returns Error in booking unxisting room - KO" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0753410+02:00" endTime="2022-10-07T12:50:20.0772510+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="23d3de8f-d66c-4644-b791-2974f8c1390d">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="cb4dd267-c5d8-4622-a3f0-e589e3aeff85" testId="f9473589-8697-ee53-af41-813844e45d4f" testName="Domain objects.rooms with the same id are the same room" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0265270+02:00" endTime="2022-10-07T12:50:20.0265650+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cb4dd267-c5d8-4622-a3f0-e589e3aeff85">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="3135f868-fe11-4aa7-be34-e854d822f613" testId="443a9a29-9c23-8760-f086-4164e3e7c3f1" testName="serializetests.union event booking added test deserialize - OK" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0003110+02:00" endTime="2022-10-07T12:50:20.0147470+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3135f868-fe11-4aa7-be34-e854d822f613">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="48e0cb5d-581a-4599-9395-de1664b62c55" testId="943697ce-93d4-b796-8652-c56b8888df1a" testName="serializeEventsTests.add two addRoom - OK" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0139420+02:00" endTime="2022-10-07T12:50:20.0139700+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="48e0cb5d-581a-4599-9395-de1664b62c55">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="7dde6094-f57e-4342-baf2-8d5329e54402" testId="6b3be6ac-b21d-948f-6b10-a6e8fc7fa830" testName="Domain model logic.after creating a booking, then the busy days of the booking are the days in the checkin checkout interval (excluding checkout day) - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0510630+02:00" endTime="2022-10-07T12:50:20.0510690+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7dde6094-f57e-4342-baf2-8d5329e54402">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="d11a0966-99a4-4801-88ef-7757bc47b678" testId="a87ed378-12a2-d3b0-0958-1c8b63972e39" testName="serializetests.serialize room2" computerName="Antonios-MBP" startTime="2022-10-07T12:50:19.9844920+02:00" endTime="2022-10-07T12:50:19.9905660+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d11a0966-99a4-4801-88ef-7757bc47b678">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="eee4226c-4a0a-4099-8856-9ab0149b7074" testId="d647a503-9f36-037a-425a-3a92a46a0016" testName="Domain objects.two bookings having all fields equals are equals - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0265320+02:00" endTime="2022-10-07T12:50:20.0266530+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="eee4226c-4a0a-4099-8856-9ab0149b7074">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="dcc59c7e-5afc-480b-bee7-dec5ab8ce920" testId="ff99d881-d379-5a18-d9e8-6f1c077c8d3c" testName="serializetests.deserialize hotel state 2" computerName="Antonios-MBP" startTime="2022-10-07T12:50:19.9999630+02:00" endTime="2022-10-07T12:50:19.9999780+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dcc59c7e-5afc-480b-bee7-dec5ab8ce920">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="8429095b-384b-4794-ac7f-b70abf89717f" testId="21232319-69fa-e409-c899-adc0a04dd31b" testName="Domain model logic.create a booking about a room that doesn't exist - Error" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0391060+02:00" endTime="2022-10-07T12:50:20.0393840+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8429095b-384b-4794-ac7f-b70abf89717f">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="64746fca-921a-4ae8-a639-4dedbdbb3814" testId="19f68e07-f3ef-3a07-24a8-0e0994772430" testName="domain objects tests.add a 'first' event in the db and so the last snapshot is the init-state + event" computerName="Antonios-MBP" duration="00:00:00.3880000" startTime="2022-10-07T12:50:20.0922560+02:00" endTime="2022-10-07T12:50:20.4808560+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="64746fca-921a-4ae8-a639-4dedbdbb3814" />
-    <UnitTestResult executionId="7b0eebc6-c80e-4bb6-8c9d-192cc73be151" testId="e9bf5912-a797-4ee4-b9dd-49ec4caa3cbf" testName="serializetests.union event room added test serialize " computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0003060+02:00" endTime="2022-10-07T12:50:20.0139530+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7b0eebc6-c80e-4bb6-8c9d-192cc73be151">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="709ebf10-6722-4154-9767-a31f1ecb8dc7" testId="b4acf5b5-4510-6d2b-46b5-44cb9c21e83d" testName="domain objects tests.Setup" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0920810+02:00" endTime="2022-10-07T12:50:20.0920930+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="709ebf10-6722-4154-9767-a31f1ecb8dc7">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="75eb8daf-a053-4228-8fde-9dbafdc1798f" testId="da3932f1-b438-2629-143b-14f82ec1b6d7" testName="Domain model logic.after creating a booking, then the booking must have an id - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0510530+02:00" endTime="2022-10-07T12:50:20.0510660+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="75eb8daf-a053-4228-8fde-9dbafdc1798f">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="20aef01e-f8b4-4e65-b03a-06f0f6024d7e" testId="4c313fe3-aefd-4c07-6d83-5f0e6ac42cf0" testName="serializetests.serialize room" computerName="Antonios-MBP" startTime="2022-10-07T12:50:19.9838470+02:00" endTime="2022-10-07T12:50:19.9905640+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="20aef01e-f8b4-4e65-b03a-06f0f6024d7e">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
-    <UnitTestResult executionId="f41ac5b2-4402-41ca-8fb2-b8d317bb3362" testId="d03b1c90-8631-2835-9600-04aae5c586c7" testName="Union.addBooking command returns bookingAdded event - Ok" computerName="Antonios-MBP" startTime="2022-10-07T12:50:20.0753030+02:00" endTime="2022-10-07T12:50:20.0772540+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f41ac5b2-4402-41ca-8fb2-b8d317bb3362">
-      <Output>
-        <TextMessages>
-          <Message>Skipped: The test is skipped because other tests are Focused</Message>
-        </TextMessages>
-      </Output>
-    </UnitTestResult>
+    <UnitTestResult executionId="7f0d5bac-6e85-4ba8-a4af-d53e82b12f75" testId="6deac8ac-65da-1d1c-d8dd-af65752f45e1" testName="application level/controller tests, hotel and room tests.add rooms commands and get the state that will have two rooms - OK" computerName="Antonios-MBP" duration="00:00:00.0090000" startTime="2022-10-28T23:21:53.2620370+02:00" endTime="2022-10-28T23:21:53.2715610+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7f0d5bac-6e85-4ba8-a4af-d53e82b12f75" />
+    <UnitTestResult executionId="bfc8107b-81fa-4d17-8d42-54aa9554fdc3" testId="8b3de2af-eb30-7f22-52d8-78101323d115" testName="Domain events.add two rooms - Ok" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7898420+02:00" endTime="2022-10-28T23:21:52.7902740+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bfc8107b-81fa-4d17-8d42-54aa9554fdc3" />
+    <UnitTestResult executionId="389b1d88-2496-4f0f-bfa3-be22ea7bbb70" testId="09252eda-c5be-0d8b-e493-22a29e10ff6b" testName="Domain model logic.a hotel with only a room which is booked in the queried period will give an empty room as result" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7772570+02:00" endTime="2022-10-28T23:21:52.7794180+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="389b1d88-2496-4f0f-bfa3-be22ea7bbb70" />
+    <UnitTestResult executionId="0c46727d-a872-4821-b367-648a64a07a0e" testId="943697ce-93d4-b796-8652-c56b8888df1a" testName="serializeEventsTests.add two addRoom - OK" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7408990+02:00" endTime="2022-10-28T23:21:52.7417370+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0c46727d-a872-4821-b367-648a64a07a0e" />
+    <UnitTestResult executionId="080a2bae-4b72-418f-877b-193bc8a6ff17" testId="63254cb9-5c1e-e4cc-eecd-9eb01970a621" testName="ceTest.ce test with three let! bindings. The first is error. Error is bound to the first" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.8151300+02:00" endTime="2022-10-28T23:21:52.8153900+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="080a2bae-4b72-418f-877b-193bc8a6ff17" />
+    <UnitTestResult executionId="8087a336-87f2-4576-b0d6-3fe97ae4a69a" testId="7ebb4df5-9432-45da-8bfe-8e94e5d57892" testName="Domain model logic.two booking on two different available rooms - Ok" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7646110+02:00" endTime="2022-10-28T23:21:52.7656930+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8087a336-87f2-4576-b0d6-3fe97ae4a69a" />
+    <UnitTestResult executionId="4ad2dfee-72be-420b-9c0d-dc8c1f2dfb67" testId="4bd9ac07-7d11-19a5-1bc2-778fc9a3a33d" testName="application level/controller tests, hotel and room tests.add a room and two overlapping booking, - Error" computerName="Antonios-MBP" duration="00:00:00.0090000" startTime="2022-10-28T23:21:53.3078800+02:00" endTime="2022-10-28T23:21:53.3172710+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4ad2dfee-72be-420b-9c0d-dc8c1f2dfb67" />
+    <UnitTestResult executionId="4ac47a85-5380-49bf-a3fe-5c194442e7d3" testId="d7c1f34b-d13d-2894-b201-95a1b9bef8cd" testName="Domain model logic.a hotel with two free rooms in the queried period will give both the room as result" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7773050+02:00" endTime="2022-10-28T23:21:52.7794190+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4ac47a85-5380-49bf-a3fe-5c194442e7d3" />
+    <UnitTestResult executionId="0c5dbade-f306-4959-9224-363e1034b32e" testId="d1ce66b0-e3dd-f170-0dfc-c2450753eede" testName="Domain objects.rooms with different ids are the different room" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7410700+02:00" endTime="2022-10-28T23:21:52.7421640+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0c5dbade-f306-4959-9224-363e1034b32e" />
+    <UnitTestResult executionId="41ed4cba-7e1f-4558-9773-d73c48b6ee30" testId="fbe13574-e2b3-b5df-5591-40f0909cc419" testName="Domain events.add overlapping booking - Error" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7898810+02:00" endTime="2022-10-28T23:21:52.7905390+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="41ed4cba-7e1f-4558-9773-d73c48b6ee30" />
+    <UnitTestResult executionId="db7db8d7-2eec-45ef-a102-ae493d4bf4a6" testId="6e18d30a-c2ab-f930-0343-6b58d0320522" testName="application level/controller tests, hotel and room tests.add a new room command and get the state that will have a room" computerName="Antonios-MBP" duration="00:00:00.4000000" startTime="2022-10-28T23:21:52.8321520+02:00" endTime="2022-10-28T23:21:53.2327560+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="db7db8d7-2eec-45ef-a102-ae493d4bf4a6" />
+    <UnitTestResult executionId="7d84918e-0e2e-4dba-97fc-f27116ee5e97" testId="7c6a7790-b37b-0c66-4677-4787a857fa51" testName="Domain model logic.an empty hotel will give empty list of room available for any checkin-checkout period" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7772330+02:00" endTime="2022-10-28T23:21:52.7793790+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7d84918e-0e2e-4dba-97fc-f27116ee5e97" />
+    <UnitTestResult executionId="183b1dba-0e0e-4fba-89a9-7f37addaeed3" testId="f836138b-c9c2-a7ef-46c2-1c2c5f06def8" testName="application level/controller tests, hotel and room tests.add a room and a booking, then get state - ok" computerName="Antonios-MBP" duration="00:00:00.0130000" startTime="2022-10-28T23:21:53.2938390+02:00" endTime="2022-10-28T23:21:53.3078150+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="183b1dba-0e0e-4fba-89a9-7f37addaeed3" />
+    <UnitTestResult executionId="d77d59f1-8278-4807-b884-9e0562aadc22" testId="15cc69cc-d216-6731-7a76-e151004260e0" testName="ceTest.ce test with thre let! bindings. Returns the third" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.8028960+02:00" endTime="2022-10-28T23:21:52.8031870+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d77d59f1-8278-4807-b884-9e0562aadc22" />
+    <UnitTestResult executionId="54cf0846-ecf0-48f6-b2d1-0a2a65c19c4d" testId="9f22d483-0fe9-e9a8-6900-5929b7112fd0" testName="ceTest.ce test with three let! bindings. the first two are errors. return the first" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.8151380+02:00" endTime="2022-10-28T23:21:52.8157130+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="54cf0846-ecf0-48f6-b2d1-0a2a65c19c4d" />
+    <UnitTestResult executionId="8319ee2d-7508-44c3-bb18-f7a9106f7436" testId="59ec0422-e867-60c2-aad7-7ea675661997" testName="Union.addBooking command returns Error in booking unxisting room - KO" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.8025040+02:00" endTime="2022-10-28T23:21:52.8029110+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8319ee2d-7508-44c3-bb18-f7a9106f7436" />
+    <UnitTestResult executionId="07a94523-decf-4fc0-851c-75aaa438a317" testId="2716bf02-6f70-cffa-96fa-9cd278ef4a99" testName="Domain model logic.two booking intervals. Get the booked days - Ok" computerName="Antonios-MBP" duration="00:00:00.0010000" startTime="2022-10-28T23:21:52.7646100+02:00" endTime="2022-10-28T23:21:52.7665010+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="07a94523-decf-4fc0-851c-75aaa438a317" />
+    <UnitTestResult executionId="f09235bf-6e88-490f-aeee-29c836b09409" testId="e80d0658-8cd1-eb2c-576c-3afde8f7dd5c" testName="serializetests.deserialize hotel state 1 - Error" computerName="Antonios-MBP" duration="00:00:00.0070000" startTime="2022-10-28T23:21:52.7012200+02:00" endTime="2022-10-28T23:21:52.7119730+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f09235bf-6e88-490f-aeee-29c836b09409" />
+    <UnitTestResult executionId="66e1f1c8-03c1-4170-a943-f989c73fd8d0" testId="ff99d881-d379-5a18-d9e8-6f1c077c8d3c" testName="serializetests.deserialize hotel state 2" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7134970+02:00" endTime="2022-10-28T23:21:52.7136940+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="66e1f1c8-03c1-4170-a943-f989c73fd8d0" />
+    <UnitTestResult executionId="5cee6be3-f0f9-4516-a571-b1e0d0b9a5dd" testId="98b118ec-a23f-6323-c1b7-3ce80c1fbc73" testName="application level/controller tests, hotel and room tests.add a new room command and get the state. the last snapshot is the same as the state if I call mksnapshot" computerName="Antonios-MBP" duration="00:00:00.0210000" startTime="2022-10-28T23:21:53.2408130+02:00" endTime="2022-10-28T23:21:53.2619780+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5cee6be3-f0f9-4516-a571-b1e0d0b9a5dd" />
+    <UnitTestResult executionId="47a5ea4a-c220-42fd-8d74-2798d755c845" testId="48601633-dd24-1d46-2b43-f3e3d31eefd3" testName="serializetests.union event booking added test serialize - OK" computerName="Antonios-MBP" duration="00:00:00.0060000" startTime="2022-10-28T23:21:52.7138490+02:00" endTime="2022-10-28T23:21:52.7329980+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="47a5ea4a-c220-42fd-8d74-2798d755c845" />
+    <UnitTestResult executionId="1888465b-e76c-4d7f-ad96-532ade00255c" testId="da3932f1-b438-2629-143b-14f82ec1b6d7" testName="Domain model logic.after creating a booking, then the booking must have an id - Ok" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7645830+02:00" endTime="2022-10-28T23:21:52.7650810+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1888465b-e76c-4d7f-ad96-532ade00255c" />
+    <UnitTestResult executionId="0cfe5023-9b34-420c-b050-61ff89286fbe" testId="8d4d8e6b-7a21-e3cc-c038-b79e36ecd20b" testName="serializetests.serialize hotel state 2" computerName="Antonios-MBP" duration="00:00:00.0040000" startTime="2022-10-28T23:21:52.7012210+02:00" endTime="2022-10-28T23:21:52.7119720+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0cfe5023-9b34-420c-b050-61ff89286fbe" />
+    <UnitTestResult executionId="cd90c7c4-6225-4cf8-8584-4859bc8124a4" testId="921813ed-c4d7-826b-5b7f-b8a29207a9a8" testName="serializetests.serialize hotel state 1" computerName="Antonios-MBP" duration="00:00:00.0140000" startTime="2022-10-28T23:21:52.6892560+02:00" endTime="2022-10-28T23:21:52.7077720+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cd90c7c4-6225-4cf8-8584-4859bc8124a4" />
+    <UnitTestResult executionId="73ba1aa8-0911-48d5-b81d-6d3636cd19a6" testId="8a58f7e6-fa5d-e050-071b-b735ab40e67d" testName="Domain objects.the busy day of a two days night will be the checkin day and the one after" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7531720+02:00" endTime="2022-10-28T23:21:52.7541700+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="73ba1aa8-0911-48d5-b81d-6d3636cd19a6" />
+    <UnitTestResult executionId="eb4e7ec1-df7b-4002-97c5-83be34753d96" testId="a79359dc-9b8c-8bcd-4f74-f88918bf16f4" testName="Domain model logic.larger booking interval. Get the booked days. From checkin date to checkout date excluded - Ok" computerName="Antonios-MBP" duration="00:00:00.0010000" startTime="2022-10-28T23:21:52.7645930+02:00" endTime="2022-10-28T23:21:52.7664970+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="eb4e7ec1-df7b-4002-97c5-83be34753d96" />
+    <UnitTestResult executionId="104eb6a8-b791-4dbf-9fa2-edd3083426c6" testId="d647a503-9f36-037a-425a-3a92a46a0016" testName="Domain objects.two bookings having all fields equals are equals - Ok" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7416840+02:00" endTime="2022-10-28T23:21:52.7421070+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="104eb6a8-b791-4dbf-9fa2-edd3083426c6" />
+    <UnitTestResult executionId="732de946-2f6f-432e-9a9a-3e6382b19a13" testId="4b8463d7-1a05-6143-eed1-2d835dec41b5" testName="application level/controller tests, hotel and room tests.add two rooms commands and make a snapshot of the current state - OK" computerName="Antonios-MBP" duration="00:00:00.0160000" startTime="2022-10-28T23:21:53.2716680+02:00" endTime="2022-10-28T23:21:53.2879820+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="732de946-2f6f-432e-9a9a-3e6382b19a13" />
+    <UnitTestResult executionId="b297fcef-8663-44b4-9330-486900c19ec9" testId="7eb34abb-4e0b-d2af-014c-5d29c77fc39c" testName="application level/controller tests, hotel and room tests.add a new room command and get the state. the last snapshot is not the state without calling mksnapshot" computerName="Antonios-MBP" duration="00:00:00.0070000" startTime="2022-10-28T23:21:53.2329650+02:00" endTime="2022-10-28T23:21:53.2407450+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b297fcef-8663-44b4-9330-486900c19ec9" />
+    <UnitTestResult executionId="4aa54fef-7fc6-4562-a66e-e779e5426d7e" testId="5342ea11-8fea-afb4-7d9d-d843dd53a169" testName="Domain objects.two bookings with different roomid are not equal" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7531480+02:00" endTime="2022-10-28T23:21:52.7535070+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4aa54fef-7fc6-4562-a66e-e779e5426d7e" />
+    <UnitTestResult executionId="2ac89df1-dd29-4ce4-98d7-82558bfe066f" testId="443a9a29-9c23-8760-f086-4164e3e7c3f1" testName="serializetests.union event booking added test deserialize - OK" computerName="Antonios-MBP" duration="00:00:00.0070000" startTime="2022-10-28T23:21:52.7138370+02:00" endTime="2022-10-28T23:21:52.7338210+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2ac89df1-dd29-4ce4-98d7-82558bfe066f" />
+    <UnitTestResult executionId="4533011e-929d-4e71-a1a7-410360a866a7" testId="4af5199e-882c-83fa-50ac-4ad764633859" testName="Domain model logic.add bookings that overlaps - Error" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7772980+02:00" endTime="2022-10-28T23:21:52.7794380+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4533011e-929d-4e71-a1a7-410360a866a7" />
+    <UnitTestResult executionId="04a8e61c-ca3b-492f-af33-67a66c602777" testId="98950fc7-74c9-455e-6eea-4aa7fa3f330b" testName="serializetests.union event test deserialize" computerName="Antonios-MBP" duration="00:00:00.0050000" startTime="2022-10-28T23:21:52.7266080+02:00" endTime="2022-10-28T23:21:52.7319260+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="04a8e61c-ca3b-492f-af33-67a66c602777" />
+    <UnitTestResult executionId="547ad9f2-8eed-42d1-b29a-fc9a7db1f41b" testId="c39c8b41-04d3-d17c-f5d9-db608a500c06" testName="Domain events.add booking on free period - Ok" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7900950+02:00" endTime="2022-10-28T23:21:52.7904910+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="547ad9f2-8eed-42d1-b29a-fc9a7db1f41b" />
+    <UnitTestResult executionId="8a4b1061-5740-405c-bf9e-bf7d97fed8a7" testId="77a575d6-cd5e-519e-2be3-43f557083fb8" testName="Domain model logic.a hotel with only a room which is free in the queried period will give the room as result" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7772800+02:00" endTime="2022-10-28T23:21:52.7794180+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8a4b1061-5740-405c-bf9e-bf7d97fed8a7" />
+    <UnitTestResult executionId="d5da5326-14f9-4991-9198-cc7689251d15" testId="21232319-69fa-e409-c899-adc0a04dd31b" testName="Domain model logic.create a booking about a room that doesn't exist - Error" computerName="Antonios-MBP" duration="00:00:00.0020000" startTime="2022-10-28T23:21:52.7532660+02:00" endTime="2022-10-28T23:21:52.7561260+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d5da5326-14f9-4991-9198-cc7689251d15" />
+    <UnitTestResult executionId="412f13b9-8ac6-42c8-b3e9-d830f992ec3c" testId="52828b1e-17f6-23a7-10ac-34891c1d199d" testName="serializetests.union event roomAdded test deserialize  - error" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7290170+02:00" endTime="2022-10-28T23:21:52.7298190+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="412f13b9-8ac6-42c8-b3e9-d830f992ec3c" />
+    <UnitTestResult executionId="bd5586cc-9c8b-4534-94c2-251f91ea69c3" testId="3cd9b3a2-a7e5-de0e-5d29-d9a6617bc734" testName="Domain events.add a room and a booking - Ok" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7898490+02:00" endTime="2022-10-28T23:21:52.7904210+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bd5586cc-9c8b-4534-94c2-251f91ea69c3" />
+    <UnitTestResult executionId="9f184364-b39a-436d-87ec-22507d87fb36" testId="8a1b47e0-1df5-9ed3-3454-dd1ebdf3cabf" testName="Domain model logic.cannot add a booking about the same room when the period is the same - Error" computerName="Antonios-MBP" duration="00:00:00.0050000" startTime="2022-10-28T23:21:52.7646340+02:00" endTime="2022-10-28T23:21:52.7707000+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9f184364-b39a-436d-87ec-22507d87fb36" />
+    <UnitTestResult executionId="90cfa356-8c6a-4611-b215-a272abf16fac" testId="14e40356-6495-cfab-1d03-0c4a835425ef" testName="Domain events.add booking event - Ok" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7898480+02:00" endTime="2022-10-28T23:21:52.7903260+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="90cfa356-8c6a-4611-b215-a272abf16fac" />
+    <UnitTestResult executionId="12b8f44a-7fa8-4037-a39a-87986d4060e6" testId="f070a9e0-1d62-b852-be1f-73f0d047eb48" testName="serializetests.serialize hotel state 3" computerName="Antonios-MBP" duration="00:00:00.0020000" startTime="2022-10-28T23:21:52.7135020+02:00" endTime="2022-10-28T23:21:52.7291470+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="12b8f44a-7fa8-4037-a39a-87986d4060e6" />
+    <UnitTestResult executionId="9648f37f-14cf-409f-8545-eff15fb61a01" testId="61f835d2-276c-2ba6-01d7-e3d04b958b5d" testName="serializetests.deserialize room2 - OK" computerName="Antonios-MBP" duration="00:00:00.0160000" startTime="2022-10-28T23:21:52.6891890+02:00" endTime="2022-10-28T23:21:52.7077930+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9648f37f-14cf-409f-8545-eff15fb61a01" />
+    <UnitTestResult executionId="238ddafb-29ef-4fdf-a254-1e7b448eca0a" testId="be7182a9-e1cc-5071-27dd-0d38edac3d33" testName="ceTest.ce test with a let! and a normal assignment. return normal assignment - ok" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.8151710+02:00" endTime="2022-10-28T23:21:52.8156070+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="238ddafb-29ef-4fdf-a254-1e7b448eca0a" />
+    <UnitTestResult executionId="d44c19d3-f19e-48af-a9eb-2acb14b71d5b" testId="28b80a9b-353f-8ff5-35d8-0dcc0e464ae2" testName="Domain events.add already existing room - Error" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7898580+02:00" endTime="2022-10-28T23:21:52.7905420+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d44c19d3-f19e-48af-a9eb-2acb14b71d5b" />
+    <UnitTestResult executionId="9b1046bf-5c09-44ef-9a17-c7936aaf119a" testId="d06fc3d2-c667-360c-b921-65f02a3bdbb3" testName="Domain events.add room event  - Ok" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7790200+02:00" endTime="2022-10-28T23:21:52.7791270+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9b1046bf-5c09-44ef-9a17-c7936aaf119a" />
+    <UnitTestResult executionId="4577c8ca-2b51-428f-9c8d-1ef731522817" testId="c22534ff-135e-a0b8-0537-edafc8c99b42" testName="serializeCommandstests.serialize AddRoom" computerName="Antonios-MBP" duration="00:00:00.0020000" startTime="2022-10-28T23:21:52.7292870+02:00" endTime="2022-10-28T23:21:52.7317440+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4577c8ca-2b51-428f-9c8d-1ef731522817" />
+    <UnitTestResult executionId="12c0e879-ffe5-4a99-8f98-64f8d9f5d9ec" testId="1d024ba8-4998-773c-84d2-ff446d5d1b0e" testName="Domain model logic.an hotel with a room and no booking will give the room as available for any checkin-checkout period " computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7772380+02:00" endTime="2022-10-28T23:21:52.7793970+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="12c0e879-ffe5-4a99-8f98-64f8d9f5d9ec" />
+    <UnitTestResult executionId="d68e9b22-8e76-4643-941b-042b0c94ff78" testId="aea8dd3f-904e-1b4e-3565-f1f99a1cb2fb" testName="Union.addRoom command returns roomAdded event - Ok" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.8024950+02:00" endTime="2022-10-28T23:21:52.8026320+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d68e9b22-8e76-4643-941b-042b0c94ff78" />
+    <UnitTestResult executionId="23964bf8-9d75-4594-9a12-e6d8386d89b4" testId="a2b4159b-770f-f7c4-cf23-8b766bc2c2fa" testName="ceTest.ce test with two let! assignments. returns the second ok" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.8151970+02:00" endTime="2022-10-28T23:21:52.8157920+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="23964bf8-9d75-4594-9a12-e6d8386d89b4" />
+    <UnitTestResult executionId="dcf0218c-a093-4aa4-9a17-1e9d0f7dfdf4" testId="caac7d4d-41d3-3b61-7902-933608a3b3df" testName="ceTest.ce test no binding to let!, no error" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.8025040+02:00" endTime="2022-10-28T23:21:52.8029060+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dcf0218c-a093-4aa4-9a17-1e9d0f7dfdf4" />
+    <UnitTestResult executionId="7f1cc4cb-fd6c-4ce8-8cba-d6279c42aae4" testId="0e906688-ef31-38a6-5416-86493a352f3a" testName="Domain model logic.the checkin date of a booking can be the checkout date of another booking - Ok" computerName="Antonios-MBP" duration="00:00:00.0010000" startTime="2022-10-28T23:21:52.7772250+02:00" endTime="2022-10-28T23:21:52.7786910+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7f1cc4cb-fd6c-4ce8-8cba-d6279c42aae4" />
+    <UnitTestResult executionId="f7ca0d48-0faf-4bf5-a45d-1d5378714d3b" testId="dfdeb31b-c74f-2bf6-58ae-298e1b3f388a" testName="commandSequenceToEventSequence.when the list contains a singl command that can be executed returning ok then the corresponding ok event is retured" computerName="Antonios-MBP" duration="00:00:00.0010000" startTime="2022-10-28T23:21:52.7409550+02:00" endTime="2022-10-28T23:21:52.7422910+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f7ca0d48-0faf-4bf5-a45d-1d5378714d3b" />
+    <UnitTestResult executionId="23411c94-821e-45d5-a8ca-60f11ecd271f" testId="2d472249-0957-9258-6d05-687f0913fd83" testName="serializeEventsTests.add room with the same id twice - Error" computerName="Antonios-MBP" duration="00:00:00.0030000" startTime="2022-10-28T23:21:52.7409090+02:00" endTime="2022-10-28T23:21:52.7442400+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="23411c94-821e-45d5-a8ca-60f11ecd271f" />
+    <UnitTestResult executionId="fda7bea1-a270-4cfd-a284-bcc2c2f3e3a7" testId="e0677495-19d1-35e1-c6d1-6498f0db53ec" testName="serializeEventsTests.add two rooms wrong json format - Error" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7409480+02:00" endTime="2022-10-28T23:21:52.7417620+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fda7bea1-a270-4cfd-a284-bcc2c2f3e3a7" />
+    <UnitTestResult executionId="1ec6109b-368a-41e8-98ee-8cb40ecb4a9a" testId="81fe1005-1a3d-40b0-d8b4-dcf236241ec6" testName="serializetests.serialize room - OK" computerName="Antonios-MBP" duration="00:00:00.0080000" startTime="2022-10-28T23:21:52.6887840+02:00" endTime="2022-10-28T23:21:52.7077800+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1ec6109b-368a-41e8-98ee-8cb40ecb4a9a" />
+    <UnitTestResult executionId="c797df65-00be-4bf0-89b9-af9681dc8191" testId="4c313fe3-aefd-4c07-6d83-5f0e6ac42cf0" testName="serializetests.serialize room" computerName="Antonios-MBP" duration="00:00:00.0140000" startTime="2022-10-28T23:21:52.6885180+02:00" endTime="2022-10-28T23:21:52.7087080+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c797df65-00be-4bf0-89b9-af9681dc8191" />
+    <UnitTestResult executionId="bfa55ebe-b0b7-4924-9013-ea25b4b0c86a" testId="ec11ab20-36e8-0336-bde0-6bac95d4d447" testName="Domain model logic.add a booking that already has an id Error - Ok" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7646120+02:00" endTime="2022-10-28T23:21:52.7651120+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bfa55ebe-b0b7-4924-9013-ea25b4b0c86a" />
+    <UnitTestResult executionId="e4ef1fe8-0f09-4843-bcc3-5ce9d8497c45" testId="854cd5f3-3c0d-b352-0397-5f9c6f440bdf" testName="ceTest.ce test with a normal binding and a let! binding. returns the second" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.8025360+02:00" endTime="2022-10-28T23:21:52.8030940+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e4ef1fe8-0f09-4843-bcc3-5ce9d8497c45" />
+    <UnitTestResult executionId="e7c1fc7c-2e21-40a6-bce9-e40614a16d9c" testId="e7a4501a-0efe-f569-1c92-6724bc4cef1e" testName="serializeEventsTests.interpret single addRoom event from serialized" computerName="Antonios-MBP" duration="00:00:00.0030000" startTime="2022-10-28T23:21:52.7316060+02:00" endTime="2022-10-28T23:21:52.7348480+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e7c1fc7c-2e21-40a6-bce9-e40614a16d9c" />
+    <UnitTestResult executionId="b720b025-6e00-425c-84e3-268a7b48427e" testId="c0ab15bc-8f9d-dbc9-cd95-81a73bb886ac" testName="Domain objects.two bookings with different day of checkin/out, are not equal" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7531560+02:00" endTime="2022-10-28T23:21:52.7535190+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b720b025-6e00-425c-84e3-268a7b48427e" />
+    <UnitTestResult executionId="57388583-a80a-49ba-a5e0-c7957367831d" testId="6dfbebd9-f56b-5aa5-8caf-f54bfc451bba" testName="commandSequenceToEventSequence.add existing room command - KO" computerName="Antonios-MBP" duration="00:00:00.0020000" startTime="2022-10-28T23:21:52.7409620+02:00" endTime="2022-10-28T23:21:52.7442460+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="57388583-a80a-49ba-a5e0-c7957367831d" />
+    <UnitTestResult executionId="7203ee8b-a4e6-4ace-985f-145455fc6a11" testId="a9e3dc4b-83f5-7bd7-bda6-271bba442e84" testName="Domain objects.the busy day of a one day night is only the checkin day" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7531720+02:00" endTime="2022-10-28T23:21:52.7541760+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7203ee8b-a4e6-4ace-985f-145455fc6a11" />
+    <UnitTestResult executionId="a49d7e54-f282-454e-be7c-c6f830f9f680" testId="a6f6609d-a61e-968f-d0cf-93df0b3a7742" testName="ceTest.ce test with three let! bindings. the second is error" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.8151360+02:00" endTime="2022-10-28T23:21:52.8156340+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a49d7e54-f282-454e-be7c-c6f830f9f680" />
+    <UnitTestResult executionId="13a61438-67b0-4c0a-9374-f508309f2f53" testId="8ef8e9c1-73bb-89c6-8383-0e626bb82fe6" testName="serializetests.serialize room2 - OK" computerName="Antonios-MBP" duration="00:00:00.0140000" startTime="2022-10-28T23:21:52.6892610+02:00" endTime="2022-10-28T23:21:52.7077870+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="13a61438-67b0-4c0a-9374-f508309f2f53" />
+    <UnitTestResult executionId="01cd2d04-1c84-48c1-a478-6f7118325d2a" testId="024969fe-490d-20a8-1c58-604d7836922d" testName="Domain model logic.add a room when a room with the same id already exists in the hotel - Error" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7531900+02:00" endTime="2022-10-28T23:21:52.7539740+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="01cd2d04-1c84-48c1-a478-6f7118325d2a" />
+    <UnitTestResult executionId="3d8ade1d-f91e-4d0f-8a29-98d19e430a27" testId="b7e6879b-e157-b39c-6fe9-3bdf194c24fe" testName="ceTest.ce test with a let! and a normal assignment, return first assignment" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.8151900+02:00" endTime="2022-10-28T23:21:52.8157440+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3d8ade1d-f91e-4d0f-8a29-98d19e430a27" />
+    <UnitTestResult executionId="7b4c8824-e310-4377-a34a-24d62339e634" testId="b77bb403-f527-7a99-46d4-f7bb101dd095" testName="serializetests.deserialize hotel state 4" computerName="Antonios-MBP" duration="00:00:00.0020000" startTime="2022-10-28T23:21:52.7138200+02:00" endTime="2022-10-28T23:21:52.7292080+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7b4c8824-e310-4377-a34a-24d62339e634" />
+    <UnitTestResult executionId="899e071b-3405-4af3-94af-f32cfec69163" testId="7dad93a4-d5a0-6d4b-1bef-e2a5a0863f3c" testName="Domain model logic.add more bookings on same room, that have no overlaps - Ok" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7650910+02:00" endTime="2022-10-28T23:21:52.7659910+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="899e071b-3405-4af3-94af-f32cfec69163" />
+    <UnitTestResult executionId="e5b1292d-b9cc-48d3-8e71-abadbd9b8d2e" testId="e3b856da-b21a-c6de-4f28-cdaab38c7dba" testName="Domain model logic.create booking about an existing room - Ok" computerName="Antonios-MBP" duration="00:00:00.0020000" startTime="2022-10-28T23:21:52.7531990+02:00" endTime="2022-10-28T23:21:52.7561480+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e5b1292d-b9cc-48d3-8e71-abadbd9b8d2e" />
+    <UnitTestResult executionId="287beb46-b17e-4222-9661-678bf6b45c20" testId="6b3be6ac-b21d-948f-6b10-a6e8fc7fa830" testName="Domain model logic.after creating a booking, then the busy days of the booking are the days in the checkin checkout interval (excluding checkout day) - Ok" computerName="Antonios-MBP" duration="00:00:00.0010000" startTime="2022-10-28T23:21:52.7645950+02:00" endTime="2022-10-28T23:21:52.7664970+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="287beb46-b17e-4222-9661-678bf6b45c20" />
+    <UnitTestResult executionId="36fc1b4d-5ac9-4c6d-a40c-8142cdcedbff" testId="a43e6dd0-0876-ecde-2397-451fc1d191a7" testName="Domain model logic.add a room to an empty hotel - Ok" computerName="Antonios-MBP" duration="00:00:00.0010000" startTime="2022-10-28T23:21:52.7531720+02:00" endTime="2022-10-28T23:21:52.7550430+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="36fc1b4d-5ac9-4c6d-a40c-8142cdcedbff" />
+    <UnitTestResult executionId="9d95c96d-6214-4958-9dba-cc0c5a1f76dd" testId="011844c5-ab7c-87a3-1ccb-e3bd7236f72d" testName="commandSequenceToEventSequence.add existing room, two commands, error from second command - KO" computerName="Antonios-MBP" duration="00:00:00.0020000" startTime="2022-10-28T23:21:52.7410350+02:00" endTime="2022-10-28T23:21:52.7442470+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9d95c96d-6214-4958-9dba-cc0c5a1f76dd" />
+    <UnitTestResult executionId="6562ef62-c3db-4b76-8dd6-66e3656f0424" testId="28862e76-62e2-0444-ac63-744f9c209e9b" testName="ceTest.ce test with two let! bindings. Returns the first" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.8025380+02:00" endTime="2022-10-28T23:21:52.8032330+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6562ef62-c3db-4b76-8dd6-66e3656f0424" />
+    <UnitTestResult executionId="f3fae26e-139a-4449-89d0-6784d8f14759" testId="e9bf5912-a797-4ee4-b9dd-49ec4caa3cbf" testName="serializetests.union event room added test serialize " computerName="Antonios-MBP" duration="00:00:00.0040000" startTime="2022-10-28T23:21:52.7138230+02:00" endTime="2022-10-28T23:21:52.7315960+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f3fae26e-139a-4449-89d0-6784d8f14759" />
+    <UnitTestResult executionId="f54db8d9-0571-42ae-adac-c1c48513bcd5" testId="053004a9-8cfa-251b-618b-7c7e90555703" testName="serializeCommandstests.serialize AddBooking" computerName="Antonios-MBP" duration="00:00:00.0020000" startTime="2022-10-28T23:21:52.7298490+02:00" endTime="2022-10-28T23:21:52.7331150+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f54db8d9-0571-42ae-adac-c1c48513bcd5" />
+    <UnitTestResult executionId="59a764f4-8cb8-4ee7-b31d-5d474986e9d0" testId="14e0e164-6e39-4e94-f653-a965aed338d2" testName="application level/controller tests, hotel and room tests.add already existing rooms command error - ok" computerName="Antonios-MBP" duration="00:00:00.0050000" startTime="2022-10-28T23:21:53.2880110+02:00" endTime="2022-10-28T23:21:53.2938210+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="59a764f4-8cb8-4ee7-b31d-5d474986e9d0" />
+    <UnitTestResult executionId="35ad3401-bc38-4c10-be47-82c4915e166e" testId="d03b1c90-8631-2835-9600-04aae5c586c7" testName="Union.addBooking command returns bookingAdded event - Ok" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.8025040+02:00" endTime="2022-10-28T23:21:52.8030340+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="35ad3401-bc38-4c10-be47-82c4915e166e" />
+    <UnitTestResult executionId="26dacf60-efec-4214-9ed8-148a8e44497e" testId="1fb29d8f-e1fb-8e76-f126-c4ec73ab692a" testName="ceTest.ce test with a let binding" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.8025150+02:00" endTime="2022-10-28T23:21:52.8029660+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="26dacf60-efec-4214-9ed8-148a8e44497e" />
+    <UnitTestResult executionId="14b379ab-6bb9-40d7-867f-1a9979bc27b1" testId="849d77f2-3e62-9da6-9cca-ebc2d7ff486f" testName="Domain events.add a room and a booking UNION EVENT - Ok" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7898580+02:00" endTime="2022-10-28T23:21:52.7902760+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="14b379ab-6bb9-40d7-867f-1a9979bc27b1" />
+    <UnitTestResult executionId="1234fd69-e767-4235-b335-6cb4c54acec5" testId="d29128ae-b25a-2392-2573-2312f520344a" testName="Domain events.add booking simple event - Ok" computerName="Antonios-MBP" startTime="2022-10-28T23:21:52.7898300+02:00" endTime="2022-10-28T23:21:52.7902580+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1234fd69-e767-4235-b335-6cb4c54acec5" />
+    <UnitTestResult executionId="49de9149-1019-400b-90e7-71f5ce2b65d1" testId="b9961cf9-3537-f75d-0e1b-95a5a21eb89d" testName="serializetests.deserialize hotel state 1 - Ok" computerName="Antonios-MBP" duration="00:00:00.0080000" startTime="2022-10-28T23:21:52.6892690+02:00" endTime="2022-10-28T23:21:52.7077900+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="49de9149-1019-400b-90e7-71f5ce2b65d1" />
   </Results>
   <TestDefinitions>
     <UnitTest name="Domain model logic.cannot add a booking about the same room when the period is the same - Error" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="8a1b47e0-1df5-9ed3-3454-dd1ebdf3cabf">
-      <Execution id="6296d6df-fb4a-46b9-b4fa-90496b264cff" />
+      <Execution id="9f184364-b39a-436d-87ec-22507d87fb36" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain model logic" name="cannot add a booking about the same room when the period is the same - Error" />
     </UnitTest>
-    <UnitTest name="Domain objects.rooms with the same id are the same room" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="f9473589-8697-ee53-af41-813844e45d4f">
-      <Execution id="cb4dd267-c5d8-4622-a3f0-e589e3aeff85" />
-      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain objects" name="rooms with the same id are the same room" />
+    <UnitTest name="Domain model logic.a hotel with two free rooms in the queried period will give both the room as result" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="d7c1f34b-d13d-2894-b201-95a1b9bef8cd">
+      <Execution id="4ac47a85-5380-49bf-a3fe-5c194442e7d3" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain model logic" name="a hotel with two free rooms in the queried period will give both the room as result" />
     </UnitTest>
     <UnitTest name="Domain objects.two bookings having all fields equals are equals - Ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="d647a503-9f36-037a-425a-3a92a46a0016">
-      <Execution id="eee4226c-4a0a-4099-8856-9ab0149b7074" />
+      <Execution id="104eb6a8-b791-4dbf-9fa2-edd3083426c6" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain objects" name="two bookings having all fields equals are equals - Ok" />
     </UnitTest>
     <UnitTest name="serializeEventsTests.interpret single addRoom event from serialized" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="e7a4501a-0efe-f569-1c92-6724bc4cef1e">
-      <Execution id="0ead45ac-b337-4624-9a52-7c5d5c5321f3" />
+      <Execution id="e7c1fc7c-2e21-40a6-bce9-e40614a16d9c" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="serializeEventsTests" name="interpret single addRoom event from serialized" />
     </UnitTest>
     <UnitTest name="serializetests.deserialize hotel state 1 - Ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="b9961cf9-3537-f75d-0e1b-95a5a21eb89d">
-      <Execution id="e1cccb27-c504-41de-9cda-c2cce76a39c3" />
+      <Execution id="49de9149-1019-400b-90e7-71f5ce2b65d1" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="serializetests" name="deserialize hotel state 1 - Ok" />
     </UnitTest>
     <UnitTest name="serializetests.union event booking added test serialize - OK" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="48601633-dd24-1d46-2b43-f3e3d31eefd3">
-      <Execution id="458a116f-58f9-4c28-bcb4-eae0285ec427" />
+      <Execution id="47a5ea4a-c220-42fd-8d74-2798d755c845" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="serializetests" name="union event booking added test serialize - OK" />
     </UnitTest>
     <UnitTest name="serializetests.deserialize hotel state 2" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="ff99d881-d379-5a18-d9e8-6f1c077c8d3c">
-      <Execution id="dcc59c7e-5afc-480b-bee7-dec5ab8ce920" />
+      <Execution id="66e1f1c8-03c1-4170-a943-f989c73fd8d0" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="serializetests" name="deserialize hotel state 2" />
     </UnitTest>
+    <UnitTest name="ceTest.ce test with a let binding" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="1fb29d8f-e1fb-8e76-f126-c4ec73ab692a">
+      <Execution id="26dacf60-efec-4214-9ed8-148a8e44497e" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="ceTest" name="ce test with a let binding" />
+    </UnitTest>
     <UnitTest name="Domain objects.the busy day of a one day night is only the checkin day" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="a9e3dc4b-83f5-7bd7-bda6-271bba442e84">
-      <Execution id="c134ea35-a948-48aa-b226-388f01955031" />
+      <Execution id="7203ee8b-a4e6-4ace-985f-145455fc6a11" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain objects" name="the busy day of a one day night is only the checkin day" />
     </UnitTest>
+    <UnitTest name="Domain model logic.create booking about an existing room - Ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="e3b856da-b21a-c6de-4f28-cdaab38c7dba">
+      <Execution id="e5b1292d-b9cc-48d3-8e71-abadbd9b8d2e" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain model logic" name="create booking about an existing room - Ok" />
+    </UnitTest>
     <UnitTest name="serializetests.serialize hotel state 3" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="f070a9e0-1d62-b852-be1f-73f0d047eb48">
-      <Execution id="e1dc881b-1129-4656-89cb-0a600413c50c" />
+      <Execution id="12b8f44a-7fa8-4037-a39a-87986d4060e6" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="serializetests" name="serialize hotel state 3" />
     </UnitTest>
     <UnitTest name="serializeCommandstests.serialize AddRoom" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="c22534ff-135e-a0b8-0537-edafc8c99b42">
-      <Execution id="4b012771-65cc-40a5-9583-48b3e52e3186" />
+      <Execution id="4577c8ca-2b51-428f-9c8d-1ef731522817" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="serializeCommandstests" name="serialize AddRoom" />
     </UnitTest>
     <UnitTest name="Domain model logic.the checkin date of a booking can be the checkout date of another booking - Ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="0e906688-ef31-38a6-5416-86493a352f3a">
-      <Execution id="a64cb0e3-2ceb-46b1-a2b0-72b112bc3223" />
+      <Execution id="7f1cc4cb-fd6c-4ce8-8cba-d6279c42aae4" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain model logic" name="the checkin date of a booking can be the checkout date of another booking - Ok" />
     </UnitTest>
     <UnitTest name="Domain events.add room event  - Ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="d06fc3d2-c667-360c-b921-65f02a3bdbb3">
-      <Execution id="a75e264b-60e4-4a1b-bb6a-ee539d51c9da" />
+      <Execution id="9b1046bf-5c09-44ef-9a17-c7936aaf119a" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain events" name="add room event  - Ok" />
     </UnitTest>
-    <UnitTest name="Domain model logic.create booking about a room that does exists - Ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="8402aa69-c2f7-e83d-7775-793652b9cb11">
-      <Execution id="8aabd607-8faf-4571-8417-9f1d377ecee3" />
-      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain model logic" name="create booking about a room that does exists - Ok" />
-    </UnitTest>
     <UnitTest name="Domain model logic.two booking on two different available rooms - Ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="7ebb4df5-9432-45da-8bfe-8e94e5d57892">
-      <Execution id="c9af8839-ef33-45ef-9003-b429f29486b8" />
+      <Execution id="8087a336-87f2-4576-b0d6-3fe97ae4a69a" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain model logic" name="two booking on two different available rooms - Ok" />
     </UnitTest>
+    <UnitTest name="ceTest.ce test with a normal binding and a let! binding. returns the second" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="854cd5f3-3c0d-b352-0397-5f9c6f440bdf">
+      <Execution id="e4ef1fe8-0f09-4843-bcc3-5ce9d8497c45" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="ceTest.ce test with a normal binding and a let! binding" name=" returns the second" />
+    </UnitTest>
     <UnitTest name="Domain events.add overlapping booking - Error" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="fbe13574-e2b3-b5df-5591-40f0909cc419">
-      <Execution id="1124add8-2735-4305-9a18-8a7ab4ccaf8e" />
+      <Execution id="41ed4cba-7e1f-4558-9773-d73c48b6ee30" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain events" name="add overlapping booking - Error" />
     </UnitTest>
     <UnitTest name="Domain model logic.add a booking that already has an id Error - Ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="ec11ab20-36e8-0336-bde0-6bac95d4d447">
-      <Execution id="c2b0e864-3197-42d8-a5c0-9016460523f6" />
+      <Execution id="bfa55ebe-b0b7-4924-9013-ea25b4b0c86a" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain model logic" name="add a booking that already has an id Error - Ok" />
     </UnitTest>
     <UnitTest name="Union.addBooking command returns Error in booking unxisting room - KO" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="59ec0422-e867-60c2-aad7-7ea675661997">
-      <Execution id="23d3de8f-d66c-4644-b791-2974f8c1390d" />
+      <Execution id="8319ee2d-7508-44c3-bb18-f7a9106f7436" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Union" name="addBooking command returns Error in booking unxisting room - KO" />
     </UnitTest>
     <UnitTest name="Domain model logic.create a booking about a room that doesn't exist - Error" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="21232319-69fa-e409-c899-adc0a04dd31b">
-      <Execution id="8429095b-384b-4794-ac7f-b70abf89717f" />
+      <Execution id="d5da5326-14f9-4991-9198-cc7689251d15" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain model logic" name="create a booking about a room that doesn't exist - Error" />
     </UnitTest>
-    <UnitTest name="serializetests.deserialize room2" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="346a9703-c748-87ca-0f3b-8f9b3b254028">
-      <Execution id="1d3a23d4-4903-44fb-83b4-f1e7abbc1c05" />
-      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="serializetests" name="deserialize room2" />
-    </UnitTest>
     <UnitTest name="Union.addRoom command returns roomAdded event - Ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="aea8dd3f-904e-1b4e-3565-f1f99a1cb2fb">
-      <Execution id="50ed75d8-e920-40cb-af9a-b10e4c5b5a1c" />
+      <Execution id="d68e9b22-8e76-4643-941b-042b0c94ff78" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Union" name="addRoom command returns roomAdded event - Ok" />
     </UnitTest>
+    <UnitTest name="Domain model logic.a hotel with only a room which is free in the queried period will give the room as result" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="77a575d6-cd5e-519e-2be3-43f557083fb8">
+      <Execution id="8a4b1061-5740-405c-bf9e-bf7d97fed8a7" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain model logic" name="a hotel with only a room which is free in the queried period will give the room as result" />
+    </UnitTest>
     <UnitTest name="Domain model logic.add a room when a room with the same id already exists in the hotel - Error" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="024969fe-490d-20a8-1c58-604d7836922d">
-      <Execution id="0d150cb9-12c4-4c2f-9699-83618789604d" />
+      <Execution id="01cd2d04-1c84-48c1-a478-6f7118325d2a" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain model logic" name="add a room when a room with the same id already exists in the hotel - Error" />
     </UnitTest>
+    <UnitTest name="Domain model logic.an hotel with a room and no booking will give the room as available for any checkin-checkout period " storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="1d024ba8-4998-773c-84d2-ff446d5d1b0e">
+      <Execution id="12c0e879-ffe5-4a99-8f98-64f8d9f5d9ec" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain model logic" name="an hotel with a room and no booking will give the room as available for any checkin-checkout period " />
+    </UnitTest>
+    <UnitTest name="application level/controller tests, hotel and room tests.add two rooms commands and make a snapshot of the current state - OK" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="4b8463d7-1a05-6143-eed1-2d835dec41b5">
+      <Execution id="732de946-2f6f-432e-9a9a-3e6382b19a13" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="application level/controller tests, hotel and room tests" name="add two rooms commands and make a snapshot of the current state - OK" />
+    </UnitTest>
     <UnitTest name="Domain objects.two bookings with different roomid are not equal" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="5342ea11-8fea-afb4-7d9d-d843dd53a169">
-      <Execution id="dbb27d1f-82ae-4834-986c-647f3036b015" />
+      <Execution id="4aa54fef-7fc6-4562-a66e-e779e5426d7e" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain objects" name="two bookings with different roomid are not equal" />
     </UnitTest>
     <UnitTest name="Domain model logic.two booking intervals. Get the booked days - Ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="2716bf02-6f70-cffa-96fa-9cd278ef4a99">
-      <Execution id="b9af0d93-a760-4844-b3e4-074e5683a600" />
+      <Execution id="07a94523-decf-4fc0-851c-75aaa438a317" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain model logic.two booking intervals" name=" Get the booked days - Ok" />
     </UnitTest>
     <UnitTest name="serializetests.serialize hotel state 1" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="921813ed-c4d7-826b-5b7f-b8a29207a9a8">
-      <Execution id="3981fe74-97be-4d67-9e41-de42f2069d46" />
+      <Execution id="cd90c7c4-6225-4cf8-8584-4859bc8124a4" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="serializetests" name="serialize hotel state 1" />
     </UnitTest>
+    <UnitTest name="ceTest.ce test with three let! bindings. The first is error. Error is bound to the first" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="63254cb9-5c1e-e4cc-eecd-9eb01970a621">
+      <Execution id="080a2bae-4b72-418f-877b-193bc8a6ff17" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="ceTest.ce test with three let! bindings. The first is error" name=" Error is bound to the first" />
+    </UnitTest>
+    <UnitTest name="application level/controller tests, hotel and room tests.add a new room command and get the state. the last snapshot is not the state without calling mksnapshot" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="7eb34abb-4e0b-d2af-014c-5d29c77fc39c">
+      <Execution id="b297fcef-8663-44b4-9330-486900c19ec9" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="application level/controller tests, hotel and room tests.add a new room command and get the state" name=" the last snapshot is not the state without calling mksnapshot" />
+    </UnitTest>
     <UnitTest name="serializetests.union event roomAdded test deserialize  - error" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="52828b1e-17f6-23a7-10ac-34891c1d199d">
-      <Execution id="94f06f25-bcdf-45e8-9399-65b9789182ee" />
+      <Execution id="412f13b9-8ac6-42c8-b3e9-d830f992ec3c" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="serializetests" name="union event roomAdded test deserialize  - error" />
     </UnitTest>
     <UnitTest name="serializetests.deserialize hotel state 4" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="b77bb403-f527-7a99-46d4-f7bb101dd095">
-      <Execution id="c3c06b7c-6610-4e0f-aaa8-c4a45b07f7e2" />
+      <Execution id="7b4c8824-e310-4377-a34a-24d62339e634" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="serializetests" name="deserialize hotel state 4" />
     </UnitTest>
     <UnitTest name="Domain events.add a room and a booking UNION EVENT - Ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="849d77f2-3e62-9da6-9cca-ebc2d7ff486f">
-      <Execution id="15581465-b85e-4858-abe3-f871082bd741" />
+      <Execution id="14b379ab-6bb9-40d7-867f-1a9979bc27b1" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain events" name="add a room and a booking UNION EVENT - Ok" />
     </UnitTest>
     <UnitTest name="Domain model logic.add a room to an empty hotel - Ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="a43e6dd0-0876-ecde-2397-451fc1d191a7">
-      <Execution id="a8b65d9e-8c56-4042-b78e-c9b9b6c82c04" />
+      <Execution id="36fc1b4d-5ac9-4c6d-a40c-8142cdcedbff" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain model logic" name="add a room to an empty hotel - Ok" />
     </UnitTest>
-    <UnitTest name="domain objects tests.add a 'first' event in the db and so the last snapshot is the init-state + event" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="19f68e07-f3ef-3a07-24a8-0e0994772430">
-      <Execution id="64746fca-921a-4ae8-a639-4dedbdbb3814" />
-      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="domain objects tests" name="add a 'first' event in the db and so the last snapshot is the init-state + event" />
-    </UnitTest>
     <UnitTest name="Domain model logic.larger booking interval. Get the booked days. From checkin date to checkout date excluded - Ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="a79359dc-9b8c-8bcd-4f74-f88918bf16f4">
-      <Execution id="95208ed5-c723-4634-a97f-10ca95d8f929" />
+      <Execution id="eb4e7ec1-df7b-4002-97c5-83be34753d96" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain model logic.larger booking interval. Get the booked days" name=" From checkin date to checkout date excluded - Ok" />
     </UnitTest>
     <UnitTest name="Domain model logic.after creating a booking, then the booking must have an id - Ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="da3932f1-b438-2629-143b-14f82ec1b6d7">
-      <Execution id="75eb8daf-a053-4228-8fde-9dbafdc1798f" />
+      <Execution id="1888465b-e76c-4d7f-ad96-532ade00255c" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain model logic" name="after creating a booking, then the booking must have an id - Ok" />
     </UnitTest>
-    <UnitTest name="domain objects tests.when db is empty the last snapshot is the init" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="3459327b-38be-bd49-46f3-d0f8457fc868">
-      <Execution id="63b32417-d04f-49df-914f-e789f00fc562" />
-      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="domain objects tests" name="when db is empty the last snapshot is the init" />
+    <UnitTest name="ceTest.ce test with three let! bindings. the second is error" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="a6f6609d-a61e-968f-d0cf-93df0b3a7742">
+      <Execution id="a49d7e54-f282-454e-be7c-c6f830f9f680" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="ceTest.ce test with three let! bindings" name=" the second is error" />
+    </UnitTest>
+    <UnitTest name="application level/controller tests, hotel and room tests.add rooms commands and get the state that will have two rooms - OK" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="6deac8ac-65da-1d1c-d8dd-af65752f45e1">
+      <Execution id="7f0d5bac-6e85-4ba8-a4af-d53e82b12f75" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="application level/controller tests, hotel and room tests" name="add rooms commands and get the state that will have two rooms - OK" />
+    </UnitTest>
+    <UnitTest name="ceTest.ce test with a let! and a normal assignment. return normal assignment - ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="be7182a9-e1cc-5071-27dd-0d38edac3d33">
+      <Execution id="238ddafb-29ef-4fdf-a254-1e7b448eca0a" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="ceTest.ce test with a let! and a normal assignment" name=" return normal assignment - ok" />
     </UnitTest>
     <UnitTest name="commandSequenceToEventSequence.add existing room, two commands, error from second command - KO" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="011844c5-ab7c-87a3-1ccb-e3bd7236f72d">
-      <Execution id="f03bc130-7f0d-4841-9e26-cda66f3147d8" />
+      <Execution id="9d95c96d-6214-4958-9dba-cc0c5a1f76dd" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="commandSequenceToEventSequence" name="add existing room, two commands, error from second command - KO" />
     </UnitTest>
     <UnitTest name="serializeEventsTests.add room with the same id twice - Error" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="2d472249-0957-9258-6d05-687f0913fd83">
-      <Execution id="d8142017-ed8b-4e55-b4d2-b09fa659fb8e" />
+      <Execution id="23411c94-821e-45d5-a8ca-60f11ecd271f" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="serializeEventsTests" name="add room with the same id twice - Error" />
     </UnitTest>
     <UnitTest name="commandSequenceToEventSequence.when the list contains a singl command that can be executed returning ok then the corresponding ok event is retured" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="dfdeb31b-c74f-2bf6-58ae-298e1b3f388a">
-      <Execution id="c72fc6df-a2c9-44de-8702-afbe0271b24f" />
+      <Execution id="f7ca0d48-0faf-4bf5-a45d-1d5378714d3b" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="commandSequenceToEventSequence" name="when the list contains a singl command that can be executed returning ok then the corresponding ok event is retured" />
     </UnitTest>
     <UnitTest name="Domain events.add booking event - Ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="14e40356-6495-cfab-1d03-0c4a835425ef">
-      <Execution id="5fea994c-2108-4bac-a4c2-f9048ef0db27" />
+      <Execution id="90cfa356-8c6a-4611-b215-a272abf16fac" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain events" name="add booking event - Ok" />
     </UnitTest>
+    <UnitTest name="Domain model logic.a hotel with only a room which is booked in the queried period will give an empty room as result" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="09252eda-c5be-0d8b-e493-22a29e10ff6b">
+      <Execution id="389b1d88-2496-4f0f-bfa3-be22ea7bbb70" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain model logic" name="a hotel with only a room which is booked in the queried period will give an empty room as result" />
+    </UnitTest>
     <UnitTest name="serializetests.serialize hotel state 2" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="8d4d8e6b-7a21-e3cc-c038-b79e36ecd20b">
-      <Execution id="bac3bfd9-e35a-4ef5-b4f1-b37001516adf" />
+      <Execution id="0cfe5023-9b34-420c-b050-61ff89286fbe" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="serializetests" name="serialize hotel state 2" />
     </UnitTest>
     <UnitTest name="Domain events.add booking simple event - Ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="d29128ae-b25a-2392-2573-2312f520344a">
-      <Execution id="08b4db8d-058a-4e2b-af63-e896cbc66dbb" />
+      <Execution id="1234fd69-e767-4235-b335-6cb4c54acec5" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain events" name="add booking simple event - Ok" />
     </UnitTest>
     <UnitTest name="Domain objects.the busy day of a two days night will be the checkin day and the one after" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="8a58f7e6-fa5d-e050-071b-b735ab40e67d">
-      <Execution id="3f0ace14-a26f-4a79-979c-927b6f425324" />
+      <Execution id="73ba1aa8-0911-48d5-b81d-6d3636cd19a6" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain objects" name="the busy day of a two days night will be the checkin day and the one after" />
     </UnitTest>
     <UnitTest name="serializetests.union event room added test serialize " storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="e9bf5912-a797-4ee4-b9dd-49ec4caa3cbf">
-      <Execution id="7b0eebc6-c80e-4bb6-8c9d-192cc73be151" />
+      <Execution id="f3fae26e-139a-4449-89d0-6784d8f14759" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="serializetests" name="union event room added test serialize " />
     </UnitTest>
+    <UnitTest name="serializetests.deserialize room2 - OK" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="61f835d2-276c-2ba6-01d7-e3d04b958b5d">
+      <Execution id="9648f37f-14cf-409f-8545-eff15fb61a01" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="serializetests" name="deserialize room2 - OK" />
+    </UnitTest>
+    <UnitTest name="ceTest.ce test with three let! bindings. the first two are errors. return the first" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="9f22d483-0fe9-e9a8-6900-5929b7112fd0">
+      <Execution id="54cf0846-ecf0-48f6-b2d1-0a2a65c19c4d" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="ceTest.ce test with three let! bindings. the first two are errors" name=" return the first" />
+    </UnitTest>
     <UnitTest name="Domain model logic.add bookings that overlaps - Error" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="4af5199e-882c-83fa-50ac-4ad764633859">
-      <Execution id="d410964a-754e-46d9-95be-5146f6386964" />
+      <Execution id="4533011e-929d-4e71-a1a7-410360a866a7" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain model logic" name="add bookings that overlaps - Error" />
     </UnitTest>
+    <UnitTest name="Domain model logic.an empty hotel will give empty list of room available for any checkin-checkout period" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="7c6a7790-b37b-0c66-4677-4787a857fa51">
+      <Execution id="7d84918e-0e2e-4dba-97fc-f27116ee5e97" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain model logic" name="an empty hotel will give empty list of room available for any checkin-checkout period" />
+    </UnitTest>
     <UnitTest name="Domain objects.rooms with different ids are the different room" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="d1ce66b0-e3dd-f170-0dfc-c2450753eede">
-      <Execution id="d593b46b-648f-4018-aa3e-c023f825cf88" />
+      <Execution id="0c5dbade-f306-4959-9224-363e1034b32e" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain objects" name="rooms with different ids are the different room" />
     </UnitTest>
     <UnitTest name="Domain events.add a room and a booking - Ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="3cd9b3a2-a7e5-de0e-5d29-d9a6617bc734">
-      <Execution id="9045b5ed-257e-401a-a5ff-b32ca31b0b61" />
+      <Execution id="bd5586cc-9c8b-4534-94c2-251f91ea69c3" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain events" name="add a room and a booking - Ok" />
     </UnitTest>
     <UnitTest name="commandSequenceToEventSequence.add existing room command - KO" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="6dfbebd9-f56b-5aa5-8caf-f54bfc451bba">
-      <Execution id="d0efc811-c4f2-4779-b7d4-237418f7615b" />
+      <Execution id="57388583-a80a-49ba-a5e0-c7957367831d" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="commandSequenceToEventSequence" name="add existing room command - KO" />
     </UnitTest>
     <UnitTest name="serializeEventsTests.add two rooms wrong json format - Error" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="e0677495-19d1-35e1-c6d1-6498f0db53ec">
-      <Execution id="48ac1898-25d2-45e8-b12d-6d3f848a32ca" />
+      <Execution id="fda7bea1-a270-4cfd-a284-bcc2c2f3e3a7" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="serializeEventsTests" name="add two rooms wrong json format - Error" />
     </UnitTest>
+    <UnitTest name="ceTest.ce test with a let! and a normal assignment, return first assignment" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="b7e6879b-e157-b39c-6fe9-3bdf194c24fe">
+      <Execution id="3d8ade1d-f91e-4d0f-8a29-98d19e430a27" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="ceTest" name="ce test with a let! and a normal assignment, return first assignment" />
+    </UnitTest>
+    <UnitTest name="ceTest.ce test with thre let! bindings. Returns the third" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="15cc69cc-d216-6731-7a76-e151004260e0">
+      <Execution id="d77d59f1-8278-4807-b884-9e0562aadc22" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="ceTest.ce test with thre let! bindings" name=" Returns the third" />
+    </UnitTest>
     <UnitTest name="serializetests.serialize room" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="4c313fe3-aefd-4c07-6d83-5f0e6ac42cf0">
-      <Execution id="20aef01e-f8b4-4e65-b03a-06f0f6024d7e" />
+      <Execution id="c797df65-00be-4bf0-89b9-af9681dc8191" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="serializetests" name="serialize room" />
     </UnitTest>
-    <UnitTest name="serializetests.serialize room2" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="a87ed378-12a2-d3b0-0958-1c8b63972e39">
-      <Execution id="d11a0966-99a4-4801-88ef-7757bc47b678" />
-      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="serializetests" name="serialize room2" />
+    <UnitTest name="ceTest.ce test with two let! bindings. Returns the first" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="28862e76-62e2-0444-ac63-744f9c209e9b">
+      <Execution id="6562ef62-c3db-4b76-8dd6-66e3656f0424" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="ceTest.ce test with two let! bindings" name=" Returns the first" />
     </UnitTest>
     <UnitTest name="Domain model logic.add more bookings on same room, that have no overlaps - Ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="7dad93a4-d5a0-6d4b-1bef-e2a5a0863f3c">
-      <Execution id="76c305cd-43df-46ea-a19f-44309cdf0e39" />
+      <Execution id="899e071b-3405-4af3-94af-f32cfec69163" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain model logic" name="add more bookings on same room, that have no overlaps - Ok" />
     </UnitTest>
     <UnitTest name="Domain events.add booking on free period - Ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="c39c8b41-04d3-d17c-f5d9-db608a500c06">
-      <Execution id="1eb1dfef-e473-4f16-bd9d-ba79a5485d28" />
+      <Execution id="547ad9f2-8eed-42d1-b29a-fc9a7db1f41b" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain events" name="add booking on free period - Ok" />
     </UnitTest>
     <UnitTest name="Domain objects.two bookings with different day of checkin/out, are not equal" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="c0ab15bc-8f9d-dbc9-cd95-81a73bb886ac">
-      <Execution id="017d4f6d-cc7b-4aeb-ba72-458f129aa496" />
+      <Execution id="b720b025-6e00-425c-84e3-268a7b48427e" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain objects" name="two bookings with different day of checkin/out, are not equal" />
     </UnitTest>
     <UnitTest name="serializeCommandstests.serialize AddBooking" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="053004a9-8cfa-251b-618b-7c7e90555703">
-      <Execution id="a1d5a2f1-2675-4aea-b6af-0038470979cd" />
+      <Execution id="f54db8d9-0571-42ae-adac-c1c48513bcd5" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="serializeCommandstests" name="serialize AddBooking" />
     </UnitTest>
+    <UnitTest name="application level/controller tests, hotel and room tests.add a room and a booking, then get state - ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="f836138b-c9c2-a7ef-46c2-1c2c5f06def8">
+      <Execution id="183b1dba-0e0e-4fba-89a9-7f37addaeed3" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="application level/controller tests, hotel and room tests" name="add a room and a booking, then get state - ok" />
+    </UnitTest>
+    <UnitTest name="application level/controller tests, hotel and room tests.add a room and two overlapping booking, - Error" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="4bd9ac07-7d11-19a5-1bc2-778fc9a3a33d">
+      <Execution id="4ad2dfee-72be-420b-9c0d-dc8c1f2dfb67" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="application level/controller tests, hotel and room tests" name="add a room and two overlapping booking, - Error" />
+    </UnitTest>
+    <UnitTest name="application level/controller tests, hotel and room tests.add already existing rooms command error - ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="14e0e164-6e39-4e94-f653-a965aed338d2">
+      <Execution id="59a764f4-8cb8-4ee7-b31d-5d474986e9d0" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="application level/controller tests, hotel and room tests" name="add already existing rooms command error - ok" />
+    </UnitTest>
     <UnitTest name="serializetests.union event test deserialize" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="98950fc7-74c9-455e-6eea-4aa7fa3f330b">
-      <Execution id="cb55622c-be09-4029-be27-851044f25df4" />
+      <Execution id="04a8e61c-ca3b-492f-af33-67a66c602777" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="serializetests" name="union event test deserialize" />
     </UnitTest>
     <UnitTest name="Domain events.add two rooms - Ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="8b3de2af-eb30-7f22-52d8-78101323d115">
-      <Execution id="d12d4d0a-0076-46d0-800c-91094920f633" />
+      <Execution id="bfc8107b-81fa-4d17-8d42-54aa9554fdc3" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain events" name="add two rooms - Ok" />
     </UnitTest>
-    <UnitTest name="domain objects tests.Setup" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="b4acf5b5-4510-6d2b-46b5-44cb9c21e83d">
-      <Execution id="709ebf10-6722-4154-9767-a31f1ecb8dc7" />
-      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="domain objects tests" name="Setup" />
+    <UnitTest name="application level/controller tests, hotel and room tests.add a new room command and get the state. the last snapshot is the same as the state if I call mksnapshot" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="98b118ec-a23f-6323-c1b7-3ce80c1fbc73">
+      <Execution id="5cee6be3-f0f9-4516-a571-b1e0d0b9a5dd" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="application level/controller tests, hotel and room tests.add a new room command and get the state" name=" the last snapshot is the same as the state if I call mksnapshot" />
     </UnitTest>
     <UnitTest name="serializeEventsTests.add two addRoom - OK" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="943697ce-93d4-b796-8652-c56b8888df1a">
-      <Execution id="48e0cb5d-581a-4599-9395-de1664b62c55" />
+      <Execution id="0c46727d-a872-4821-b367-648a64a07a0e" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="serializeEventsTests" name="add two addRoom - OK" />
     </UnitTest>
     <UnitTest name="serializetests.serialize room - OK" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="81fe1005-1a3d-40b0-d8b4-dcf236241ec6">
-      <Execution id="dff4ab4f-8924-4071-b29d-f5d77295290b" />
+      <Execution id="1ec6109b-368a-41e8-98ee-8cb40ecb4a9a" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="serializetests" name="serialize room - OK" />
     </UnitTest>
+    <UnitTest name="ceTest.ce test no binding to let!, no error" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="caac7d4d-41d3-3b61-7902-933608a3b3df">
+      <Execution id="dcf0218c-a093-4aa4-9a17-1e9d0f7dfdf4" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="ceTest" name="ce test no binding to let!, no error" />
+    </UnitTest>
     <UnitTest name="Domain model logic.after creating a booking, then the busy days of the booking are the days in the checkin checkout interval (excluding checkout day) - Ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="6b3be6ac-b21d-948f-6b10-a6e8fc7fa830">
-      <Execution id="7dde6094-f57e-4342-baf2-8d5329e54402" />
+      <Execution id="287beb46-b17e-4222-9661-678bf6b45c20" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain model logic" name="after creating a booking, then the busy days of the booking are the days in the checkin checkout interval (excluding checkout day) - Ok" />
     </UnitTest>
     <UnitTest name="Union.addBooking command returns bookingAdded event - Ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="d03b1c90-8631-2835-9600-04aae5c586c7">
-      <Execution id="f41ac5b2-4402-41ca-8fb2-b8d317bb3362" />
+      <Execution id="35ad3401-bc38-4c10-be47-82c4915e166e" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Union" name="addBooking command returns bookingAdded event - Ok" />
     </UnitTest>
+    <UnitTest name="application level/controller tests, hotel and room tests.add a new room command and get the state that will have a room" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="6e18d30a-c2ab-f930-0343-6b58d0320522">
+      <Execution id="db7db8d7-2eec-45ef-a102-ae493d4bf4a6" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="application level/controller tests, hotel and room tests" name="add a new room command and get the state that will have a room" />
+    </UnitTest>
     <UnitTest name="serializetests.union event booking added test deserialize - OK" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="443a9a29-9c23-8760-f086-4164e3e7c3f1">
-      <Execution id="3135f868-fe11-4aa7-be34-e854d822f613" />
+      <Execution id="2ac89df1-dd29-4ce4-98d7-82558bfe066f" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="serializetests" name="union event booking added test deserialize - OK" />
     </UnitTest>
+    <UnitTest name="serializetests.serialize room2 - OK" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="8ef8e9c1-73bb-89c6-8383-0e626bb82fe6">
+      <Execution id="13a61438-67b0-4c0a-9374-f508309f2f53" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="serializetests" name="serialize room2 - OK" />
+    </UnitTest>
     <UnitTest name="Domain events.add already existing room - Error" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="28b80a9b-353f-8ff5-35d8-0dcc0e464ae2">
-      <Execution id="328a55fd-ced7-46a8-a89a-c7535d3cea13" />
+      <Execution id="d44c19d3-f19e-48af-a9eb-2acb14b71d5b" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="Domain events" name="add already existing room - Error" />
     </UnitTest>
     <UnitTest name="serializetests.deserialize hotel state 1 - Error" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="e80d0658-8cd1-eb2c-576c-3afde8f7dd5c">
-      <Execution id="86a5dbb4-69e0-45c3-9355-140820079432" />
+      <Execution id="f09235bf-6e88-490f-aeee-29c836b09409" />
       <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="serializetests" name="deserialize hotel state 1 - Error" />
+    </UnitTest>
+    <UnitTest name="ceTest.ce test with two let! assignments. returns the second ok" storage="/users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/debug/net6.0/hotelmodelingtest.dll" id="a2b4159b-770f-f7c4-cf23-8b766bc2c2fa">
+      <Execution id="23964bf8-9d75-4594-9a12-e6d8386d89b4" />
+      <TestMethod codeBase="/Users/antoniolucca/github/domainmodelcafe/hotelmodelingtest/bin/Debug/net6.0/hotelmodelingtest.dll" adapterTypeName="executor://yolodev/expecto" className="ceTest.ce test with two let! assignments" name=" returns the second ok" />
     </UnitTest>
   </TestDefinitions>
   <TestEntries>
-    <TestEntry testId="ec11ab20-36e8-0336-bde0-6bac95d4d447" executionId="c2b0e864-3197-42d8-a5c0-9016460523f6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="fbe13574-e2b3-b5df-5591-40f0909cc419" executionId="1124add8-2735-4305-9a18-8a7ab4ccaf8e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="b9961cf9-3537-f75d-0e1b-95a5a21eb89d" executionId="e1cccb27-c504-41de-9cda-c2cce76a39c3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="d29128ae-b25a-2392-2573-2312f520344a" executionId="08b4db8d-058a-4e2b-af63-e896cbc66dbb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="81fe1005-1a3d-40b0-d8b4-dcf236241ec6" executionId="dff4ab4f-8924-4071-b29d-f5d77295290b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="7ebb4df5-9432-45da-8bfe-8e94e5d57892" executionId="c9af8839-ef33-45ef-9003-b429f29486b8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="dfdeb31b-c74f-2bf6-58ae-298e1b3f388a" executionId="c72fc6df-a2c9-44de-8702-afbe0271b24f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="3459327b-38be-bd49-46f3-d0f8457fc868" executionId="63b32417-d04f-49df-914f-e789f00fc562" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="98950fc7-74c9-455e-6eea-4aa7fa3f330b" executionId="cb55622c-be09-4029-be27-851044f25df4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="e80d0658-8cd1-eb2c-576c-3afde8f7dd5c" executionId="86a5dbb4-69e0-45c3-9355-140820079432" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="4af5199e-882c-83fa-50ac-4ad764633859" executionId="d410964a-754e-46d9-95be-5146f6386964" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="8d4d8e6b-7a21-e3cc-c038-b79e36ecd20b" executionId="bac3bfd9-e35a-4ef5-b4f1-b37001516adf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="8a58f7e6-fa5d-e050-071b-b735ab40e67d" executionId="3f0ace14-a26f-4a79-979c-927b6f425324" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="011844c5-ab7c-87a3-1ccb-e3bd7236f72d" executionId="f03bc130-7f0d-4841-9e26-cda66f3147d8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="5342ea11-8fea-afb4-7d9d-d843dd53a169" executionId="dbb27d1f-82ae-4834-986c-647f3036b015" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="0e906688-ef31-38a6-5416-86493a352f3a" executionId="a64cb0e3-2ceb-46b1-a2b0-72b112bc3223" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="921813ed-c4d7-826b-5b7f-b8a29207a9a8" executionId="3981fe74-97be-4d67-9e41-de42f2069d46" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="053004a9-8cfa-251b-618b-7c7e90555703" executionId="a1d5a2f1-2675-4aea-b6af-0038470979cd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="48601633-dd24-1d46-2b43-f3e3d31eefd3" executionId="458a116f-58f9-4c28-bcb4-eae0285ec427" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="14e40356-6495-cfab-1d03-0c4a835425ef" executionId="5fea994c-2108-4bac-a4c2-f9048ef0db27" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="c39c8b41-04d3-d17c-f5d9-db608a500c06" executionId="1eb1dfef-e473-4f16-bd9d-ba79a5485d28" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="e0677495-19d1-35e1-c6d1-6498f0db53ec" executionId="48ac1898-25d2-45e8-b12d-6d3f848a32ca" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="a9e3dc4b-83f5-7bd7-bda6-271bba442e84" executionId="c134ea35-a948-48aa-b226-388f01955031" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="52828b1e-17f6-23a7-10ac-34891c1d199d" executionId="94f06f25-bcdf-45e8-9399-65b9789182ee" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="e7a4501a-0efe-f569-1c92-6724bc4cef1e" executionId="0ead45ac-b337-4624-9a52-7c5d5c5321f3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="3cd9b3a2-a7e5-de0e-5d29-d9a6617bc734" executionId="9045b5ed-257e-401a-a5ff-b32ca31b0b61" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="c0ab15bc-8f9d-dbc9-cd95-81a73bb886ac" executionId="017d4f6d-cc7b-4aeb-ba72-458f129aa496" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="6dfbebd9-f56b-5aa5-8caf-f54bfc451bba" executionId="d0efc811-c4f2-4779-b7d4-237418f7615b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="a43e6dd0-0876-ecde-2397-451fc1d191a7" executionId="a8b65d9e-8c56-4042-b78e-c9b9b6c82c04" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="8402aa69-c2f7-e83d-7775-793652b9cb11" executionId="8aabd607-8faf-4571-8417-9f1d377ecee3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="346a9703-c748-87ca-0f3b-8f9b3b254028" executionId="1d3a23d4-4903-44fb-83b4-f1e7abbc1c05" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="8b3de2af-eb30-7f22-52d8-78101323d115" executionId="d12d4d0a-0076-46d0-800c-91094920f633" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="28b80a9b-353f-8ff5-35d8-0dcc0e464ae2" executionId="328a55fd-ced7-46a8-a89a-c7535d3cea13" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="b77bb403-f527-7a99-46d4-f7bb101dd095" executionId="c3c06b7c-6610-4e0f-aaa8-c4a45b07f7e2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="aea8dd3f-904e-1b4e-3565-f1f99a1cb2fb" executionId="50ed75d8-e920-40cb-af9a-b10e4c5b5a1c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="d1ce66b0-e3dd-f170-0dfc-c2450753eede" executionId="d593b46b-648f-4018-aa3e-c023f825cf88" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="849d77f2-3e62-9da6-9cca-ebc2d7ff486f" executionId="15581465-b85e-4858-abe3-f871082bd741" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="024969fe-490d-20a8-1c58-604d7836922d" executionId="0d150cb9-12c4-4c2f-9699-83618789604d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="2716bf02-6f70-cffa-96fa-9cd278ef4a99" executionId="b9af0d93-a760-4844-b3e4-074e5683a600" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="c22534ff-135e-a0b8-0537-edafc8c99b42" executionId="4b012771-65cc-40a5-9583-48b3e52e3186" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="8a1b47e0-1df5-9ed3-3454-dd1ebdf3cabf" executionId="6296d6df-fb4a-46b9-b4fa-90496b264cff" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="7dad93a4-d5a0-6d4b-1bef-e2a5a0863f3c" executionId="76c305cd-43df-46ea-a19f-44309cdf0e39" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="2d472249-0957-9258-6d05-687f0913fd83" executionId="d8142017-ed8b-4e55-b4d2-b09fa659fb8e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="f070a9e0-1d62-b852-be1f-73f0d047eb48" executionId="e1dc881b-1129-4656-89cb-0a600413c50c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="a79359dc-9b8c-8bcd-4f74-f88918bf16f4" executionId="95208ed5-c723-4634-a97f-10ca95d8f929" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="d06fc3d2-c667-360c-b921-65f02a3bdbb3" executionId="a75e264b-60e4-4a1b-bb6a-ee539d51c9da" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="59ec0422-e867-60c2-aad7-7ea675661997" executionId="23d3de8f-d66c-4644-b791-2974f8c1390d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="f9473589-8697-ee53-af41-813844e45d4f" executionId="cb4dd267-c5d8-4622-a3f0-e589e3aeff85" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="443a9a29-9c23-8760-f086-4164e3e7c3f1" executionId="3135f868-fe11-4aa7-be34-e854d822f613" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="943697ce-93d4-b796-8652-c56b8888df1a" executionId="48e0cb5d-581a-4599-9395-de1664b62c55" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="6b3be6ac-b21d-948f-6b10-a6e8fc7fa830" executionId="7dde6094-f57e-4342-baf2-8d5329e54402" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="a87ed378-12a2-d3b0-0958-1c8b63972e39" executionId="d11a0966-99a4-4801-88ef-7757bc47b678" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="d647a503-9f36-037a-425a-3a92a46a0016" executionId="eee4226c-4a0a-4099-8856-9ab0149b7074" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="ff99d881-d379-5a18-d9e8-6f1c077c8d3c" executionId="dcc59c7e-5afc-480b-bee7-dec5ab8ce920" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="21232319-69fa-e409-c899-adc0a04dd31b" executionId="8429095b-384b-4794-ac7f-b70abf89717f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="19f68e07-f3ef-3a07-24a8-0e0994772430" executionId="64746fca-921a-4ae8-a639-4dedbdbb3814" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="e9bf5912-a797-4ee4-b9dd-49ec4caa3cbf" executionId="7b0eebc6-c80e-4bb6-8c9d-192cc73be151" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="b4acf5b5-4510-6d2b-46b5-44cb9c21e83d" executionId="709ebf10-6722-4154-9767-a31f1ecb8dc7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="da3932f1-b438-2629-143b-14f82ec1b6d7" executionId="75eb8daf-a053-4228-8fde-9dbafdc1798f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="4c313fe3-aefd-4c07-6d83-5f0e6ac42cf0" executionId="20aef01e-f8b4-4e65-b03a-06f0f6024d7e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="d03b1c90-8631-2835-9600-04aae5c586c7" executionId="f41ac5b2-4402-41ca-8fb2-b8d317bb3362" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6deac8ac-65da-1d1c-d8dd-af65752f45e1" executionId="7f0d5bac-6e85-4ba8-a4af-d53e82b12f75" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8b3de2af-eb30-7f22-52d8-78101323d115" executionId="bfc8107b-81fa-4d17-8d42-54aa9554fdc3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="09252eda-c5be-0d8b-e493-22a29e10ff6b" executionId="389b1d88-2496-4f0f-bfa3-be22ea7bbb70" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="943697ce-93d4-b796-8652-c56b8888df1a" executionId="0c46727d-a872-4821-b367-648a64a07a0e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="63254cb9-5c1e-e4cc-eecd-9eb01970a621" executionId="080a2bae-4b72-418f-877b-193bc8a6ff17" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7ebb4df5-9432-45da-8bfe-8e94e5d57892" executionId="8087a336-87f2-4576-b0d6-3fe97ae4a69a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4bd9ac07-7d11-19a5-1bc2-778fc9a3a33d" executionId="4ad2dfee-72be-420b-9c0d-dc8c1f2dfb67" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d7c1f34b-d13d-2894-b201-95a1b9bef8cd" executionId="4ac47a85-5380-49bf-a3fe-5c194442e7d3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d1ce66b0-e3dd-f170-0dfc-c2450753eede" executionId="0c5dbade-f306-4959-9224-363e1034b32e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fbe13574-e2b3-b5df-5591-40f0909cc419" executionId="41ed4cba-7e1f-4558-9773-d73c48b6ee30" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6e18d30a-c2ab-f930-0343-6b58d0320522" executionId="db7db8d7-2eec-45ef-a102-ae493d4bf4a6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7c6a7790-b37b-0c66-4677-4787a857fa51" executionId="7d84918e-0e2e-4dba-97fc-f27116ee5e97" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f836138b-c9c2-a7ef-46c2-1c2c5f06def8" executionId="183b1dba-0e0e-4fba-89a9-7f37addaeed3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="15cc69cc-d216-6731-7a76-e151004260e0" executionId="d77d59f1-8278-4807-b884-9e0562aadc22" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9f22d483-0fe9-e9a8-6900-5929b7112fd0" executionId="54cf0846-ecf0-48f6-b2d1-0a2a65c19c4d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="59ec0422-e867-60c2-aad7-7ea675661997" executionId="8319ee2d-7508-44c3-bb18-f7a9106f7436" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2716bf02-6f70-cffa-96fa-9cd278ef4a99" executionId="07a94523-decf-4fc0-851c-75aaa438a317" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e80d0658-8cd1-eb2c-576c-3afde8f7dd5c" executionId="f09235bf-6e88-490f-aeee-29c836b09409" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ff99d881-d379-5a18-d9e8-6f1c077c8d3c" executionId="66e1f1c8-03c1-4170-a943-f989c73fd8d0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="98b118ec-a23f-6323-c1b7-3ce80c1fbc73" executionId="5cee6be3-f0f9-4516-a571-b1e0d0b9a5dd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="48601633-dd24-1d46-2b43-f3e3d31eefd3" executionId="47a5ea4a-c220-42fd-8d74-2798d755c845" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="da3932f1-b438-2629-143b-14f82ec1b6d7" executionId="1888465b-e76c-4d7f-ad96-532ade00255c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8d4d8e6b-7a21-e3cc-c038-b79e36ecd20b" executionId="0cfe5023-9b34-420c-b050-61ff89286fbe" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="921813ed-c4d7-826b-5b7f-b8a29207a9a8" executionId="cd90c7c4-6225-4cf8-8584-4859bc8124a4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8a58f7e6-fa5d-e050-071b-b735ab40e67d" executionId="73ba1aa8-0911-48d5-b81d-6d3636cd19a6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a79359dc-9b8c-8bcd-4f74-f88918bf16f4" executionId="eb4e7ec1-df7b-4002-97c5-83be34753d96" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d647a503-9f36-037a-425a-3a92a46a0016" executionId="104eb6a8-b791-4dbf-9fa2-edd3083426c6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4b8463d7-1a05-6143-eed1-2d835dec41b5" executionId="732de946-2f6f-432e-9a9a-3e6382b19a13" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7eb34abb-4e0b-d2af-014c-5d29c77fc39c" executionId="b297fcef-8663-44b4-9330-486900c19ec9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5342ea11-8fea-afb4-7d9d-d843dd53a169" executionId="4aa54fef-7fc6-4562-a66e-e779e5426d7e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="443a9a29-9c23-8760-f086-4164e3e7c3f1" executionId="2ac89df1-dd29-4ce4-98d7-82558bfe066f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4af5199e-882c-83fa-50ac-4ad764633859" executionId="4533011e-929d-4e71-a1a7-410360a866a7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="98950fc7-74c9-455e-6eea-4aa7fa3f330b" executionId="04a8e61c-ca3b-492f-af33-67a66c602777" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c39c8b41-04d3-d17c-f5d9-db608a500c06" executionId="547ad9f2-8eed-42d1-b29a-fc9a7db1f41b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="77a575d6-cd5e-519e-2be3-43f557083fb8" executionId="8a4b1061-5740-405c-bf9e-bf7d97fed8a7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="21232319-69fa-e409-c899-adc0a04dd31b" executionId="d5da5326-14f9-4991-9198-cc7689251d15" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="52828b1e-17f6-23a7-10ac-34891c1d199d" executionId="412f13b9-8ac6-42c8-b3e9-d830f992ec3c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3cd9b3a2-a7e5-de0e-5d29-d9a6617bc734" executionId="bd5586cc-9c8b-4534-94c2-251f91ea69c3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8a1b47e0-1df5-9ed3-3454-dd1ebdf3cabf" executionId="9f184364-b39a-436d-87ec-22507d87fb36" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="14e40356-6495-cfab-1d03-0c4a835425ef" executionId="90cfa356-8c6a-4611-b215-a272abf16fac" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f070a9e0-1d62-b852-be1f-73f0d047eb48" executionId="12b8f44a-7fa8-4037-a39a-87986d4060e6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="61f835d2-276c-2ba6-01d7-e3d04b958b5d" executionId="9648f37f-14cf-409f-8545-eff15fb61a01" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="be7182a9-e1cc-5071-27dd-0d38edac3d33" executionId="238ddafb-29ef-4fdf-a254-1e7b448eca0a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="28b80a9b-353f-8ff5-35d8-0dcc0e464ae2" executionId="d44c19d3-f19e-48af-a9eb-2acb14b71d5b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d06fc3d2-c667-360c-b921-65f02a3bdbb3" executionId="9b1046bf-5c09-44ef-9a17-c7936aaf119a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c22534ff-135e-a0b8-0537-edafc8c99b42" executionId="4577c8ca-2b51-428f-9c8d-1ef731522817" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1d024ba8-4998-773c-84d2-ff446d5d1b0e" executionId="12c0e879-ffe5-4a99-8f98-64f8d9f5d9ec" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="aea8dd3f-904e-1b4e-3565-f1f99a1cb2fb" executionId="d68e9b22-8e76-4643-941b-042b0c94ff78" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a2b4159b-770f-f7c4-cf23-8b766bc2c2fa" executionId="23964bf8-9d75-4594-9a12-e6d8386d89b4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="caac7d4d-41d3-3b61-7902-933608a3b3df" executionId="dcf0218c-a093-4aa4-9a17-1e9d0f7dfdf4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0e906688-ef31-38a6-5416-86493a352f3a" executionId="7f1cc4cb-fd6c-4ce8-8cba-d6279c42aae4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="dfdeb31b-c74f-2bf6-58ae-298e1b3f388a" executionId="f7ca0d48-0faf-4bf5-a45d-1d5378714d3b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2d472249-0957-9258-6d05-687f0913fd83" executionId="23411c94-821e-45d5-a8ca-60f11ecd271f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e0677495-19d1-35e1-c6d1-6498f0db53ec" executionId="fda7bea1-a270-4cfd-a284-bcc2c2f3e3a7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="81fe1005-1a3d-40b0-d8b4-dcf236241ec6" executionId="1ec6109b-368a-41e8-98ee-8cb40ecb4a9a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4c313fe3-aefd-4c07-6d83-5f0e6ac42cf0" executionId="c797df65-00be-4bf0-89b9-af9681dc8191" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ec11ab20-36e8-0336-bde0-6bac95d4d447" executionId="bfa55ebe-b0b7-4924-9013-ea25b4b0c86a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="854cd5f3-3c0d-b352-0397-5f9c6f440bdf" executionId="e4ef1fe8-0f09-4843-bcc3-5ce9d8497c45" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e7a4501a-0efe-f569-1c92-6724bc4cef1e" executionId="e7c1fc7c-2e21-40a6-bce9-e40614a16d9c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c0ab15bc-8f9d-dbc9-cd95-81a73bb886ac" executionId="b720b025-6e00-425c-84e3-268a7b48427e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6dfbebd9-f56b-5aa5-8caf-f54bfc451bba" executionId="57388583-a80a-49ba-a5e0-c7957367831d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a9e3dc4b-83f5-7bd7-bda6-271bba442e84" executionId="7203ee8b-a4e6-4ace-985f-145455fc6a11" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a6f6609d-a61e-968f-d0cf-93df0b3a7742" executionId="a49d7e54-f282-454e-be7c-c6f830f9f680" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8ef8e9c1-73bb-89c6-8383-0e626bb82fe6" executionId="13a61438-67b0-4c0a-9374-f508309f2f53" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="024969fe-490d-20a8-1c58-604d7836922d" executionId="01cd2d04-1c84-48c1-a478-6f7118325d2a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b7e6879b-e157-b39c-6fe9-3bdf194c24fe" executionId="3d8ade1d-f91e-4d0f-8a29-98d19e430a27" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b77bb403-f527-7a99-46d4-f7bb101dd095" executionId="7b4c8824-e310-4377-a34a-24d62339e634" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7dad93a4-d5a0-6d4b-1bef-e2a5a0863f3c" executionId="899e071b-3405-4af3-94af-f32cfec69163" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e3b856da-b21a-c6de-4f28-cdaab38c7dba" executionId="e5b1292d-b9cc-48d3-8e71-abadbd9b8d2e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6b3be6ac-b21d-948f-6b10-a6e8fc7fa830" executionId="287beb46-b17e-4222-9661-678bf6b45c20" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a43e6dd0-0876-ecde-2397-451fc1d191a7" executionId="36fc1b4d-5ac9-4c6d-a40c-8142cdcedbff" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="011844c5-ab7c-87a3-1ccb-e3bd7236f72d" executionId="9d95c96d-6214-4958-9dba-cc0c5a1f76dd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="28862e76-62e2-0444-ac63-744f9c209e9b" executionId="6562ef62-c3db-4b76-8dd6-66e3656f0424" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e9bf5912-a797-4ee4-b9dd-49ec4caa3cbf" executionId="f3fae26e-139a-4449-89d0-6784d8f14759" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="053004a9-8cfa-251b-618b-7c7e90555703" executionId="f54db8d9-0571-42ae-adac-c1c48513bcd5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="14e0e164-6e39-4e94-f653-a965aed338d2" executionId="59a764f4-8cb8-4ee7-b31d-5d474986e9d0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d03b1c90-8631-2835-9600-04aae5c586c7" executionId="35ad3401-bc38-4c10-be47-82c4915e166e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1fb29d8f-e1fb-8e76-f126-c4ec73ab692a" executionId="26dacf60-efec-4214-9ed8-148a8e44497e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="849d77f2-3e62-9da6-9cca-ebc2d7ff486f" executionId="14b379ab-6bb9-40d7-867f-1a9979bc27b1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d29128ae-b25a-2392-2573-2312f520344a" executionId="1234fd69-e767-4235-b335-6cb4c54acec5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b9961cf9-3537-f75d-0e1b-95a5a21eb89d" executionId="49de9149-1019-400b-90e7-71f5ce2b65d1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
   </TestEntries>
   <TestLists>
     <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
     <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
   </TestLists>
   <ResultSummary outcome="Completed">
-    <Counters total="61" executed="1" passed="1" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
-    <Output>
-      <StdOut>Test 'serializetests.deserialize room2' was skipped in the test run.
-Test 'serializetests.serialize hotel state 1' was skipped in the test run.
-Test 'serializetests.serialize room2' was skipped in the test run.
-Test 'serializetests.serialize room' was skipped in the test run.
-Test 'serializetests.deserialize hotel state 1 - Ok' was skipped in the test run.
-Test 'serializetests.serialize room - OK' was skipped in the test run.
-Test 'serializetests.serialize hotel state 2' was skipped in the test run.
-Test 'serializetests.deserialize hotel state 1 - Error' was skipped in the test run.
-Test 'serializetests.deserialize hotel state 2' was skipped in the test run.
-Test 'serializetests.serialize hotel state 3' was skipped in the test run.
-Test 'serializetests.union event roomAdded test deserialize  - error' was skipped in the test run.
-Test 'serializeCommandstests.serialize AddRoom' was skipped in the test run.
-Test 'serializetests.union event room added test serialize ' was skipped in the test run.
-Test 'serializeEventsTests.add two addRoom - OK' was skipped in the test run.
-Test 'serializeCommandstests.serialize AddBooking' was skipped in the test run.
-Test 'serializetests.union event test deserialize' was skipped in the test run.
-Test 'serializeEventsTests.interpret single addRoom event from serialized' was skipped in the test run.
-Test 'serializetests.union event booking added test deserialize - OK' was skipped in the test run.
-Test 'serializetests.union event booking added test serialize - OK' was skipped in the test run.
-Test 'serializetests.deserialize hotel state 4' was skipped in the test run.
-Test 'serializeEventsTests.add room with the same id twice - Error' was skipped in the test run.
-Test 'serializeEventsTests.add two rooms wrong json format - Error' was skipped in the test run.
-Test 'commandSequenceToEventSequence.add existing room command - KO' was skipped in the test run.
-Test 'commandSequenceToEventSequence.add existing room, two commands, error from second command - KO' was skipped in the test run.
-Test 'Domain objects.rooms with the same id are the same room' was skipped in the test run.
-Test 'Domain objects.rooms with different ids are the different room' was skipped in the test run.
-Test 'Domain objects.two bookings having all fields equals are equals - Ok' was skipped in the test run.
-Test 'commandSequenceToEventSequence.when the list contains a singl command that can be executed returning ok then the corresponding ok event is retured' was skipped in the test run.
-Test 'Domain objects.two bookings with different roomid are not equal' was skipped in the test run.
-Test 'Domain model logic.create booking about a room that does exists - Ok' was skipped in the test run.
-Test 'Domain model logic.create a booking about a room that doesn't exist - Error' was skipped in the test run.
-Test 'Domain objects.the busy day of a two days night will be the checkin day and the one after' was skipped in the test run.
-Test 'Domain objects.the busy day of a one day night is only the checkin day' was skipped in the test run.
-Test 'Domain objects.two bookings with different day of checkin/out, are not equal' was skipped in the test run.
-Test 'Domain model logic.add a room when a room with the same id already exists in the hotel - Error' was skipped in the test run.
-Test 'Domain model logic.add a room to an empty hotel - Ok' was skipped in the test run.
-Test 'Domain model logic.after creating a booking, then the booking must have an id - Ok' was skipped in the test run.
-Test 'Domain model logic.larger booking interval. Get the booked days. From checkin date to checkout date excluded - Ok' was skipped in the test run.
-Test 'Domain model logic.after creating a booking, then the busy days of the booking are the days in the checkin checkout interval (excluding checkout day) - Ok' was skipped in the test run.
-Test 'Domain model logic.add more bookings on same room, that have no overlaps - Ok' was skipped in the test run.
-Test 'Domain model logic.add a booking that already has an id Error - Ok' was skipped in the test run.
-Test 'Domain model logic.two booking on two different available rooms - Ok' was skipped in the test run.
-Test 'Domain model logic.two booking intervals. Get the booked days - Ok' was skipped in the test run.
-Test 'Domain model logic.cannot add a booking about the same room when the period is the same - Error' was skipped in the test run.
-Test 'Domain model logic.the checkin date of a booking can be the checkout date of another booking - Ok' was skipped in the test run.
-Test 'Domain events.add room event  - Ok' was skipped in the test run.
-Test 'Domain events.add already existing room - Error' was skipped in the test run.
-Test 'Domain model logic.add bookings that overlaps - Error' was skipped in the test run.
-Test 'Domain events.add booking simple event - Ok' was skipped in the test run.
-Test 'Domain events.add booking event - Ok' was skipped in the test run.
-Test 'Domain events.add a room and a booking UNION EVENT - Ok' was skipped in the test run.
-Test 'Domain events.add two rooms - Ok' was skipped in the test run.
-Test 'Domain events.add a room and a booking - Ok' was skipped in the test run.
-Test 'Union.addRoom command returns roomAdded event - Ok' was skipped in the test run.
-Test 'Domain events.add booking on free period - Ok' was skipped in the test run.
-Test 'Domain events.add overlapping booking - Error' was skipped in the test run.
-Test 'Union.addBooking command returns Error in booking unxisting room - KO' was skipped in the test run.
-Test 'Union.addBooking command returns bookingAdded event - Ok' was skipped in the test run.
-Test 'domain objects tests.Setup' was skipped in the test run.
-Test 'domain objects tests.when db is empty the last snapshot is the init' was skipped in the test run.
-</StdOut>
-    </Output>
+    <Counters total="81" executed="81" passed="81" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
   </ResultSummary>
 </TestRun>

@@ -207,24 +207,6 @@ let EventsTests =
                 let expected = { cafe with tables = [ table1; table2 ] }
                 Expect.equal cafe' expected "should be equal"
 
-            // testCase "add different tables, process event list Refactor (serializable) - OK"
-            // <| fun _ ->
-            //     let cafe = Cafe.GetEmpty()
-            //     let table2 = { id = 2; orderItems = [] }
-            //     let table2Added = 
-            //         {
-            //             event = table2 |> tableAdded
-            //         }
-            //     let table1Added = 
-            //         {
-            //             event = table1 |> tableAdded
-            //         }
-            //         table1 |> tableAdded
-            //     let events = [ table2Added; table1Added ] |> NonEmptyList.ofList
-            //     let (Ok cafe') = events |> cafe.ProcessSEvents
-            //     let expected = { cafe with tables = [ table1; table2 ] }
-            //     Expect.equal cafe' expected "should be equal"
-
             testCase "add table and food - Ok"
             <| fun _ ->
                 let cafe = Cafe.GetEmpty()

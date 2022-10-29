@@ -1,15 +1,5 @@
 namespace hotelmodeling
 
-open FSharp.Data
-open Newtonsoft
-open Newtonsoft.Json
-open FSharpPlus
-open FSharpPlus.Operators
-
-open System.IO
-open System.Text
-open System
-
 module Utils = 
     type CeErrorBuilder()  =
         member this.Bind(x, f) =
@@ -25,3 +15,6 @@ module Utils =
 
         member this.Return(x) =
             x |> Ok
+
+        member this.ReturnFrom(x) =
+            x 
