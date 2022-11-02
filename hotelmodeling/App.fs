@@ -86,9 +86,9 @@ let addBooking (roomId: int) (email: string) (checkin: DateTime) (checkout: Date
 let mkSnapshot() = 
     ceError 
         {
-            let ctx = Db.getContext()
             let! (id, state) = getState()
             let snapshot = state.Serialize()
+            let ctx = Db.getContext()
             let! result =  Db.setSnapshot id snapshot ctx
             return result
         }

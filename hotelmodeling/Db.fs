@@ -21,9 +21,7 @@ let TPConnectionString =
     "Password=1234;"
 
 let [<Literal>] dbVendor = Common.DatabaseProviderTypes.POSTGRESQL
-let [<Literal>] resPath = "" 
 let [<Literal>] indivAmount = 1000 
-let [<Literal>] useOptTypes  = false
 
 let initState = "{\"rooms\":[],\"bookings\":[]}"
 
@@ -48,9 +46,9 @@ let getAllEvents (ctx: DbContext ) =
             select event
     } |> Seq.toList
 
-let addEvent cont (ctx: DbContext) =
+let addEvent event (ctx: DbContext) =
     try 
-        let _ = ctx.Public.Events.``Create(event, timestamp)``(cont, System.DateTime.Now)
+        let _ = ctx.Public.Events.``Create(event, timestamp)``(event, System.DateTime.Now)
         ctx.SubmitUpdates()
         () |> Ok
     with

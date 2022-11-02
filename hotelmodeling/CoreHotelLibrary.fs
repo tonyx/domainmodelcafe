@@ -79,7 +79,6 @@ module Domain =
                 let alreadyBookedDays = this.GetBookedDaysOfRoom (booking.roomId)
                 let conflictingDays = alreadyBookedDays |> Set.intersect claimedDays
                 
-
                 match (booking.id, roomExists, conflictingDays.IsEmpty ) with
                     | Some _, _, _ -> "cannot add a booking that already has an id" |> Error
                     | _, false, _ -> sprintf "room %d doesn't exist" booking.roomId |> Error
@@ -107,4 +106,7 @@ module Domain =
                 |>> (fun x -> (x, this.GetBookedDaysOfRoom x.id)) 
                 |> List.filter (fun (_, d) -> (d |> Set.intersect claimedDays).IsEmpty )
                 |>> fst
+
+            member this.GetAllRooms() =
+                this.rooms
 

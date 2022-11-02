@@ -1,0 +1,6 @@
+1. This project is an experiment my take on event sourcing in F#.
+2. Layers: **The core domain**: types and functions or methods operate according to the requirements in a functional way: object are immutable and functions or methods that operate on objects return the object changed according to the logic of the function/method
+
+3. There is only one root level object representing a state.  that can be produced by applying eventst a state. The methods or functions that use it returning a new state are mirrored as  and A specific object is a root level object. It means that it references (contains) other objects so that each subobject is affected by at least on function or method.
+4. The root objet needs a "empty" state, or zero state, or initial state. I defined this state by the static method GetEmpty().
+5. The domain model methods that represent something that happens that return an instance of the object itself changed respect of the original object needs to be wrapped in a Event discriminated union type. 
